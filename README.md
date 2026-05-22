@@ -32,14 +32,13 @@ npm run lint
 npm run build
 ```
 
-## HUMAN:confirm
+## Production Notes
 
-The first draft deliberately marks the following items in copy:
+The first production draft keeps the site mailto-first and uses the public Companies House record for statutory company details.
 
-- Datago Ltd company number
-- Registered office wording
-- Whether consulting/advisory remains visible
-- Whether contact stays mailto-first or becomes a form
-- Whether Agents & Pencils becomes a redirect, lab, or archive
+- Datago Ltd company number: 14751587
+- Registered office: 2 Old Bath Road, Newbury, Berkshire, England, RG14 1QL
+- Contact: info@datago.uk
+- Agents & Pencils is presented as a Datago lab/archive, not the enterprise-facing company brand
 
 The production domain should be `datago.uk`, with `www.datago.uk` redirected to the apex domain.

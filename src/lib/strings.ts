@@ -14,8 +14,8 @@ export const site = {
     attribution: "Bridgly is a Datago product.",
   },
   legal: {
-    companyNumber: "HUMAN:confirm company number",
-    registeredOffice: "HUMAN:confirm registered office",
+    companyNumber: "14751587",
+    registeredOffice: "2 Old Bath Road, Newbury, Berkshire, England, RG14 1QL",
   },
 };
 
@@ -192,7 +192,7 @@ export const companyPage = {
     },
   ],
   founderNote:
-    "HUMAN:confirm optional founder/operator note from Terence/Dale and whether consulting or advisory remains a visible offer.",
+    "Datago is founder-led and product-led, with implementation support focused on safe adoption of governed organisational intelligence products.",
 };
 
 export const contactPage = {
@@ -202,7 +202,7 @@ export const contactPage = {
     "For corporate enquiries, partnerships, product adoption, or questions about Bridgly, email the company directly.",
   primary: "Email info@datago.uk",
   note:
-    "HUMAN:confirm whether this remains mailto-first or becomes a structured contact form.",
+    "This site is currently mailto-first and does not collect enquiry details through a web form.",
 };
 
 export const labPage = {
@@ -224,8 +224,8 @@ export const privacyPage = {
     "This placeholder privacy notice is included for the first build and should be reviewed before production use.",
   points: [
     "Datago can be contacted at info@datago.uk for privacy-related enquiries.",
-    "The site is intended to collect minimal personal data unless a future contact form or analytics setup is confirmed.",
-    "HUMAN:confirm final privacy wording, analytics providers, data retention, and legal basis before launch.",
+    "This site is currently mailto-first and does not collect enquiry details through a web form.",
+    "If analytics, forms, or additional tracking are added later, this notice should be updated before those services go live.",
   ],
 };
 
@@ -238,6 +238,6 @@ export const termsPage = {
     "Datago Ltd is the company operating this website.",
     `Company number: ${site.legal.companyNumber}.`,
     `Registered office: ${site.legal.registeredOffice}.`,
-    "HUMAN:confirm whether this route should become full terms, a legal notice, or be removed.",
+    "This page is a concise legal notice for the corporate website.",
   ],
 };
