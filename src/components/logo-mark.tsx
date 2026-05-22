@@ -1,13 +1,11 @@
 import Link from "next/link";
+import { DatagoMark } from "@/components/datago-mark";
 
 export function LogoMark() {
   return (
     <Link aria-label="Datago home" className="logo-mark" href="/">
-      <span className="logo-mark__symbol" aria-hidden="true">
-        D
-      </span>
-      <span className="logo-mark__text">Datago</span>
+      <DatagoMark size={34} />
+      <span className="logo-mark__text">datago</span>
     </Link>
   );
 }
-

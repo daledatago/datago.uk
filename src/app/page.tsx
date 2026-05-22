@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { ButtonLink } from "@/components/button-link";
 import { InfoCard } from "@/components/info-card";
+import { OperatingMesh } from "@/components/operating-mesh";
 import { SectionHeading } from "@/components/section-heading";
 import { home, site } from "@/lib/strings";
 
@@ -19,16 +19,22 @@ export default function Home() {
                 {home.hero.secondaryCta}
               </ButtonLink>
             </div>
+            <div className="home-hero__meta" aria-label="Datago company details">
+              <span>
+                <strong>Company</strong>
+                Datago Ltd · {site.legal.companyNumber}
+              </span>
+              <span>
+                <strong>Flagship</strong>
+                Bridgly platform
+              </span>
+              <span>
+                <strong>Lab</strong>
+                Agents &amp; Pencils
+              </span>
+            </div>
           </div>
-          <div className="home-hero__visual" aria-label="Datago operating intelligence visual">
-            <Image
-              src={site.assets.hero}
-              alt="Abstract network of enterprise systems and decision paths."
-              fill
-              priority
-              sizes="(max-width: 900px) 100vw, 48vw"
-            />
-          </div>
+          <OperatingMesh />
         </div>
       </section>
 

@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Datago · Home · proposal mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:oklch(98% 0.003 245);
+  --paper:#FFFFFF;
+  --ink:oklch(20% 0.012 245);
+  --ink-dim:oklch(42% 0.008 245);
+  --ink-mute:oklch(60% 0.006 245);
+  --ink-faint:oklch(75% 0.005 245);
+  --line:oklch(90% 0.004 245);
+  --line-soft:oklch(94% 0.004 245);
+  --brand:oklch(42% 0.13 245);
+  --brand-soft:oklch(62% 0.13 245);
+  --brand-deep:oklch(28% 0.10 245);
+  --brand-tint:oklch(94% 0.025 245);
+  --bridgly-green:oklch(54% 0.16 146);
+  --r-xs:3px;--r-sm:6px;--r-md:8px;--r-lg:12px;--r-pill:999px;
+  --sans:Geist,ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.mono{font-family:var(--mono)}
+
+.proposal{padding:14px 18px;background:oklch(94% 0.04 80);border-bottom:1px solid oklch(82% 0.13 80);font-family:var(--mono);font-size:11.5px;color:var(--ink-dim);text-align:center}
+.proposal b{color:var(--ink);font-weight:500}
+
+/* TOP NAV */
+.topnav{height:68px;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 36px;gap:32px;background:var(--paper)}
+.topnav .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:18px;letter-spacing:-.025em}
+.topnav .links{display:flex;align-items:center;gap:6px}
+.topnav .links a{padding:8px 12px;color:var(--ink-dim);font-size:14px;border-radius:var(--r-sm)}
+.topnav .links a:hover{color:var(--ink)}
+.topnav .links a.on{color:var(--ink);background:var(--bg)}
+.topnav .spacer{flex:1}
+.topnav .right{display:flex;gap:8px;align-items:center}
+
+/* DATAGO MARK */
+.datago-mark .sq-1{fill:var(--ink)}
+.datago-mark .sq-2{fill:var(--brand)}
+.datago-mark.on-dark .sq-1{fill:#FFFFFF}
+.datago-mark.on-dark .sq-2{fill:var(--brand-soft)}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;font-family:var(--sans);font-size:14px;font-weight:500;border-radius:var(--r-sm);cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink);transition:all 120ms ease;line-height:1}
+.btn.primary{background:var(--brand);color:#FFFFFF;border-color:var(--brand)}
+.btn.primary:hover{background:var(--brand-deep)}
+.btn.dark{background:var(--ink);color:#FFFFFF;border-color:var(--ink)}
+.btn:hover{border-color:var(--brand);color:var(--brand)}
+.btn.lg{padding:13px 22px;font-size:15px}
+
+/* HERO */
+.shell{max-width:1240px;margin:0 auto;padding:0 36px}
+.hero{padding:72px 0 80px;display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center}
+@media (max-width:980px){.hero{grid-template-columns:1fr;gap:36px;padding:48px 0 56px}}
+
+.hero-text .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);font-weight:500;margin-bottom:14px}
+.hero-text h1{font-size:56px;font-weight:600;letter-spacing:-.028em;line-height:1.02;margin:0 0 22px;max-width:14ch}
+.hero-text h1 .highlight{color:var(--brand)}
+.hero-text .sub{color:var(--ink-dim);font-size:18px;line-height:1.55;max-width:50ch;margin:0 0 28px}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.hero-meta{margin-top:32px;padding-top:22px;border-top:1px solid var(--line);display:flex;gap:28px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;color:var(--ink-mute)}
+.hero-meta .item b{display:block;color:var(--ink);font-family:var(--sans);font-weight:500;font-size:14px;margin-bottom:3px;letter-spacing:-.005em}
+
+/* ─── HERO GRAPHIC: OPERATING INTELLIGENCE MESH ─── */
+.hero-graphic{position:relative;aspect-ratio:1.1/1;background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 14px 36px -22px rgba(20,40,80,.18)}
+.hero-graphic .gr-label{position:absolute;top:18px;left:22px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);z-index:3}
+.hero-graphic .gr-label-r{position:absolute;top:18px;right:22px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);font-weight:500;z-index:3}
+.hero-graphic .gr-foot{position:absolute;bottom:18px;left:22px;right:22px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);z-index:3}
+
+.gr-svg{position:absolute;inset:0;width:100%;height:100%}
+
+@keyframes mesh-flow{0%{stroke-dashoffset:0}100%{stroke-dashoffset:-30}}
+.gr-svg .flow-line{stroke-dasharray:4 6;animation:mesh-flow 4s linear infinite}
+@keyframes node-pulse{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.15)}}
+.gr-svg .pulse-node{transform-origin:center;transform-box:fill-box;animation:node-pulse 3.2s ease-in-out infinite}
+@keyframes ring-out{0%{r:8;opacity:.4}100%{r:42;opacity:0}}
+.gr-svg .ring{animation:ring-out 3.6s ease-out infinite}
+
+/* CORPORATE PATH STRIP */
+.path-strip{margin:0 0 80px;padding:40px 44px;background:var(--ink);color:#FFFFFF;border-radius:14px;position:relative;overflow:hidden}
+.path-strip::before{content:"";position:absolute;right:-100px;bottom:-100px;width:480px;height:480px;background:radial-gradient(circle, oklch(62% 0.13 245 / 0.18), transparent 70%);pointer-events:none}
+.path-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-soft);font-weight:500;margin-bottom:14px;position:relative;z-index:2}
+.path-strip h2{margin:0 0 18px;font-size:28px;font-weight:600;letter-spacing:-.02em;line-height:1.15;max-width:32ch;position:relative;z-index:2}
+.path-flow{display:flex;align-items:center;gap:18px;flex-wrap:wrap;position:relative;z-index:2}
+.path-step{padding:14px 18px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;min-width:200px}
+.path-step .l{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:4px}
+.path-step h4{margin:0 0 4px;font-size:16px;font-weight:600;letter-spacing:-.012em}
+.path-step .d{font-size:12.5px;color:rgba(255,255,255,0.7);line-height:1.5}
+.path-arrow{color:var(--brand-soft);font-size:18px;font-family:var(--mono)}
+
+/* HOW DATAGO HELPS */
+.section{padding:64px 0 8px}
+.section-head{margin-bottom:32px}
+.section-head .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);font-weight:500;margin-bottom:8px}
+.section-head h2{font-size:34px;font-weight:600;letter-spacing:-.022em;margin:0 0 8px;line-height:1.1}
+.section-head .lede{color:var(--ink-dim);font-size:16px;line-height:1.55;max-width:60ch;margin:0}
+
+.help-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media (max-width:980px){.help-grid{grid-template-columns:repeat(2,1fr)}}
+.help-card{padding:24px 22px;background:var(--paper);border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column;gap:10px;transition:border-color 120ms ease}
+.help-card:hover{border-color:var(--brand)}
+.help-card .n{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);font-weight:500}
+.help-card h3{margin:4px 0 4px;font-size:18px;font-weight:600;letter-spacing:-.014em}
+.help-card .d{font-size:13.5px;color:var(--ink-dim);line-height:1.6;flex:1}
+
+/* PRODUCTS GRID */
+.products{padding:56px 0 16px}
+.product-card{padding:32px 30px;background:var(--paper);border:1px solid var(--line);border-radius:14px;display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:center;margin-bottom:14px}
+@media (max-width:880px){.product-card{grid-template-columns:1fr;padding:24px 22px}}
+.product-card .tier{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:8px;font-weight:500}
+.product-card h3{margin:0 0 8px;font-size:30px;font-weight:600;letter-spacing:-.02em;display:flex;align-items:baseline;gap:14px}
+.product-card h3 .tag{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--bridgly-green);background:oklch(94% 0.03 146);border:1px solid oklch(85% 0.10 146);padding:3px 9px;border-radius:var(--r-pill);font-weight:500}
+.product-card .strap{color:var(--ink-dim);font-size:15px;line-height:1.6;margin:0 0 18px;font-style:italic}
+.product-card .strap b{color:var(--bridgly-green);font-style:normal;font-weight:500}
+.product-card .points{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:18px;font-size:13px;color:var(--ink-dim)}
+.product-card .points div{padding-left:14px;position:relative}
+.product-card .points div::before{content:"·";position:absolute;left:0;color:var(--bridgly-green);font-weight:700}
+.product-card .product-art{aspect-ratio:1;background:var(--bg);border:1px solid var(--line);border-radius:12px;display:grid;place-items:center;position:relative;overflow:hidden}
+.product-card.lab h3 .tag{color:var(--ink-mute);background:var(--bg);border-color:var(--line)}
+.product-card.lab .points div::before{color:var(--ink-mute)}
+
+/* CONTACT */
+.contact{margin-top:64px;padding:48px 48px;background:var(--paper);border:1px solid var(--line);border-radius:14px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}
+@media (max-width:880px){.contact{grid-template-columns:1fr}}
+.contact h2{margin:0 0 10px;font-size:30px;font-weight:600;letter-spacing:-.02em}
+.contact p{margin:0;color:var(--ink-dim);font-size:15px;line-height:1.55;max-width:50ch}
+.contact .actions{display:flex;gap:8px}
+
+/* FOOTER */
+footer.site{margin-top:64px;padding:36px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:36px;font-family:var(--mono);font-size:11.5px;color:var(--ink-mute)}
+footer.site .br h5,footer.site h5{margin:0 0 12px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);font-weight:500}
+footer.site a{display:block;padding:5px 0;color:var(--ink-dim);font-family:var(--sans);font-size:13.5px}
+footer.site a:hover{color:var(--ink)}
+footer.site .corp{font-family:var(--mono);font-size:11px;color:var(--ink-mute);line-height:1.7;margin-top:12px}
+
+/* THINKING NOTES */
+.thinking{margin-top:96px;padding-top:48px;border-top:2px solid var(--ink)}
+.thinking .label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);font-weight:500;margin-bottom:10px}
+.thinking h2{margin:0 0 12px;font-size:32px;font-weight:600;letter-spacing:-.022em;line-height:1.1}
+.thinking .lede{color:var(--ink-dim);font-size:16px;line-height:1.6;max-width:64ch;margin:0 0 36px}
+.concept-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:980px){.concept-grid{grid-template-columns:1fr}}
+.concept{padding:0;background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.concept-art{aspect-ratio:1.3/1;background:var(--bg);border-bottom:1px solid var(--line);position:relative;overflow:hidden;display:grid;place-items:center}
+.concept-body{padding:18px 22px}
+.concept-body .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);font-weight:500;margin-bottom:6px}
+.concept-body .lbl.cur{color:var(--brand)}
+.concept-body h3{margin:0 0 6px;font-size:17px;font-weight:600;letter-spacing:-.012em}
+.concept-body .desc{font-size:13.5px;color:var(--ink-dim);line-height:1.6}
+.concept-body .verdict{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-family:var(--mono);font-size:11px;color:var(--ink-mute)}
+.concept-body .verdict b{color:var(--ink);font-weight:500}
+</style>
+</head>
+<body>
+
+<div class="proposal">
+  <b>Datago Home · proposal mockup</b> · created without seeing the live datago.uk visuals — treat as a starting frame for alignment, not a re-skin.
+</div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="logo">
+    <svg width="28" height="28" viewBox="0 0 64 64" class="datago-mark"><rect class="sq-1" x="6" y="6" width="34" height="34" rx="6"/><rect class="sq-2" x="24" y="24" width="34" height="34" rx="6"/></svg>
+    <span>datago</span>
+  </div>
+  <div class="links">
+    <a href="#" class="on">Home</a>
+    <a href="#">Bridgly</a>
+    <a href="#">Approach</a>
+    <a href="#">Company</a>
+    <a href="#">Lab</a>
+  </div>
+  <div class="spacer"></div>
+  <div class="right">
+    <button class="btn">Contact</button>
+    <button class="btn primary">Explore Bridgly →</button>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="kicker">Datago Ltd · company no. 14751587</div>
+      <h1>Governed organisational <span class="highlight">intelligence</span> products.</h1>
+      <p class="sub">Datago creates enterprise platforms that connect work, decisions, systems, and AI impact into a single governed operating layer. Bridgly is the flagship.</p>
+      <div class="hero-cta">
+        <button class="btn primary lg">Explore Bridgly →</button>
+        <button class="btn lg">Talk to Datago</button>
+      </div>
+      <div class="hero-meta">
+        <div class="item"><b>Founded</b>Newbury · 2023</div>
+        <div class="item"><b>Flagship</b>Bridgly platform</div>
+        <div class="item"><b>Lab</b>Agents &amp; Pencils</div>
+      </div>
+    </div>
+
+    <!-- ─── HERO GRAPHIC · OPERATING INTELLIGENCE MESH ─── -->
+    <div class="hero-graphic">
+      <span class="gr-label">Operating intelligence layer</span>
+      <span class="gr-label-r">● live</span>
+
+      <svg class="gr-svg" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <radialGradient id="bg-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="oklch(62% 0.13 245)" stop-opacity="0.12"/>
+            <stop offset="100%" stop-color="oklch(62% 0.13 245)" stop-opacity="0"/>
+          </radialGradient>
+          <marker id="dot-end" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="3" markerHeight="3">
+            <circle cx="5" cy="5" r="4" fill="oklch(42% 0.13 245)"/>
+          </marker>
+        </defs>
+
+        <!-- Subtle background glow -->
+        <rect x="0" y="0" width="500" height="500" fill="url(#bg-glow)"/>
+
+        <!-- Layer labels in faint mono -->
+        <text x="40" y="125" font-family="Geist Mono, monospace" font-size="9.5" fill="oklch(75% 0.005 245)" letter-spacing="0.06em">SYSTEMS</text>
+        <text x="40" y="245" font-family="Geist Mono, monospace" font-size="9.5" fill="oklch(75% 0.005 245)" letter-spacing="0.06em">INTELLIGENCE</text>
+        <text x="40" y="365" font-family="Geist Mono, monospace" font-size="9.5" fill="oklch(75% 0.005 245)" letter-spacing="0.06em">DECISIONS</text>
+
+        <!-- Faint horizontal layer guides -->
+        <line x1="0" y1="135" x2="500" y2="135" stroke="oklch(94% 0.004 245)" stroke-width="1" stroke-dasharray="2 4"/>
+        <line x1="0" y1="255" x2="500" y2="255" stroke="oklch(94% 0.004 245)" stroke-width="1" stroke-dasharray="2 4"/>
+        <line x1="0" y1="375" x2="500" y2="375" stroke="oklch(94% 0.004 245)" stroke-width="1" stroke-dasharray="2 4"/>
+
+        <!-- ─ CONNECTIONS ─ drawn first so nodes layer on top -->
+        <!-- Systems → Intelligence -->
+        <line x1="115" y1="120" x2="180" y2="245" stroke="oklch(90% 0.004 245)" stroke-width="1.4"/>
+        <line x1="115" y1="120" x2="260" y2="240" stroke="oklch(90% 0.004 245)" stroke-width="1.4"/>
+        <line x1="200" y1="105" x2="180" y2="245" stroke="oklch(90% 0.004 245)" stroke-width="1.4"/>
+        <line x1="200" y1="105" x2="260" y2="240" stroke="oklch(90% 0.004 245)" stroke-width="1.4"/>
+        <line x1="290" y1="115" x2="260" y2="240" stroke="oklch(90% 0.004 245)" stroke-width="1.4"/>
+        <line x1="290" y1="115" x2="340" y2="250" stroke="oklch(90% 0.004 245)" stroke-width="1.4"/>
+        <line x1="380" y1="100" x2="340" y2="250" stroke="oklch(90% 0.004 245)" stroke-width="1.4"/>
+        <line x1="380" y1="100" x2="420" y2="245" stroke="oklch(90% 0.004 245)" stroke-width="1.4"/>
+        <line x1="445" y1="125" x2="420" y2="245" stroke="oklch(90% 0.004 245)" stroke-width="1.4"/>
+
+        <!-- Intelligence → Decisions -->
+        <line x1="180" y1="245" x2="130" y2="375" stroke="oklch(90% 0.004 245)" stroke-width="1.4"/>
+        <line x1="180" y1="245" x2="220" y2="370" stroke="oklch(90% 0.004 245)" stroke-width="1.4"/>
+        <line x1="260" y1="240" x2="220" y2="370" stroke="oklch(90% 0.004 245)" stroke-width="1.4"/>
+        <line x1="260" y1="240" x2="310" y2="380" stroke="oklch(90% 0.004 245)" stroke-width="1.4"/>
+        <line x1="340" y1="250" x2="310" y2="380" stroke="oklch(90% 0.004 245)" stroke-width="1.4"/>
+        <line x1="340" y1="250" x2="395" y2="365" stroke="oklch(90% 0.004 245)" stroke-width="1.4"/>
+        <line x1="420" y1="245" x2="395" y2="365" stroke="oklch(90% 0.004 245)" stroke-width="1.4"/>
+        <line x1="420" y1="245" x2="450" y2="380" stroke="oklch(90% 0.004 245)" stroke-width="1.4"/>
+
+        <!-- Inter-layer (Intelligence cluster) -->
+        <line x1="180" y1="245" x2="260" y2="240" stroke="oklch(94% 0.004 245)" stroke-width="1"/>
+        <line x1="260" y1="240" x2="340" y2="250" stroke="oklch(94% 0.004 245)" stroke-width="1"/>
+        <line x1="340" y1="250" x2="420" y2="245" stroke="oklch(94% 0.004 245)" stroke-width="1"/>
+
+        <!-- ─ ACTIVE DECISION PATHS ─ highlighted brand-color, dashed-flow animation -->
+        <path class="flow-line" d="M 200 105 L 260 240 L 310 380" stroke="oklch(42% 0.13 245)" stroke-width="1.8" fill="none"/>
+        <path class="flow-line" d="M 380 100 L 340 250 L 395 365" stroke="oklch(42% 0.13 245)" stroke-width="1.8" fill="none" style="animation-delay:1.3s"/>
+        <path class="flow-line" d="M 290 115 L 340 250 L 220 370" stroke="oklch(62% 0.13 245)" stroke-width="1.5" fill="none" style="animation-delay:2.1s" opacity=".7"/>
+
+        <!-- ─ NODES · SYSTEMS LAYER (top) ─ -->
+        <circle cx="115" cy="120" r="6" fill="oklch(60% 0.006 245)"/>
+        <circle cx="200" cy="105" r="7" fill="oklch(20% 0.012 245)"/>
+        <circle cx="290" cy="115" r="6" fill="oklch(60% 0.006 245)"/>
+        <circle cx="380" cy="100" r="7" fill="oklch(20% 0.012 245)"/>
+        <circle cx="445" cy="125" r="6" fill="oklch(60% 0.006 245)"/>
+
+        <!-- ─ NODES · INTELLIGENCE LAYER (middle) · the operating layer · BRAND ─ -->
+        <circle cx="180" cy="245" r="9" fill="oklch(42% 0.13 245)" class="pulse-node" style="animation-delay:0s"/>
+        <circle cx="260" cy="240" r="11" fill="oklch(42% 0.13 245)" class="pulse-node" style="animation-delay:.6s"/>
+        <circle cx="340" cy="250" r="11" fill="oklch(42% 0.13 245)" class="pulse-node" style="animation-delay:1.2s"/>
+        <circle cx="420" cy="245" r="9" fill="oklch(42% 0.13 245)" class="pulse-node" style="animation-delay:1.8s"/>
+
+        <!-- Pulse rings around centre intel nodes -->
+        <circle cx="260" cy="240" r="8" fill="none" stroke="oklch(42% 0.13 245)" stroke-width="1.2" class="ring" opacity=".4"/>
+        <circle cx="340" cy="250" r="8" fill="none" stroke="oklch(42% 0.13 245)" stroke-width="1.2" class="ring" opacity=".4" style="animation-delay:1.2s"/>
+
+        <!-- ─ NODES · DECISIONS LAYER (bottom) ─ -->
+        <circle cx="130" cy="375" r="6" fill="oklch(60% 0.006 245)"/>
+        <circle cx="220" cy="370" r="7" fill="oklch(20% 0.012 245)"/>
+        <circle cx="310" cy="380" r="6" fill="oklch(60% 0.006 245)"/>
+        <circle cx="395" cy="365" r="7" fill="oklch(20% 0.012 245)"/>
+        <circle cx="450" cy="380" r="6" fill="oklch(60% 0.006 245)"/>
+
+        <!-- Centred datago mark, very subtle -->
+        <g transform="translate(232 200) scale(0.55)" opacity="0.07">
+          <rect x="6" y="6" width="34" height="34" rx="6" fill="oklch(20% 0.012 245)"/>
+          <rect x="24" y="24" width="34" height="34" rx="6" fill="oklch(42% 0.13 245)"/>
+        </g>
+      </svg>
+
+      <div class="gr-foot">
+        <span>14 systems · 6 decisions · 4 governed paths</span>
+        <span>illustrative</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORPORATE PATH STRIP -->
+  <div class="path-strip">
+    <div class="path-kicker">Corporate path</div>
+    <h2>Buyer → Datago → Bridgly. One company, one product, one explicit path.</h2>
+    <div class="path-flow">
+      <div class="path-step">
+        <div class="l">step 01</div>
+        <h4>Buyer</h4>
+        <div class="d">Enterprise buyer · operations · IT · finance · governance.</div>
+      </div>
+      <div class="path-arrow">→</div>
+      <div class="path-step">
+        <div class="l">step 02</div>
+        <h4>Datago</h4>
+        <div class="d">The corporate partner. Owns implementation, governance, support.</div>
+      </div>
+      <div class="path-arrow">→</div>
+      <div class="path-step" style="border-color:var(--bridgly-green);background:rgba(74,222,128,.06)">
+        <div class="l" style="color:var(--bridgly-green)">step 03</div>
+        <h4>Bridgly</h4>
+        <div class="d">The platform. Connects systems, surfaces decisions, measures AI impact.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW DATAGO HELPS -->
+  <section class="section">
+    <div class="section-head">
+      <div class="kicker">What Datago does</div>
+      <h2>Product. Implementation. Governance. Measurement.</h2>
+      <p class="lede">Four capabilities, one company. Datago doesn't just sell a platform — it implements it, governs it, and measures it inside the buying organisation.</p>
+    </div>
+    <div class="help-grid">
+      <div class="help-card">
+        <span class="n">01 · product</span>
+        <h3>Bridgly platform</h3>
+        <p class="d">The flagship operating-intelligence platform. Learn, Grow, Build pillars · Govern lens. Multi-tenant, connector-led, agent-aware.</p>
+      </div>
+      <div class="help-card">
+        <span class="n">02 · implementation</span>
+        <h3>Adoption partnership</h3>
+        <p class="d">From connector setup to identity resolution to first-quarter AI-impact baseline. Datago does the structural work that platforms can't ship in a box.</p>
+      </div>
+      <div class="help-card">
+        <span class="n">03 · governance</span>
+        <h3>Governed by default</h3>
+        <p class="d">Classification, visibility, audit, promotion gates — built in, not bolted on. EU AI Act, SOC 2, internal frameworks supported as configuration.</p>
+      </div>
+      <div class="help-card">
+        <span class="n">04 · measurement</span>
+        <h3>AI-impact reporting</h3>
+        <p class="d">Quarterly AI-impact reports per business unit. Cycle time, rework, capability gaps, cost. Evidence on whether AI is helping or hurting.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products">
+    <div class="product-card">
+      <div>
+        <div class="tier">Flagship · platform</div>
+        <h3>bridgly <span class="tag">live · enterprise</span></h3>
+        <p class="strap"><b>Bridgly</b> — organisational intelligence that learns, connects, and evolves.</p>
+        <div class="points">
+          <div>Five-layer architecture · L1 source → L5 AI surface</div>
+          <div>Three pillars · Learn · Grow · Build · with Govern lens</div>
+          <div>Connectors live · GitHub · Linear · Slack · more</div>
+          <div>Federated scope model · ADR-0042</div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn primary">bridgly.ai →</button>
+          <button class="btn">See the loop</button>
+        </div>
+      </div>
+      <div class="product-art">
+        <!-- Mini Bloom mark -->
+        <svg width="180" height="180" viewBox="0 0 64 64">
+          <g transform="translate(32 32)">
+            <line x1="0" y1="-8" x2="0" y2="-22" stroke="oklch(54% 0.16 146)" stroke-width="4.2" stroke-linecap="round"/>
+            <circle cx="0" cy="-22" r="2.4" fill="oklch(54% 0.16 146)"/>
+            <g transform="rotate(72)"><line x1="0" y1="-8" x2="0" y2="-22" stroke="var(--ink)" stroke-width="3.6" stroke-linecap="round" opacity=".7"/><circle cx="0" cy="-22" r="2" fill="var(--ink)" opacity=".6"/></g>
+            <g transform="rotate(144)"><line x1="0" y1="-8" x2="0" y2="-22" stroke="var(--ink)" stroke-width="3.6" stroke-linecap="round" opacity=".7"/><circle cx="0" cy="-22" r="2" fill="var(--ink)" opacity=".6"/></g>
+            <g transform="rotate(216)"><line x1="0" y1="-8" x2="0" y2="-22" stroke="var(--ink)" stroke-width="3.6" stroke-linecap="round" opacity=".7"/><circle cx="0" cy="-22" r="2" fill="var(--ink)" opacity=".6"/></g>
+            <g transform="rotate(288)"><line x1="0" y1="-8" x2="0" y2="-22" stroke="var(--ink)" stroke-width="3.6" stroke-linecap="round" opacity=".7"/><circle cx="0" cy="-22" r="2" fill="var(--ink)" opacity=".6"/></g>
+            <circle cx="0" cy="0" r="5" fill="var(--ink)"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="product-card lab">
+      <div>
+        <div class="tier">Side · experimental</div>
+        <h3>agents · pencils <span class="tag">research lab</span></h3>
+        <p class="strap" style="font-style:italic;color:var(--ink-dim)">Quiet home for agent-native product ideas and applied AI research.</p>
+        <div class="points">
+          <div>Public notes on agent design</div>
+          <div>Experiments outside the Bridgly roadmap</div>
+          <div>Sometimes graduate into Bridgly</div>
+          <div>Sometimes stay as essays</div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn">Visit the lab</button>
+        </div>
+      </div>
+      <div class="product-art">
+        <div style="font-family:var(--mono);font-size:24px;font-weight:500;color:var(--ink-mute);text-align:center;line-height:1.4">
+          <span style="color:var(--ink)">&amp;</span><br>
+          <span style="font-size:14px">agents · pencils</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <div class="contact">
+    <div>
+      <h2>Talk to Datago.</h2>
+      <p>Enterprise buyer? Bridgly fit · adoption scope · governance posture · measurement baseline. Half-hour call, no pitch.</p>
+    </div>
+    <div class="actions">
+      <button class="btn lg">info@datago.uk</button>
+      <button class="btn primary lg">Book a 30-min →</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site">
+    <div class="br">
+      <div style="display:flex;align-items:center;gap:9px;margin-bottom:14px">
+        <svg width="26" height="26" viewBox="0 0 64 64" class="datago-mark"><rect class="sq-1" x="6" y="6" width="34" height="34" rx="6"/><rect class="sq-2" x="24" y="24" width="34" height="34" rx="6"/></svg>
+        <span style="font-family:var(--sans);font-weight:600;font-size:17px;letter-spacing:-.025em;color:var(--ink)">datago</span>
+      </div>
+      <div class="corp">
+        Governed organisational intelligence products.<br><br>
+        Datago Ltd · 14751587<br>
+        Newbury · Berkshire · RG14 1QL<br>
+        England · United Kingdom
+      </div>
+    </div>
+    <div>
+      <h5>Products</h5>
+      <a>Bridgly</a>
+      <a>Lab</a>
+      <a>Roadmap</a>
+    </div>
+    <div>
+      <h5>Company</h5>
+      <a>About</a>
+      <a>Approach</a>
+      <a>Contact</a>
+      <a>Careers</a>
+    </div>
+    <div>
+      <h5>Trust</h5>
+      <a>Security</a>
+      <a>Privacy</a>
+      <a>Terms</a>
+      <a>EU AI Act</a>
+    </div>
+  </footer>
+
+  <!-- ───────── THINKING NOTES · HERO GRAPHIC ───────── -->
+  <section class="thinking">
+    <div class="label">Thinking · hero graphic</div>
+    <h2>Three concepts for the hero abstraction</h2>
+    <p class="lede">The OG image you've described is "Abstract operating intelligence network." That's a strong frame — but it can be expressed three different ways depending on which dimension you want to lead with. The mockup above uses Concept A. Here's what each one says.</p>
+
+    <div class="concept-grid">
+      <!-- A: Mesh (used) -->
+      <div class="concept">
+        <div class="concept-art">
+          <svg width="80%" height="80%" viewBox="0 0 200 160">
+            <line x1="30" y1="40" x2="60" y2="80" stroke="oklch(85% 0.004 245)"/>
+            <line x1="60" y1="80" x2="100" y2="80" stroke="oklch(85% 0.004 245)"/>
+            <line x1="100" y1="80" x2="140" y2="80" stroke="oklch(85% 0.004 245)"/>
+            <line x1="140" y1="80" x2="170" y2="40" stroke="oklch(85% 0.004 245)"/>
+            <line x1="60" y1="80" x2="50" y2="120" stroke="oklch(85% 0.004 245)"/>
+            <line x1="100" y1="80" x2="90" y2="120" stroke="oklch(85% 0.004 245)"/>
+            <line x1="100" y1="80" x2="130" y2="125" stroke="oklch(85% 0.004 245)"/>
+            <line x1="140" y1="80" x2="155" y2="125" stroke="oklch(85% 0.004 245)"/>
+            <line x1="30" y1="40" x2="100" y2="80" stroke="oklch(42% 0.13 245)" stroke-width="1.8" stroke-dasharray="3 3"/>
+            <line x1="100" y1="80" x2="155" y2="125" stroke="oklch(42% 0.13 245)" stroke-width="1.8" stroke-dasharray="3 3"/>
+            <circle cx="30" cy="40" r="4" fill="oklch(20% 0.012 245)"/>
+            <circle cx="100" cy="40" r="4" fill="oklch(60% 0.006 245)"/>
+            <circle cx="170" cy="40" r="4" fill="oklch(20% 0.012 245)"/>
+            <circle cx="60" cy="80" r="6" fill="oklch(42% 0.13 245)"/>
+            <circle cx="100" cy="80" r="7" fill="oklch(42% 0.13 245)"/>
+            <circle cx="140" cy="80" r="6" fill="oklch(42% 0.13 245)"/>
+            <circle cx="50" cy="120" r="4" fill="oklch(20% 0.012 245)"/>
+            <circle cx="90" cy="120" r="4" fill="oklch(60% 0.006 245)"/>
+            <circle cx="130" cy="125" r="4" fill="oklch(60% 0.006 245)"/>
+            <circle cx="155" cy="125" r="4" fill="oklch(20% 0.012 245)"/>
+          </svg>
+        </div>
+        <div class="concept-body">
+          <div class="lbl cur">A · used in hero ✓</div>
+          <h3>The Operating Mesh</h3>
+          <p class="desc">Three horizontal layers — systems, intelligence, decisions — with nodes and connections. Brand-coloured middle layer is the operating-intelligence layer. Active brand-coloured paths show decisions flowing through governance.</p>
+          <div class="verdict"><b>Says:</b> we're the layer between source systems and the decisions that get made. Best read for buyers who already get the architecture concept.</div>
+        </div>
+      </div>
+
+      <!-- B: Concentric -->
+      <div class="concept">
+        <div class="concept-art">
+          <svg width="80%" height="80%" viewBox="0 0 200 160">
+            <circle cx="100" cy="80" r="60" fill="none" stroke="oklch(85% 0.004 245)" stroke-dasharray="2 4"/>
+            <circle cx="100" cy="80" r="42" fill="none" stroke="oklch(75% 0.005 245)"/>
+            <circle cx="100" cy="80" r="22" fill="oklch(94% 0.025 245)" stroke="oklch(42% 0.13 245)"/>
+            <circle cx="100" cy="80" r="8" fill="oklch(42% 0.13 245)"/>
+            <circle cx="100" cy="20" r="3" fill="oklch(20% 0.012 245)"/>
+            <circle cx="160" cy="80" r="3" fill="oklch(20% 0.012 245)"/>
+            <circle cx="100" cy="140" r="3" fill="oklch(20% 0.012 245)"/>
+            <circle cx="40" cy="80" r="3" fill="oklch(20% 0.012 245)"/>
+            <line x1="100" y1="22" x2="100" y2="58" stroke="oklch(85% 0.004 245)"/>
+            <line x1="158" y1="80" x2="122" y2="80" stroke="oklch(85% 0.004 245)"/>
+            <line x1="100" y1="138" x2="100" y2="102" stroke="oklch(85% 0.004 245)"/>
+            <line x1="42" y1="80" x2="78" y2="80" stroke="oklch(85% 0.004 245)"/>
+          </svg>
+        </div>
+        <div class="concept-body">
+          <div class="lbl">B · alternative</div>
+          <h3>The Concentric Layer</h3>
+          <p class="desc">Outer ring = source systems. Middle ring = intelligence. Inner core = governed decisions. Surrounding nodes connect inward. The operating layer literally sits at the centre.</p>
+          <div class="verdict"><b>Says:</b> governance is the protected core. Most "trustworthy" feel. Best for governance-led buyer conversations.</div>
+        </div>
+      </div>
+
+      <!-- C: Sankey-ish flow -->
+      <div class="concept">
+        <div class="concept-art">
+          <svg width="80%" height="80%" viewBox="0 0 200 160">
+            <rect x="20" y="30" width="32" height="100" rx="2" fill="oklch(94% 0.004 245)" stroke="oklch(85% 0.004 245)"/>
+            <rect x="84" y="30" width="32" height="100" rx="2" fill="oklch(94% 0.025 245)" stroke="oklch(42% 0.13 245)"/>
+            <rect x="148" y="30" width="32" height="100" rx="2" fill="oklch(94% 0.004 245)" stroke="oklch(85% 0.004 245)"/>
+            <path d="M 52 50 Q 70 50 84 60" fill="none" stroke="oklch(42% 0.13 245)" stroke-width="2.5" opacity=".7"/>
+            <path d="M 52 80 Q 70 80 84 80" fill="none" stroke="oklch(42% 0.13 245)" stroke-width="3.5"/>
+            <path d="M 52 110 Q 70 110 84 100" fill="none" stroke="oklch(42% 0.13 245)" stroke-width="2" opacity=".5"/>
+            <path d="M 116 60 Q 130 60 148 50" fill="none" stroke="oklch(42% 0.13 245)" stroke-width="2.5" opacity=".7"/>
+            <path d="M 116 80 Q 130 80 148 80" fill="none" stroke="oklch(42% 0.13 245)" stroke-width="3.5"/>
+            <path d="M 116 100 Q 130 100 148 110" fill="none" stroke="oklch(42% 0.13 245)" stroke-width="2" opacity=".5"/>
+            <text x="36" y="145" font-family="Geist Mono, monospace" font-size="7" fill="oklch(60% 0.006 245)" text-anchor="middle">systems</text>
+            <text x="100" y="145" font-family="Geist Mono, monospace" font-size="7" fill="oklch(42% 0.13 245)" text-anchor="middle">intel</text>
+            <text x="164" y="145" font-family="Geist Mono, monospace" font-size="7" fill="oklch(60% 0.006 245)" text-anchor="middle">decisions</text>
+          </svg>
+        </div>
+        <div class="concept-body">
+          <div class="lbl">C · alternative</div>
+          <h3>The Sankey Flow</h3>
+          <p class="desc">Three pillars side-by-side. Curved volume-weighted flows show how source signals become intelligence, then decisions. Most data-vis-literate visual.</p>
+          <div class="verdict"><b>Says:</b> volume of flow matters, governance is throughput-aware. Best for ops-leaders / finance buyers who think in flows.</div>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin:24px 0 0;font-family:var(--mono);font-size:11.5px;color:var(--ink-mute);line-height:1.6;max-width:60ch"><b style="color:var(--ink);font-weight:500">Recommendation.</b> Start with <b>A · Operating Mesh</b> on the home hero. It's the most flexible for marketing copy (works with "we connect" / "we govern" / "we measure" framings). Keep B and C as concept-spread pages or section visuals later on.</p>
+  </section>
+
+</div>
+</body>
+</html>

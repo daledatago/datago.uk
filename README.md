@@ -15,6 +15,8 @@ The first build keeps the site small and direct:
 
 Core copy lives in `src/lib/strings.ts`. Reusable layout pieces live in `src/components/`.
 
+Brand handoff files from `Datago Devkit.zip` live in `docs/brand/`. The production site adapts the proposed cobalt palette, interlocking-square mark, D-tile favicon direction, and Operating Mesh hero graphic from that kit.
+
 ## Getting Started
 
 First, run the development server:
