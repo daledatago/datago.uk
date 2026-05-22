@@ -9,7 +9,7 @@ import { bridglyPage, site } from "@/lib/strings";
 export const metadata: Metadata = pageMetadata({
   title: "Bridgly",
   description:
-    "Bridgly is Datago's governed organisational intelligence platform.",
+    "Bridgly is the self-improving organisational intelligence platform from Datago.",
   path: "/bridgly",
 });
 
@@ -32,7 +32,7 @@ export default function BridglyPage() {
 
       <section className="content-band">
         <div className="site-shell">
-          <SectionHeading title="Learn. Connect. Evolve." />
+          <SectionHeading title="Connectors. Governed graph. Recursive learning." />
           <div className="card-grid card-grid--three">
             {bridglyPage.spine.map((item) => (
               <InfoCard body={item.body} key={item.title} title={item.title} />
@@ -58,4 +58,3 @@ export default function BridglyPage() {
     </>
   );
 }
-

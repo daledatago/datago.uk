@@ -7,7 +7,8 @@ import { companyPage } from "@/lib/strings";
 
 export const metadata: Metadata = pageMetadata({
   title: "Company",
-  description: "Datago Ltd is the UK company behind Bridgly.",
+  description:
+    "Datago Ltd is the UK company behind Bridgly and product-led, governed AI transformation.",
   path: "/company",
 });
 
@@ -50,4 +51,3 @@ export default function CompanyPage() {
     </>
   );
 }
-

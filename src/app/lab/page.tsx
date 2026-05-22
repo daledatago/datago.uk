@@ -4,8 +4,8 @@ import { pageMetadata } from "@/lib/metadata";
 import { labPage } from "@/lib/strings";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Agents & Pencils Lab",
-  description: "Agents & Pencils is Datago's experimental lab.",
+  title: "Lab/archive",
+  description: "Agents & Pencils is a quiet Datago lab/archive.",
   path: "/lab",
 });
 
@@ -30,4 +30,3 @@ export default function LabPage() {
     </>
   );
 }
-

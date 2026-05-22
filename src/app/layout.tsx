@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   applicationName: site.name,
   title: {
-    default: `${site.name} | Governed organisational intelligence products`,
+    default: `${site.name} | Product-led governed AI transformation`,
     template: `%s | ${site.name}`,
   },
   description: site.description,
@@ -27,6 +27,8 @@ export const metadata: Metadata = {
     "Datago",
     "Bridgly",
     "organisational intelligence",
+    "governed graph",
+    "product-led AI transformation",
     "AI governance",
     "enterprise AI transformation",
   ],
@@ -38,7 +40,7 @@ export const metadata: Metadata = {
     type: "website",
     url: site.url,
     siteName: site.name,
-    title: `${site.name} | Governed organisational intelligence products`,
+    title: `${site.name} | Product-led governed AI transformation`,
     description: site.description,
     images: [
       {
@@ -51,7 +53,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} | Governed organisational intelligence products`,
+    title: `${site.name} | Product-led governed AI transformation`,
     description: site.description,
     images: [site.assets.hero],
   },

@@ -1,6 +1,6 @@
 # Datago Website
 
-Corporate website for Datago Ltd, the company behind Bridgly.
+Corporate website for Datago Ltd, the company behind Bridgly and product-led governed AI transformation.
 
 The first build keeps the site small and direct:
 
@@ -37,6 +37,12 @@ npm run build
 ## Production Notes
 
 The first production draft keeps the site mailto-first and uses the public Companies House record for statutory company details.
+
+Positioning split:
+
+- Datago is the company trust layer, thesis, and product studio
+- Bridgly is the flagship platform and proof of the governed graph / recursive learning loop
+- Agents & Pencils is retained only as an optional lab/archive
 
 - Datago Ltd company number: 14751587
 - Registered office: 2 Old Bath Road, Newbury, Berkshire, England, RG14 1QL

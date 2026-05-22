@@ -4,7 +4,7 @@ export const site = {
   url: "https://datago.uk",
   email: "info@datago.uk",
   description:
-    "Datago builds governed organisational intelligence products for enterprises.",
+    "Datago builds product-led, governed AI transformation platforms for enterprises.",
   assets: {
     hero: "/assets/datago-operating-intelligence.jpg",
   },
@@ -29,7 +29,7 @@ export const navItems = [
 
 export const footerLinks = [
   { href: "/bridgly", label: "Bridgly" },
-  { href: "/lab", label: "Agents & Pencils Lab" },
+  { href: "/lab", label: "Lab/archive" },
   { href: "/privacy", label: "Privacy" },
   { href: "/terms", label: "Terms" },
 ];
@@ -37,39 +37,39 @@ export const footerLinks = [
 export const home = {
   hero: {
     eyebrow: "Datago Ltd",
-    title: "Datago builds governed organisational intelligence products.",
+    title: "Datago builds product-led, governed AI transformation.",
     body:
-      "We create enterprise platforms that connect work, decisions, systems, and AI impact into governed operating intelligence. Bridgly is our flagship platform.",
+      "We create enterprise platforms that connect work, decisions, systems, and AI activity into governed organisational intelligence. Bridgly is the flagship proof point.",
     primaryCta: "Explore Bridgly",
     secondaryCta: "Contact Datago",
   },
   thesis: {
     eyebrow: "Company thesis",
     title:
-      "AI is becoming part of how work moves. Organisations need evidence, context, and control.",
+      "AI transformation will be won by organisations that can govern how intelligence learns from work.",
     body:
-      "Datago builds products for the operating layer where people, systems, decisions, and AI activity meet. The aim is not another isolated copilot. It is governed intelligence that can explain what changed, why it changed, and what should improve next.",
+      "Datago is the company behind product-led AI transformation: trusted systems that connect operational context, expose evidence, govern recommendations, and improve from outcomes. The point is a governed product layer that can explain what changed, why it changed, and what should improve next.",
   },
   bridgly: {
     eyebrow: "Flagship platform",
     title: "Bridgly, by Datago",
     body:
-      "Bridgly helps enterprises understand how work moves, measure how AI changes it, and govern every answer through a permission-aware organisational graph.",
+      "Bridgly is Datago's flagship platform and proof point: a self-improving organisational intelligence layer that connects work, decisions, systems, and AI activity into a governed graph.",
     cta: "Visit bridgly.ai",
   },
   support: {
-    eyebrow: "How Datago helps",
+    eyebrow: "Company role",
     title: "Product-led transformation, backed by implementation discipline.",
     items: [
       {
-        title: "Product",
+        title: "Product studio",
         body:
-          "We build enterprise platforms for operating intelligence, governance, measurement, and change.",
+          "We build governed intelligence products with Bridgly as the flagship platform and proof of the thesis.",
       },
       {
-        title: "Implementation",
+        title: "Enterprise adoption",
         body:
-          "We help connect systems, align stakeholders, and shape adoption around real organisational context.",
+          "We help teams connect systems, align stakeholders, and adopt the product around real organisational context.",
       },
       {
         title: "Governance",
@@ -85,9 +85,9 @@ export const home = {
   },
   lab: {
     eyebrow: "Lab",
-    title: "Agents & Pencils is Datago's experimental lab.",
+    title: "Agents & Pencils is optional background.",
     body:
-      "The lab remains a quiet home for agent-native product ideas, prototypes, and applied AI research. Enterprise buyers should meet Datago first, then Bridgly.",
+      "The lab remains a quiet archive for agent-native product ideas, prototypes, and applied AI research. Enterprise buyers should meet Datago first, then Bridgly.",
   },
   contact: {
     title: "Talk to Datago",
@@ -99,45 +99,45 @@ export const home = {
 
 export const bridglyPage = {
   eyebrow: "Flagship platform",
-  title: "Bridgly is Datago's governed organisational intelligence platform.",
+  title: "Bridgly is the self-improving organisational intelligence platform from Datago.",
   body:
-    "Bridgly connects company systems into a permission-aware graph, then uses agents, workflows, and analytics to help teams understand work, decisions, capability, AI impact, risk, and change.",
-  promise: "Understand how work moves. Measure how AI changes it. Govern every answer.",
+    "Bridgly connects work, decisions, systems, and AI activity into a permission-aware governed graph, then learns from every question, gap, recommendation, action, and outcome.",
+  promise: "Understand how work moves. Measure how AI changes it. Govern every answer. Learn from every outcome.",
   cta: "Visit bridgly.ai",
   spine: [
     {
-      title: "Learn",
+      title: "Connectors",
       body:
-        "Build a living picture of teams, work, tools, decisions, outcomes, and organisational capability.",
+        "Connect the systems where work, decisions, AI activity, risk, spend, and outcomes already live.",
     },
     {
-      title: "Connect",
+      title: "Governed graph",
       body:
-        "Link systems and signals through a permission-aware graph that respects access, context, and evidence.",
+        "Link those signals through a permission-aware graph that respects access, context, provenance, and evidence.",
     },
     {
-      title: "Evolve",
+      title: "Recursive learning",
       body:
-        "Use agents, workflows, and analytics to recommend improvements, measure impact, and update playbooks.",
+        "Use every question, gap, recommendation, action, and result to improve future answers, workflows, and playbooks.",
     },
   ],
   relationship: {
     title: "Built by Datago for enterprise transformation.",
     body:
-      "Datago is the company behind Bridgly. The Datago site explains the product thesis and corporate identity; the Bridgly site remains focused on product interest, demos, and platform detail.",
+      "Datago is the company behind Bridgly. The Datago site establishes company trust, thesis, and product studio intent; the Bridgly site carries the product promise, connectors, governance model, recursive learning loop, and demo journey.",
   },
 };
 
 export const approachPage = {
   eyebrow: "Approach",
-  title: "AI transformation is an operating model change, not a tooling rollout.",
+  title: "Governed AI transformation needs a product layer, not a tooling rollout.",
   body:
-    "Datago helps organisations connect context, measure outcomes, govern decisions, and improve through recursive learning loops.",
+    "Datago builds and supports products that connect operational context, measure outcomes, govern decisions, and improve through recursive learning loops.",
   pillars: [
     {
       title: "Connect the operating context",
       body:
-        "Bring people, teams, capabilities, work items, tools, decisions, spend, and risk into a shared evidence layer.",
+        "Bring people, teams, capabilities, work items, tools, decisions, AI activity, spend, and risk into a shared evidence layer.",
     },
     {
       title: "Measure AI impact against work outcomes",
@@ -152,7 +152,7 @@ export const approachPage = {
     {
       title: "Improve through recursive learning loops",
       body:
-        "Use what the organisation learns to update recommendations, playbooks, workflows, and future interventions.",
+        "Use each question, gap, recommendation, action, and outcome to update future answers, playbooks, workflows, and interventions.",
     },
   ],
   loop: [
@@ -169,7 +169,7 @@ export const companyPage = {
   eyebrow: "Company",
   title: "Datago is the UK company behind Bridgly.",
   body:
-    "Datago Ltd builds governed organisational intelligence products for enterprises, with Bridgly as the flagship platform.",
+    "Datago Ltd builds product-led, governed AI transformation platforms for enterprises, with Bridgly as the flagship platform.",
   facts: [
     { label: "Legal identity", value: "Datago Ltd" },
     { label: "Corporate contact", value: site.email },
@@ -180,19 +180,22 @@ export const companyPage = {
   architecture: [
     {
       title: "Datago",
-      body: "The UK limited company and corporate product studio.",
+      body:
+        "The UK limited company, trust layer, company thesis, and corporate product studio.",
     },
     {
       title: "Bridgly",
-      body: "Datago's flagship governed organisational intelligence platform.",
+      body:
+        "Datago's flagship governed organisational intelligence platform and proof of the product thesis.",
     },
     {
       title: "Agents & Pencils",
-      body: "A de-emphasised lab for agent-native product ideas and applied AI research.",
+      body:
+        "An optional lab/archive for agent-native product ideas and applied AI research.",
     },
   ],
   founderNote:
-    "Datago is founder-led and product-led, with implementation support focused on safe adoption of governed organisational intelligence products.",
+    "Datago is founder-led and product-led. Implementation support exists to help enterprises adopt governed intelligence products safely and productively.",
 };
 
 export const contactPage = {
@@ -207,9 +210,9 @@ export const contactPage = {
 
 export const labPage = {
   eyebrow: "Lab",
-  title: "Agents & Pencils is Datago's experimental lab.",
+  title: "Agents & Pencils is a quiet Datago lab/archive.",
   body:
-    "Agents & Pencils is retained as a quiet home for agent-native product ideas, prototypes, and applied AI research. It should not be the primary enterprise-facing path to Bridgly.",
+    "Agents & Pencils is retained as optional background for agent-native product ideas, prototypes, and applied AI research. It is not the primary enterprise-facing path: Datago is the company, and Bridgly is the flagship platform.",
   options: [
     "Keep a one-page lab/archive explaining the relationship.",
     "Link to Datago and Bridgly from any retained Agents & Pencils surface.",

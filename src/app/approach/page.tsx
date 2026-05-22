@@ -8,7 +8,7 @@ import { approachPage } from "@/lib/strings";
 export const metadata: Metadata = pageMetadata({
   title: "Approach",
   description:
-    "Datago's approach to governed, product-led AI transformation.",
+    "Datago's product-led approach to governed AI transformation.",
   path: "/approach",
 });
 
@@ -36,7 +36,7 @@ export default function ApproachPage() {
         <div className="site-shell two-column">
           <SectionHeading
             title="Recursive learning loop"
-            body="The product layer should sense what is happening, understand it in context, recommend useful interventions, act through governed workflows, measure the result, and learn from the evidence."
+            body="The product layer should sense what is happening, understand it in context, recommend useful action, act through governed workflows, measure the result, and learn from the evidence."
           />
           <ol className="loop-list">
             {approachPage.loop.map((item) => (
@@ -48,4 +48,3 @@ export default function ApproachPage() {
     </>
   );
 }
-
