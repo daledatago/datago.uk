@@ -4,7 +4,7 @@ export const site = {
   url: "https://datago.uk",
   email: "info@datago.uk",
   description:
-    "Datago builds product-led, governed AI transformation platforms for enterprises.",
+    "Datago is the UK company behind Bridgly, building product-led, governed AI transformation platforms that connect work, decisions, systems, and AI activity into organisational intelligence.",
   assets: {
     hero: "/assets/datago-operating-intelligence.jpg",
   },
