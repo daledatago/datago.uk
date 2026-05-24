@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
 import { PageIntro } from "@/components/page-intro";
-import { pageMetadata } from "@/lib/metadata";
+import { routeMetadata } from "@/lib/metadata";
 import { privacyPage } from "@/lib/strings";
 
-export const metadata: Metadata = pageMetadata({
-  title: "Privacy",
-  description: "Privacy notice for Datago.",
-  path: "/privacy",
-});
+export const metadata: Metadata = routeMetadata("/privacy");
 
 export default function PrivacyPage() {
   return (
@@ -30,4 +26,3 @@ export default function PrivacyPage() {
     </>
   );
 }
-

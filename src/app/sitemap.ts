@@ -1,23 +1,13 @@
 import type { MetadataRoute } from "next";
-import { site } from "@/lib/strings";
-
-const routes = [
-  "",
-  "/bridgly",
-  "/approach",
-  "/company",
-  "/lab",
-  "/privacy",
-  "/terms",
-  "/contact",
-];
+import { absoluteUrl, PUBLIC_SEARCH_ROUTES } from "@/lib/metadata";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return routes.map((route) => ({
-    url: `${site.url}${route}`,
-    lastModified: new Date("2026-05-22"),
-    changeFrequency: "monthly",
-    priority: route === "" ? 1 : 0.7,
+  const lastModified = new Date("2026-05-24");
+
+  return PUBLIC_SEARCH_ROUTES.map((route) => ({
+    url: absoluteUrl(route.path),
+    lastModified,
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
   }));
 }
-
