@@ -3,8 +3,8 @@ import { site } from "@/lib/strings";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Datago",
-    short_name: "Datago",
+    name: site.name,
+    short_name: site.name,
     description: site.description,
     start_url: "/",
     display: "standalone",

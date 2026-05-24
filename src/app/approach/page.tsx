@@ -2,15 +2,10 @@ import type { Metadata } from "next";
 import { InfoCard } from "@/components/info-card";
 import { PageIntro } from "@/components/page-intro";
 import { SectionHeading } from "@/components/section-heading";
-import { pageMetadata } from "@/lib/metadata";
+import { routeMetadata } from "@/lib/metadata";
 import { approachPage } from "@/lib/strings";
 
-export const metadata: Metadata = pageMetadata({
-  title: "Approach",
-  description:
-    "Datago's product-led approach to governed AI transformation.",
-  path: "/approach",
-});
+export const metadata: Metadata = routeMetadata("/approach");
 
 export default function ApproachPage() {
   return (

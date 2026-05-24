@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
 import { PageIntro } from "@/components/page-intro";
-import { pageMetadata } from "@/lib/metadata";
+import { routeMetadata } from "@/lib/metadata";
 import { labPage } from "@/lib/strings";
 
-export const metadata: Metadata = pageMetadata({
-  title: "Lab/archive",
-  description: "Agents & Pencils is a quiet Datago lab/archive.",
-  path: "/lab",
-});
+export const metadata: Metadata = routeMetadata("/lab");
 
 export default function LabPage() {
   return (

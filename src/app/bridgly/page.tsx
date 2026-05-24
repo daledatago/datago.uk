@@ -3,15 +3,10 @@ import { ButtonLink } from "@/components/button-link";
 import { InfoCard } from "@/components/info-card";
 import { PageIntro } from "@/components/page-intro";
 import { SectionHeading } from "@/components/section-heading";
-import { pageMetadata } from "@/lib/metadata";
+import { routeMetadata } from "@/lib/metadata";
 import { bridglyPage, site } from "@/lib/strings";
 
-export const metadata: Metadata = pageMetadata({
-  title: "Bridgly",
-  description:
-    "Bridgly is the self-improving organisational intelligence platform from Datago.",
-  path: "/bridgly",
-});
+export const metadata: Metadata = routeMetadata("/bridgly");
 
 export default function BridglyPage() {
   return (
@@ -32,7 +27,7 @@ export default function BridglyPage() {
 
       <section className="content-band">
         <div className="site-shell">
-          <SectionHeading title="Connectors. Governed graph. Recursive learning." />
+          <SectionHeading title="Visibility. Governance. Measurable outcomes." />
           <div className="card-grid card-grid--three">
             {bridglyPage.spine.map((item) => (
               <InfoCard body={item.body} key={item.title} title={item.title} />
@@ -42,13 +37,34 @@ export default function BridglyPage() {
       </section>
 
       <section className="content-band content-band--light">
+        <div className="site-shell">
+          <SectionHeading
+            eyebrow="Product detail lives on Bridgly"
+            title="Route product intent to bridgly.ai."
+            body="This page keeps the DataGo-to-Bridgly relationship clear. Detailed feature, connector, governance, impact, and demo content belongs on Bridgly."
+          />
+          <div className="card-grid card-grid--three">
+            {bridglyPage.routes.map((item) => (
+              <article className="info-card info-card--linked" key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+                <ButtonLink href={item.href} variant="secondary">
+                  Open on Bridgly
+                </ButtonLink>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="content-band">
         <div className="site-shell two-column">
           <SectionHeading
             title={bridglyPage.relationship.title}
             body={bridglyPage.relationship.body}
           />
           <div className="identity-stack">
-            <p>Datago</p>
+            <p>DataGo</p>
             <span>Company</span>
             <p>Bridgly</p>
             <span>Flagship product</span>

@@ -3,11 +3,20 @@ import { site } from "@/lib/strings";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-    },
+    rules: [
+      {
+        userAgent: [
+          "*",
+          "Googlebot",
+          "Bingbot",
+          "OAI-SearchBot",
+          "ChatGPT-User",
+          "GPTBot",
+        ],
+        allow: "/",
+      },
+    ],
     sitemap: `${site.url}/sitemap.xml`,
+    host: site.url,
   };
 }
-

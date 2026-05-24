@@ -1,14 +1,10 @@
 import type { Metadata } from "next";
 import { ButtonLink } from "@/components/button-link";
 import { PageIntro } from "@/components/page-intro";
-import { pageMetadata } from "@/lib/metadata";
+import { routeMetadata } from "@/lib/metadata";
 import { contactPage, site } from "@/lib/strings";
 
-export const metadata: Metadata = pageMetadata({
-  title: "Contact",
-  description: "Contact Datago at info@datago.uk.",
-  path: "/contact",
-});
+export const metadata: Metadata = routeMetadata("/contact");
 
 export default function ContactPage() {
   return (
@@ -33,4 +29,3 @@ export default function ContactPage() {
     </>
   );
 }
-

@@ -19,10 +19,10 @@ export default function Home() {
                 {home.hero.secondaryCta}
               </ButtonLink>
             </div>
-            <div className="home-hero__meta" aria-label="Datago company details">
+            <div className="home-hero__meta" aria-label="DataGo company details">
               <span>
                 <strong>Company</strong>
-                Datago Ltd · {site.legal.companyNumber}
+                {site.legalName} · {site.legal.companyNumber}
               </span>
               <span>
                 <strong>Flagship</strong>
@@ -46,7 +46,7 @@ export default function Home() {
             body={home.thesis.body}
           />
           <div className="statement-panel">
-            <p>Buyer -&gt; Datago -&gt; Bridgly</p>
+            <p>Buyer -&gt; DataGo -&gt; Bridgly</p>
             <span>Clear corporate path</span>
           </div>
         </div>

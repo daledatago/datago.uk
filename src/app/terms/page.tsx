@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
 import { PageIntro } from "@/components/page-intro";
-import { pageMetadata } from "@/lib/metadata";
+import { routeMetadata } from "@/lib/metadata";
 import { termsPage } from "@/lib/strings";
 
-export const metadata: Metadata = pageMetadata({
-  title: "Terms",
-  description: "Legal notice for Datago.",
-  path: "/terms",
-});
+export const metadata: Metadata = routeMetadata("/terms");
 
 export default function TermsPage() {
   return (
@@ -30,4 +26,3 @@ export default function TermsPage() {
     </>
   );
 }
-
