@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { ButtonLink } from "@/components/button-link";
 import { InfoCard } from "@/components/info-card";
+import { JsonLdScript } from "@/components/json-ld-script";
 import { PageIntro } from "@/components/page-intro";
 import { SectionHeading } from "@/components/section-heading";
-import { routeMetadata } from "@/lib/metadata";
+import { faqJsonLd, pageJsonLd, routeMetadata } from "@/lib/metadata";
 import { bridglyPage, site } from "@/lib/strings";
 
 export const metadata: Metadata = routeMetadata("/bridgly");
@@ -11,6 +12,29 @@ export const metadata: Metadata = routeMetadata("/bridgly");
 export default function BridglyPage() {
   return (
     <>
+      <JsonLdScript
+        data={pageJsonLd({
+          path: "/bridgly",
+          name: "Bridgly | DataGo",
+          description: metadata.description as string,
+          breadcrumbs: [
+            { name: "Home", path: "/" },
+            { name: "Bridgly", path: "/bridgly" },
+          ],
+          about: [
+            "Bridgly",
+            "AI adoption visibility",
+            "AI governance",
+            "AI impact measurement",
+            "organisational intelligence",
+          ],
+          mainEntity: {
+            "@id": `${site.bridgly.url}/#software`,
+          },
+        })}
+      />
+      <JsonLdScript data={faqJsonLd(bridglyPage.answers)} />
+
       <PageIntro
         eyebrow={bridglyPage.eyebrow}
         title={bridglyPage.title}
@@ -68,6 +92,25 @@ export default function BridglyPage() {
             <span>Company</span>
             <p>Bridgly</p>
             <span>Flagship product</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="content-band content-band--light">
+        <div className="site-shell">
+          <SectionHeading
+            eyebrow="Answer-ready summary"
+            title="Quick answers about Bridgly"
+            body="These concise answers reinforce what Bridgly is, how it supports enterprise AI readiness, and where buyers should go next."
+          />
+          <div className="card-grid card-grid--three">
+            {bridglyPage.answers.map((item) => (
+              <InfoCard
+                body={item.answer}
+                key={item.question}
+                title={item.question}
+              />
+            ))}
           </div>
         </div>
       </section>

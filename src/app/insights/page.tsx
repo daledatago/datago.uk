@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { ButtonLink } from "@/components/button-link";
+import { JsonLdScript } from "@/components/json-ld-script";
 import { PageIntro } from "@/components/page-intro";
 import { SectionHeading } from "@/components/section-heading";
-import { routeMetadata } from "@/lib/metadata";
+import { pageJsonLd, routeMetadata } from "@/lib/metadata";
 import { insightsPage, site } from "@/lib/strings";
 
 export const metadata: Metadata = routeMetadata("/insights");
@@ -10,6 +11,26 @@ export const metadata: Metadata = routeMetadata("/insights");
 export default function InsightsPage() {
   return (
     <>
+      <JsonLdScript
+        data={pageJsonLd({
+          path: "/insights",
+          name: "DataGo insights",
+          description: metadata.description as string,
+          type: "CollectionPage",
+          breadcrumbs: [
+            { name: "Home", path: "/" },
+            { name: "Insights", path: "/insights" },
+          ],
+          about: [
+            "governed AI systems",
+            "enterprise AI readiness",
+            "AI governance",
+            "AI transformation",
+            "organisational intelligence",
+          ],
+        })}
+      />
+
       <PageIntro
         eyebrow={insightsPage.eyebrow}
         title={insightsPage.title}

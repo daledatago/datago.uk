@@ -28,10 +28,6 @@ export default function Home() {
                 <strong>Flagship</strong>
                 Bridgly platform
               </span>
-              <span>
-                <strong>Lab</strong>
-                Agents &amp; Pencils
-              </span>
             </div>
           </div>
           <OperatingMesh />
@@ -39,16 +35,12 @@ export default function Home() {
       </section>
 
       <section className="content-band content-band--light">
-        <div className="site-shell two-column">
+        <div className="site-shell">
           <SectionHeading
             eyebrow={home.thesis.eyebrow}
             title={home.thesis.title}
             body={home.thesis.body}
           />
-          <div className="statement-panel">
-            <p>Buyer -&gt; DataGo -&gt; Bridgly</p>
-            <span>Clear corporate path</span>
-          </div>
         </div>
       </section>
 
@@ -80,15 +72,16 @@ export default function Home() {
       </section>
 
       <section className="content-band">
-        <div className="site-shell two-column two-column--center">
+        <div className="site-shell">
           <SectionHeading
-            eyebrow={home.lab.eyebrow}
-            title={home.lab.title}
-            body={home.lab.body}
+            eyebrow={home.answerEngine.eyebrow}
+            title={home.answerEngine.title}
           />
-          <ButtonLink href="/lab" variant="secondary">
-            Read the lab note
-          </ButtonLink>
+          <div className="card-grid card-grid--three">
+            {home.answerEngine.items.map((item) => (
+              <InfoCard body={item.body} key={item.title} title={item.title} />
+            ))}
+          </div>
         </div>
       </section>
 

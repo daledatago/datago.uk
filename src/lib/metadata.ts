@@ -14,6 +14,8 @@ type PageMetadata = {
   title: string;
   description: string;
   path: string;
+  index?: boolean;
+  inSitemap?: boolean;
 };
 
 export type SearchRoute = PageMetadata & {
@@ -44,6 +46,8 @@ export const PUBLIC_SEARCH_ROUTES = [
     description: site.description,
     priority: 1,
     changeFrequency: "weekly",
+    index: true,
+    inSitemap: true,
   },
   {
     path: "/bridgly",
@@ -52,6 +56,8 @@ export const PUBLIC_SEARCH_ROUTES = [
       "Bridgly is DataGo's flagship organisational intelligence platform for AI adoption visibility, governance, connectors, and measurable AI outcomes.",
     priority: 0.92,
     changeFrequency: "weekly",
+    index: true,
+    inSitemap: true,
   },
   {
     path: "/approach",
@@ -60,6 +66,8 @@ export const PUBLIC_SEARCH_ROUTES = [
       "DataGo's approach to governed AI transformation connects enterprise AI readiness, governance, adoption visibility, and impact measurement.",
     priority: 0.86,
     changeFrequency: "monthly",
+    index: true,
+    inSitemap: true,
   },
   {
     path: "/insights",
@@ -68,6 +76,8 @@ export const PUBLIC_SEARCH_ROUTES = [
       "Company-level thinking from DataGo on governed AI systems, enterprise AI readiness, AI governance, adoption visibility, and measurable outcomes.",
     priority: 0.82,
     changeFrequency: "monthly",
+    index: true,
+    inSitemap: true,
   },
   {
     path: "/about",
@@ -76,6 +86,8 @@ export const PUBLIC_SEARCH_ROUTES = [
       "DataGo is the UK company behind Bridgly, providing company trust, product thesis, and governed AI product studio context.",
     priority: 0.8,
     changeFrequency: "monthly",
+    index: true,
+    inSitemap: true,
   },
   {
     path: "/contact",
@@ -84,6 +96,8 @@ export const PUBLIC_SEARCH_ROUTES = [
       "Contact DataGo at info@datago.uk for corporate enquiries, Bridgly adoption, enterprise partnerships, and governed AI product conversations.",
     priority: 0.72,
     changeFrequency: "monthly",
+    index: true,
+    inSitemap: true,
   },
   {
     path: "/lab",
@@ -92,6 +106,8 @@ export const PUBLIC_SEARCH_ROUTES = [
       "Agents & Pencils is a quiet DataGo lab/archive for agent-native product ideas; DataGo and Bridgly are the primary enterprise-facing path.",
     priority: 0.38,
     changeFrequency: "yearly",
+    index: false,
+    inSitemap: false,
   },
   {
     path: "/privacy",
@@ -100,6 +116,8 @@ export const PUBLIC_SEARCH_ROUTES = [
       "Privacy notice for datago.uk, the public company website for DataGo, including contact information and current mailto-first handling.",
     priority: 0.32,
     changeFrequency: "yearly",
+    index: false,
+    inSitemap: false,
   },
   {
     path: "/terms",
@@ -108,6 +126,8 @@ export const PUBLIC_SEARCH_ROUTES = [
       "Legal notice for datago.uk, including the DataGo company contact route, registered legal identity, company number, and registered office.",
     priority: 0.32,
     changeFrequency: "yearly",
+    index: false,
+    inSitemap: false,
   },
 ] as const satisfies readonly SearchRoute[];
 
@@ -129,6 +149,7 @@ export function pageMetadata({
   title,
   description,
   path,
+  index = true,
 }: PageMetadata): Metadata {
   const brandedTitle = titleWithBrand(title);
   const url = absoluteUrl(path);
@@ -138,6 +159,10 @@ export function pageMetadata({
     description,
     alternates: {
       canonical: url,
+    },
+    robots: {
+      index,
+      follow: true,
     },
     openGraph: {
       title: brandedTitle,
@@ -171,6 +196,112 @@ export function routeMetadata(path: string): Metadata {
   }
 
   return pageMetadata(route);
+}
+
+type BreadcrumbItem = {
+  name: string;
+  path: string;
+};
+
+type PageJsonLdOptions = {
+  path: string;
+  name: string;
+  description: string;
+  type?: string;
+  breadcrumbs?: BreadcrumbItem[];
+  about?: string[];
+  mentions?: string[];
+  mainEntity?: Record<string, unknown>;
+};
+
+export function breadcrumbJsonLd(items: BreadcrumbItem[]) {
+  return {
+    "@context": "https://schema.org",
+    ...breadcrumbList(items),
+  };
+}
+
+function breadcrumbList(items: BreadcrumbItem[]) {
+  return {
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: absoluteUrl(item.path),
+    })),
+  };
+}
+
+export function pageJsonLd({
+  path,
+  name,
+  description,
+  type = "WebPage",
+  breadcrumbs = [],
+  about = [],
+  mentions = [],
+  mainEntity,
+}: PageJsonLdOptions) {
+  const page: Record<string, unknown> = {
+    "@type": type,
+    "@id": `${absoluteUrl(path)}#webpage`,
+    name,
+    description,
+    url: absoluteUrl(path),
+    isPartOf: {
+      "@id": `${site.url}/#website`,
+    },
+    publisher: {
+      "@id": `${site.url}/#organization`,
+    },
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      url: absoluteUrl(site.assets.hero),
+    },
+    inLanguage: "en-GB",
+  };
+
+  if (about.length > 0) {
+    page.about = about.map((item) => ({ "@type": "Thing", name: item }));
+  }
+
+  if (mentions.length > 0) {
+    page.mentions = mentions.map((item) => ({ "@type": "Thing", name: item }));
+  }
+
+  if (mainEntity) {
+    page.mainEntity = mainEntity;
+  }
+
+  if (breadcrumbs.length === 0) {
+    return {
+      "@context": "https://schema.org",
+      ...page,
+    };
+  }
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [page, breadcrumbList(breadcrumbs)],
+  };
+}
+
+export function faqJsonLd(
+  questions: Array<{ question: string; answer: string }>,
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: questions.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
 }
 
 export function jsonLd(data: unknown) {
