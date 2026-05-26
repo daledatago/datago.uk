@@ -15,12 +15,12 @@ type CompanySystemMapProps = {
 };
 
 const NODE_POSITIONS = [
-  { x: 116, y: 118 },
-  { x: 280, y: 78 },
-  { x: 442, y: 130 },
-  { x: 124, y: 302 },
-  { x: 286, y: 316 },
-  { x: 438, y: 302 },
+  { x: 150, y: 118 },
+  { x: 280, y: 76 },
+  { x: 410, y: 118 },
+  { x: 150, y: 270 },
+  { x: 280, y: 312 },
+  { x: 410, y: 270 },
 ];
 const BRIDGE_CENTER = { x: 280, y: 194 };
 
@@ -101,9 +101,12 @@ export function CompanySystemMap({
               y="0"
             />
 
+            <g className="company-system-map__orbits">
+              <circle cx="280" cy="194" r="96" />
+              <circle cx="280" cy="194" r="138" />
+            </g>
+
             <g className="company-system-map__lines">
-              <path d="M116 118 C180 78 224 70 280 78 C342 82 388 96 442 130" />
-              <path d="M124 302 C184 320 224 326 286 316 C346 320 388 316 438 302" />
               {NODE_POSITIONS.map((position, index) => (
                 <line
                   key={nodes[index].title}
@@ -116,34 +119,18 @@ export function CompanySystemMap({
             </g>
 
             <g className="company-system-map__bridge">
-              <rect height="96" rx="24" width="184" x="188" y="144" />
+              <rect height="84" rx="22" width="168" x="196" y="150" />
               <text x="280" y="178">
                 DataGo
               </text>
-              <text x="280" y="202">
+              <text x="280" y="198">
                 system builder
               </text>
-              <text x="280" y="224">
+              <text x="280" y="218">
                 Bridgly flagship
               </text>
             </g>
 
-            <g className="company-system-map__nodes">
-              {nodes.map((node, index) => {
-                const position = NODE_POSITIONS[index];
-                const isActive = activeIndex === index;
-
-                return (
-                  <g
-                    className={isActive ? "is-active" : undefined}
-                    key={node.title}
-                    transform={`translate(${position.x} ${position.y})`}
-                  >
-                    <circle r={isActive ? 34 : 24} />
-                  </g>
-                );
-              })}
-            </g>
           </svg>
 
           <div className="company-system-map__hotspots" role="tablist">
