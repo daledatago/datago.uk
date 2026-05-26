@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BridglyOperatingLens } from "@/components/bridgly-operating-lens";
 import { ButtonLink } from "@/components/button-link";
 import { InfoCard } from "@/components/info-card";
 import { JsonLdScript } from "@/components/json-ld-script";
@@ -42,6 +43,17 @@ export default function BridglyPage() {
       >
         <ButtonLink href={site.bridgly.url}>{bridglyPage.cta}</ButtonLink>
       </PageIntro>
+
+      <section className="content-band">
+        <div className="site-shell">
+          <SectionHeading
+            eyebrow={bridglyPage.lens.eyebrow}
+            title={bridglyPage.lens.title}
+            body={bridglyPage.lens.body}
+          />
+          <BridglyOperatingLens />
+        </div>
+      </section>
 
       <section className="content-band content-band--light">
         <div className="site-shell promise-band">

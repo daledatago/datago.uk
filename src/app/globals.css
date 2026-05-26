@@ -435,6 +435,27 @@ p {
   padding-top: 16px;
 }
 
+.bridgly-operating-lens {
+  margin-top: 28px;
+}
+
+.bridgly-operating-lens__frame {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(247, 249, 248, 0.98) 100%),
+    var(--surface);
+  border: 1px solid rgba(117, 138, 131, 0.18);
+  border-radius: 30px;
+  box-shadow: 0 28px 64px -42px rgba(19, 40, 49, 0.28);
+  overflow: hidden;
+  padding: 10px;
+}
+
+.bridgly-operating-lens__frame svg {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
 .operating-mesh {
   aspect-ratio: 16 / 9;
   background: var(--surface);
@@ -1293,6 +1314,10 @@ p {
     grid-template-columns: 1fr 1fr;
   }
 
+  .bridgly-operating-lens__frame {
+    padding: 8px;
+  }
+
   .build-loop__track {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
@@ -1400,6 +1425,16 @@ p {
   .company-system-map__visual {
     margin-left: -8px;
     margin-right: -8px;
+  }
+
+  .bridgly-operating-lens {
+    margin-left: -6px;
+    margin-right: -6px;
+  }
+
+  .bridgly-operating-lens__frame {
+    border-radius: 22px;
+    padding: 4px;
   }
 
   .flagship-path,

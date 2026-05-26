@@ -140,6 +140,12 @@ export const home = {
     body:
       "DataGo provides the company thesis and product direction. Bridgly is where that work becomes a usable surface for organisations that need visibility, governance, and measurable learning as AI changes delivery.",
     cta: "Visit bridgly.ai",
+    lens: {
+      eyebrow: "Operating lens",
+      title: "A governed view across organisation, work, value, and governance.",
+      body:
+        "Bridgly connects the layers that usually stay fragmented: people, tools, AI agents, evidence, decisions, opportunities, and outcomes. The point is not another dashboard. The point is a clearer operating lens for how AI is changing work.",
+    },
     path: [
       {
         title: "DataGo company thesis",
@@ -206,6 +212,12 @@ export const bridglyPage = {
     "Bridgly helps organisations see, measure, and improve how AI changes work across people, teams, projects, tools, decisions, spend, risk, and outcomes. DataGo is the company behind it.",
   promise:
     "Understand how work moves. Measure how AI changes it. Govern the evidence. Learn from every outcome.",
+  lens: {
+    eyebrow: "Operating lens",
+    title: "A governed view across organisation, work, value, and governance.",
+    body:
+      "Bridgly connects the layers that usually stay fragmented: people, tools, AI agents, evidence, decisions, opportunities, and outcomes. The point is not another dashboard. The point is a clearer operating lens for how AI is changing work.",
+  },
   cta: "Visit bridgly.ai",
   spine: [
     {
