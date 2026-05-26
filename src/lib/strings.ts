@@ -46,77 +46,155 @@ export const footerLinks = [
 export const home = {
   hero: {
     eyebrow: "DataGo Ltd",
-    title: "DataGo builds governed AI systems for organisations.",
+    title: "Governed AI systems for organisations learning with AI.",
     body:
-      "We create product-led platforms that help enterprises see, measure, and improve how AI changes work across people, teams, projects, tools, decisions, spend, risk, and outcomes. Bridgly is the flagship platform.",
-    primaryCta: "Understand Bridgly",
-    secondaryCta: "Contact DataGo",
+      "DataGo is the UK company building products and governed operating systems that help organisations see, govern, and improve how AI changes work. Bridgly is the flagship platform for turning that change into visible, measurable organisational intelligence.",
+    primaryCta: "See Bridgly",
+    secondaryCta: "Talk to DataGo",
+    nodes: [
+      {
+        title: "People",
+        body:
+          "AI adoption only matters if people can work with it safely, clearly, and with useful support.",
+      },
+      {
+        title: "Work",
+        body:
+          "The real operating problem lives in projects, workflows, handovers, and the work that actually gets accepted.",
+      },
+      {
+        title: "AI activity",
+        body:
+          "Useful systems show where AI is being used, not as theatre, but as part of real operating context.",
+      },
+      {
+        title: "Decisions",
+        body:
+          "Governed AI systems should make decision paths, ownership, and evidence easier to inspect.",
+      },
+      {
+        title: "Risk",
+        body:
+          "Risk should be visible early through permissions, provenance, boundaries, and practical review points.",
+      },
+      {
+        title: "Outcomes",
+        body:
+          "What matters is measurable improvement: better delivery, better learning, and better organisational behaviour.",
+      },
+    ],
+    visual: {
+      label: "System builder",
+      bridge: "Bridgly product surface",
+      foot: "DataGo connects people, work, AI activity, decisions, risk, and outcomes into governed learning systems.",
+    },
   },
   thesis: {
     eyebrow: "Company thesis",
     title:
-      "Enterprise AI transformation needs governed visibility, not another disconnected rollout.",
+      "AI transformation needs governed visibility, not another disconnected rollout.",
     body:
-      "DataGo exists to make AI adoption measurable, accountable, and useful at organisational scale. The thesis is simple: governed AI systems should connect operating context, expose evidence, respect permissions, and learn from outcomes so leaders can trust what changed and what should improve next.",
+      "DataGo exists to help organisations learn with AI in a way that stays practical, inspectable, and useful. We care about visibility, ownership, evidence, and measurable improvement because AI changes work whether leaders can see it or not.",
   },
-  bridgly: {
-    eyebrow: "Flagship platform",
-    title: "Bridgly carries the product promise.",
+  buildLoop: {
+    eyebrow: "What DataGo builds",
+    title: "We build governed systems that improve in the open.",
     body:
-      "Bridgly is DataGo's flagship organisational intelligence platform for AI adoption visibility, AI impact measurement, governance, connectors, and measurable improvement loops. This company site establishes trust and thesis; the Bridgly site carries the product journey.",
-    cta: "Visit bridgly.ai",
-  },
-  answerEngine: {
-    eyebrow: "Answer-engine clarity",
-    title: "What DataGo and Bridgly should make clear at a glance.",
-    items: [
+      "DataGo is not a slideware company. We work through a practical loop: understand the operating problem, design the governed system, build the product surface, measure what changes, and improve from evidence.",
+    phases: [
       {
-        title: "What is DataGo?",
+        step: "01",
+        title: "Sense the operating problem",
         body:
-          "DataGo is the UK company behind Bridgly. It provides the company trust layer, operating thesis, and governed AI product direction.",
+          "We start where work already happens: people, tools, workflows, decisions, gaps, and handovers.",
       },
       {
-        title: "What is Bridgly?",
+        step: "02",
+        title: "Design the governed system",
         body:
-          "Bridgly is the flagship organisational intelligence platform for AI adoption visibility, governance, connectors, and measurable AI outcomes.",
+          "We decide what needs structure, permissions, traceability, and clear boundaries before anything scales.",
       },
       {
-        title: "How should product intent route?",
+        step: "03",
+        title: "Build the product or workflow",
         body:
-          "Company trust, thesis, and enterprise context should land on datago.uk. Detailed product evaluation and demo intent should route to bridgly.ai.",
+          "We turn the thesis into something usable: a product surface, workflow, interface, or operating layer people can work with.",
+      },
+      {
+        step: "04",
+        title: "Measure adoption and impact",
+        body:
+          "We look at whether behaviour changed, whether work improved, and whether the evidence supports the claim.",
+      },
+      {
+        step: "05",
+        title: "Improve the loop",
+        body:
+          "The system should learn from outcomes, not just report them, so the next cycle is more useful than the last.",
       },
     ],
   },
-  support: {
-    eyebrow: "Company role",
-    title: "A governed AI product studio, not generic consulting first.",
+  bridgly: {
+    eyebrow: "Flagship platform",
+    title: "Bridgly is DataGo's flagship organisational intelligence platform.",
+    body:
+      "DataGo provides the company thesis and product direction. Bridgly is where that work becomes a usable surface for organisations that need visibility, governance, and measurable learning as AI changes delivery.",
+    cta: "Visit bridgly.ai",
+    path: [
+      {
+        title: "DataGo company thesis",
+        body:
+          "Why governed AI systems matter and why organisations need trust, context, and evidence.",
+      },
+      {
+        title: "Bridgly platform",
+        body:
+          "The product layer that connects AI activity, work, governance, and measurable outcomes.",
+      },
+      {
+        title: "Organisations learning with AI",
+        body:
+          "Teams gain visibility, better governance, and a clearer loop for measurable improvement.",
+      },
+    ],
+  },
+  principles: {
+    eyebrow: "Principles",
+    title: "How DataGo approaches serious AI systems.",
+    body:
+      "We want the site to feel human because the work is human. The systems still need to be disciplined, measurable, and worth trusting.",
     items: [
       {
-        title: "Company trust",
+        title: "Human-led AI",
         body:
-          "DataGo provides the UK company context, corporate contact path, and enterprise trust layer behind Bridgly.",
+          "People should stay able to question, inspect, and shape how AI changes their work.",
       },
       {
-        title: "Product thesis",
+        title: "Governance before scale",
         body:
-          "We focus on governed AI systems that turn disconnected AI activity into organisational intelligence and measurable outcomes.",
+          "Permissions, provenance, review boundaries, and behaviour expectations should not be retrofitted later.",
       },
       {
-        title: "Enterprise adoption",
+        title: "Evidence over dashboards",
         body:
-          "Services stay secondary and practical: aligning stakeholders, connecting systems, and helping teams adopt Bridgly around real operating context.",
+          "A claim is only useful if leaders can see the supporting work, decisions, and outcome traces behind it.",
       },
       {
-        title: "Governed improvement",
+        title: "Measurable improvement",
         body:
-          "We design for permissions, evidence, decision trails, risk visibility, spend context, and learning from outcomes from the start.",
+          "We care about whether work improves over time, not whether a chart merely looks active.",
+      },
+      {
+        title: "Products over slideware",
+        body:
+          "The point is to build something organisations can use, learn from, and operationalise, not just describe.",
       },
     ],
   },
   contact: {
     title: "Talk to DataGo",
     body:
-      "For corporate enquiries, partnerships, or Bridgly adoption conversations, contact the company directly.",
+      "For company enquiries, partnerships, or Bridgly conversations, contact the company directly.",
     cta: "Email info@datago.uk",
   },
 };
