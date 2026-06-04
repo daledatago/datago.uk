@@ -312,6 +312,7 @@ export function rootJsonLd() {
   const datagoId = `${site.url}/#organization`;
   const websiteId = `${site.url}/#website`;
   const bridglyId = `${site.bridgly.url}/#software`;
+  const logoUrl = absoluteUrl("/assets/datago-mark.svg");
 
   return {
     "@context": "https://schema.org",
@@ -324,6 +325,11 @@ export function rootJsonLd() {
         alternateName: [site.searchAlias, "DataGo Solutions", "Datago"],
         url: site.url,
         email: site.email,
+        logo: {
+          "@type": "ImageObject",
+          url: logoUrl,
+        },
+        image: logoUrl,
         foundingLocation: "United Kingdom",
         identifier: {
           "@type": "PropertyValue",
@@ -371,6 +377,11 @@ export function rootJsonLd() {
         mentions: {
           "@id": bridglyId,
         },
+        hasPart: PUBLIC_SEARCH_ROUTES.filter((route) => route.inSitemap !== false).map(
+          (route) => ({
+            "@id": `${absoluteUrl(route.path)}#webpage`,
+          }),
+        ),
       },
       {
         "@type": ["SoftwareApplication", "Product"],

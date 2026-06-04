@@ -203,6 +203,23 @@ export const home = {
       "For company enquiries, partnerships, or Bridgly conversations, contact the company directly.",
     cta: "Email info@datago.uk",
   },
+  answers: [
+    {
+      question: "What is DataGo?",
+      answer:
+        "DataGo is the UK company behind Bridgly. It sets the company trust layer, governed AI thesis, and product direction.",
+    },
+    {
+      question: "What does DataGo build?",
+      answer:
+        "DataGo builds governed AI systems for organisations and routes product evaluation to Bridgly, its flagship organisational intelligence platform.",
+    },
+    {
+      question: "Where should product buyers go next?",
+      answer:
+        "Use datago.uk to verify the company and thesis, then move to bridgly.ai for product detail, governance, connectors, impact measurement, and demos.",
+    },
+  ],
 };
 
 export const bridglyPage = {

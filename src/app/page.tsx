@@ -2,13 +2,41 @@ import { ButtonLink } from "@/components/button-link";
 import { BuildLoop } from "@/components/build-loop";
 import { CompanySystemMap } from "@/components/company-system-map";
 import { InfoCard } from "@/components/info-card";
+import { JsonLdScript } from "@/components/json-ld-script";
 import { PrinciplesShowcase } from "@/components/principles-showcase";
 import { SectionHeading } from "@/components/section-heading";
+import { faqJsonLd, pageJsonLd } from "@/lib/metadata";
 import { home, site } from "@/lib/strings";
 
 export default function Home() {
   return (
     <>
+      <JsonLdScript
+        data={pageJsonLd({
+          path: "/",
+          name: "DataGo | Governed AI systems for organisations",
+          description: site.description,
+          about: [
+            "DataGo Solutions Ltd",
+            "Datago Ltd",
+            "governed AI systems",
+            "enterprise AI readiness",
+            "AI governance",
+          ],
+          mentions: [
+            "Bridgly",
+            "organisational intelligence",
+            "AI impact measurement",
+            "AI adoption visibility",
+            "measurable AI outcomes",
+          ],
+          mainEntity: {
+            "@id": `${site.url}/#organization`,
+          },
+        })}
+      />
+      <JsonLdScript data={faqJsonLd(home.answers)} />
+
       <section className="home-hero">
         <div className="site-shell home-hero__grid">
           <div className="home-hero__copy">
@@ -115,6 +143,25 @@ export default function Home() {
               title="Organisations"
               body="Use the system to see what AI changes, govern the behaviour, and improve from real operating evidence."
             />
+          </div>
+        </div>
+      </section>
+
+      <section className="content-band">
+        <div className="site-shell">
+          <SectionHeading
+            eyebrow="Answer-ready summary"
+            title="Quick answers about DataGo"
+            body="These short answers make the company-to-product relationship easier for search engines, answer engines, and buyers to understand."
+          />
+          <div className="card-grid card-grid--three">
+            {home.answers.map((item) => (
+              <InfoCard
+                body={item.answer}
+                key={item.question}
+                title={item.question}
+              />
+            ))}
           </div>
         </div>
       </section>
