@@ -1,5 +1,5 @@
 import { ButtonLink } from "@/components/button-link";
-import { BridglyOperatingLens } from "@/components/bridgly-operating-lens";
+import { BridglyOperatingGraph } from "@/components/bridgly-operating-graph";
 import { BuildLoop } from "@/components/build-loop";
 import { InfoCard } from "@/components/info-card";
 import { JsonLdScript } from "@/components/json-ld-script";
@@ -60,7 +60,7 @@ export default function Home() {
               </span>
             </div>
           </div>
-          <BridglyOperatingLens />
+          <BridglyOperatingGraph />
         </div>
       </section>
 

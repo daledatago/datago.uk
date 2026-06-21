@@ -456,6 +456,15 @@ p {
   width: 100%;
 }
 
+.bridgly-operating-graph {
+  width: 100%;
+}
+
+.bridgly-operating-graph__frame {
+  min-width: 0;
+  width: 100%;
+}
+
 .operating-mesh {
   aspect-ratio: 16 / 9;
   background: var(--surface);
