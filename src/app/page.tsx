@@ -1,6 +1,6 @@
 import { ButtonLink } from "@/components/button-link";
+import { BridglyOperatingLens } from "@/components/bridgly-operating-lens";
 import { BuildLoop } from "@/components/build-loop";
-import { CompanySystemMap } from "@/components/company-system-map";
 import { InfoCard } from "@/components/info-card";
 import { JsonLdScript } from "@/components/json-ld-script";
 import { PrinciplesShowcase } from "@/components/principles-showcase";
@@ -60,12 +60,7 @@ export default function Home() {
               </span>
             </div>
           </div>
-          <CompanySystemMap
-            bridge={home.hero.visual.bridge}
-            foot={home.hero.visual.foot}
-            label={home.hero.visual.label}
-            nodes={home.hero.nodes}
-          />
+          <BridglyOperatingLens />
         </div>
       </section>
 
