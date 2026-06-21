@@ -138,15 +138,19 @@ img {
 }
 
 .home-hero__grid {
-  align-items: center;
+  align-items: start;
   display: grid;
-  gap: 36px;
-  grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
+  gap: 28px;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .home-hero__copy {
-  max-width: 690px;
+  max-width: 780px;
   padding: 14px 0;
+}
+
+.home-hero__graph {
+  width: 100%;
 }
 
 .eyebrow {
@@ -457,6 +461,8 @@ p {
 }
 
 .bridgly-operating-graph {
+  margin: 0 auto;
+  max-width: 1180px;
   width: 100%;
 }
 

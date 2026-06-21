@@ -60,7 +60,9 @@ export default function Home() {
               </span>
             </div>
           </div>
-          <BridglyOperatingGraph />
+          <div className="home-hero__graph">
+            <BridglyOperatingGraph />
+          </div>
         </div>
       </section>
 
