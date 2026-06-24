@@ -1,3 +1,8 @@
+import type {
+  LoopStep as BridglyLoopStep,
+  SupportCard as BridglySupportCard,
+} from "@/components/bridgly-flagship-showcase";
+
 export const site = {
   name: "DataGo",
   legalName: "Datago Ltd",
@@ -48,7 +53,7 @@ export const home = {
     eyebrow: "DataGo Ltd",
     title: "Governed AI systems for organisations learning with AI.",
     body:
-      "DataGo is the UK company building products and governed operating systems that help organisations see, govern, and improve how AI changes work. Bridgly is the flagship platform for turning that change into visible, measurable organisational intelligence.",
+      "DataGo is the UK company behind Bridgly, its flagship product for governed AI-enabled work. We build company trust, governed operating systems, and product direction that help organisations see, govern, and improve how AI changes work.",
     primaryCta: "See Bridgly",
     secondaryCta: "Talk to DataGo",
     nodes: [
@@ -136,9 +141,9 @@ export const home = {
   },
   bridgly: {
     eyebrow: "Flagship platform",
-    title: "Bridgly is DataGo's flagship organisational intelligence platform.",
+    title: "Bridgly is DataGo's flagship product for governed AI-enabled work.",
     body:
-      "DataGo provides the company thesis and product direction. Bridgly is where that work becomes a usable surface for organisations that need visibility, governance, and measurable learning as AI changes delivery.",
+      "DataGo provides the company thesis, trust layer, and product direction. Bridgly is the premium organisational intelligence platform where that work becomes visible, governed, evidence-backed, and measurable.",
     cta: "Visit bridgly.ai",
     lens: {
       eyebrow: "Operating lens",
@@ -224,35 +229,99 @@ export const home = {
 
 export const bridglyPage = {
   eyebrow: "Flagship platform",
-  title: "Bridgly is the flagship organisational intelligence platform from DataGo.",
+  title: "Bridgly is DataGo's flagship product for",
+  titleAccent: "governed AI-enabled work",
   body:
-    "Bridgly helps organisations see, measure, and improve how AI changes work across people, teams, projects, tools, decisions, spend, risk, and outcomes. DataGo is the company behind it.",
+    "Bridgly is being developed as a premium organisational intelligence platform that connects human work, agent work, tools, evidence, decisions, governance, and outcomes into one operating layer.",
+  note:
+    "Questions about Bridgly, enterprise fit, or early product direction? Contact DataGo and we'll route the conversation to the right product or implementation discussion.",
   promise:
     "Understand how work moves. Measure how AI changes it. Govern the evidence. Learn from every outcome.",
-  lens: {
-    eyebrow: "Operating lens",
-    title: "A governed view across organisation, work, value, and governance.",
-    body:
-      "Bridgly connects the layers that usually stay fragmented: people, tools, AI agents, evidence, decisions, opportunities, and outcomes. The point is not another dashboard. The point is a clearer operating lens for how AI is changing work.",
-  },
   cta: "Visit bridgly.ai",
-  spine: [
+  secondaryCta: "Contact DataGo",
+  loopLabel: "The loop · how a signal becomes learning",
+  loop: [
     {
-      title: "AI adoption visibility",
+      number: "1",
+      title: "Interaction",
       body:
-        "Connect work signals, AI activity, projects, owners, spend, risk, and outcomes so leaders can see where AI is changing work.",
+        "A human, agent, tool, or workflow creates a meaningful work signal.",
+      group: "work",
+      dotClass: "bridgly-flagship__loop-dot--green",
     },
     {
-      title: "Governed organisational intelligence",
+      number: "2",
+      title: "Evidence",
       body:
-        "Keep permissions, context, provenance, and answer boundaries visible enough for enterprise use.",
+        "Bridgly links the signal to source context, citations, and provenance.",
+      group: "govern",
+      dotClass: "bridgly-flagship__loop-dot--amber",
     },
     {
-      title: "Measurable AI outcomes",
+      number: "3",
+      title: "Govern",
       body:
-        "Learn from questions, gaps, recommendations, actions, and results so future decisions and workflows improve.",
+        "Permissions, scope, agent authority, and approvals are evaluated.",
+      group: "govern",
+      dotClass: "bridgly-flagship__loop-dot--blue",
     },
-  ],
+    {
+      number: "4",
+      title: "Decide",
+      body:
+        "The system helps create a safe summary, decision prompt, or governed action.",
+      group: "govern",
+      dotClass: "bridgly-flagship__loop-dot--blue",
+    },
+    {
+      number: "5",
+      title: "Outcome",
+      body:
+        "Value, risk, cost, quality, and confidence are measured.",
+      group: "learn",
+      dotClass: "bridgly-flagship__loop-dot--amber",
+    },
+    {
+      number: "6",
+      title: "Learn",
+      body:
+        "Patterns feed back into institutional memory and future work.",
+      group: "learn",
+      dotClass: "bridgly-flagship__loop-dot--green",
+    },
+  ] satisfies BridglyLoopStep[],
+  supporting: {
+    title: "From scattered AI activity to measurable organisational learning.",
+    body:
+      "Bridgly turns work signals into evidence-backed decisions, governed actions, measured outcomes, and reusable institutional memory. The aim is not another dashboard. The aim is a clearer operating layer for how AI changes work.",
+    cards: [
+      {
+        title: "AI-enabled work visibility",
+        body:
+          "See where people, agents, projects, tools, decisions, and risks are changing how work gets done.",
+        group: "work",
+        icon: "visibility",
+      },
+      {
+        title: "Governed evidence and authority",
+        body:
+          "Keep permissions, provenance, source context, agent scope, approvals, and audit receipts visible enough for enterprise use.",
+        group: "govern",
+        icon: "authority",
+      },
+      {
+        title: "Measurable learning loops",
+        body:
+          "Connect recommendations and actions to outcomes so successful patterns can compound across the organisation.",
+        group: "learn",
+        icon: "learning",
+      },
+    ],
+  } satisfies {
+    title: string;
+    body: string;
+    cards: BridglySupportCard[];
+  },
   routes: [
     {
       title: "AI impact measurement",
@@ -282,7 +351,7 @@ export const bridglyPage = {
     {
       question: "What is Bridgly?",
       answer:
-        "Bridgly is DataGo's flagship organisational intelligence platform for AI adoption visibility, governance, connectors, and measurable AI outcomes.",
+        "Bridgly is DataGo's flagship product for governed AI-enabled work and its premium organisational intelligence platform.",
     },
     {
       question: "How does Bridgly support enterprise AI readiness?",

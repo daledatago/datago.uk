@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { BridglyOperatingLens } from "@/components/bridgly-operating-lens";
+import { BridglyFlagshipShowcase } from "@/components/bridgly-flagship-showcase";
 import { ButtonLink } from "@/components/button-link";
 import { InfoCard } from "@/components/info-card";
 import { JsonLdScript } from "@/components/json-ld-script";
-import { PageIntro } from "@/components/page-intro";
 import { SectionHeading } from "@/components/section-heading";
 import { faqJsonLd, pageJsonLd, routeMetadata } from "@/lib/metadata";
 import { bridglyPage, site } from "@/lib/strings";
@@ -36,41 +35,21 @@ export default function BridglyPage() {
       />
       <JsonLdScript data={faqJsonLd(bridglyPage.answers)} />
 
-      <PageIntro
-        eyebrow={bridglyPage.eyebrow}
-        title={bridglyPage.title}
-        body={bridglyPage.body}
-      >
-        <ButtonLink href={site.bridgly.url}>{bridglyPage.cta}</ButtonLink>
-      </PageIntro>
-
-      <section className="content-band">
-        <div className="site-shell">
-          <SectionHeading
-            eyebrow={bridglyPage.lens.eyebrow}
-            title={bridglyPage.lens.title}
-            body={bridglyPage.lens.body}
-          />
-          <BridglyOperatingLens />
-        </div>
-      </section>
-
-      <section className="content-band content-band--light">
-        <div className="site-shell promise-band">
-          <p>{bridglyPage.promise}</p>
-        </div>
-      </section>
-
-      <section className="content-band">
-        <div className="site-shell">
-          <SectionHeading title="Visibility. Governance. Measurable outcomes." />
-          <div className="card-grid card-grid--three">
-            {bridglyPage.spine.map((item) => (
-              <InfoCard body={item.body} key={item.title} title={item.title} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <BridglyFlagshipShowcase
+        hero={{
+          eyebrow: bridglyPage.eyebrow,
+          title: bridglyPage.title,
+          accent: bridglyPage.titleAccent,
+          body: bridglyPage.body,
+          note: bridglyPage.note,
+          primaryCta: bridglyPage.cta,
+          secondaryCta: bridglyPage.secondaryCta,
+        }}
+        loop={bridglyPage.loop}
+        loopLabel={bridglyPage.loopLabel}
+        promise={bridglyPage.promise}
+        supporting={bridglyPage.supporting}
+      />
 
       <section className="content-band content-band--light">
         <div className="site-shell">
