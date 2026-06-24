@@ -1294,6 +1294,61 @@ p {
   padding: 26px 24px 18px;
 }
 
+.bridgly-fabric__story {
+  display: grid;
+  gap: 22px;
+  grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.72fr);
+}
+
+.bridgly-fabric__visual {
+  min-width: 0;
+  position: relative;
+}
+
+.bridgly-fabric__insight {
+  align-self: stretch;
+  background: linear-gradient(180deg, rgba(18, 18, 20, 0.88), rgba(12, 12, 14, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  display: grid;
+  gap: 16px;
+  padding: 22px 20px;
+}
+
+.bridgly-fabric__insight-label,
+.bridgly-fabric__content-title {
+  margin: 0;
+}
+
+.bridgly-fabric__insight-label {
+  color: #9bc8ff;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.bridgly-fabric__insight-promise {
+  color: #f3f5f7;
+  font-size: 25px;
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+.bridgly-fabric__insight-copy {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 16px;
+}
+
+.bridgly-fabric__insight-copy p {
+  color: #aab0b8;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
 .bridgly-fabric__grid {
   display: grid;
   gap: 0;
@@ -1691,8 +1746,36 @@ p {
   padding: 6px 12px;
 }
 
+.bridgly-fabric__content {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  margin-top: 24px;
+  padding-top: 24px;
+}
+
+.bridgly-fabric__content-head {
+  align-items: end;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.bridgly-fabric__content-title {
+  color: #f2f2f2;
+  font-size: 28px;
+  font-weight: 620;
+  letter-spacing: -0.02em;
+  line-height: 1.14;
+  max-width: 720px;
+}
+
+.bridgly-fabric__content-grid {
+  display: grid;
+  gap: 18px;
+}
+
 .bridgly-flagship__loop-label {
-  color: var(--accent);
+  color: #7dd6a0;
   margin: 0 0 18px;
 }
 
@@ -1705,10 +1788,20 @@ p {
   overflow: hidden;
 }
 
+.bridgly-flagship__loop--integrated {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 .bridgly-flagship__loop-step {
   border-right: 1px solid var(--line-soft);
   cursor: default;
   padding: 18px 16px;
+}
+
+.bridgly-flagship__loop--integrated .bridgly-flagship__loop-step {
+  background: rgba(255, 255, 255, 0.02);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .bridgly-flagship__loop-step:last-child {
@@ -1785,11 +1878,23 @@ p {
   line-height: 1.5;
 }
 
+.bridgly-flagship__loop--integrated .bridgly-flagship__loop-step h3 {
+  color: #f2f2f2;
+}
+
+.bridgly-flagship__loop--integrated .bridgly-flagship__loop-step p {
+  color: #a8b0b8;
+}
+
 .bridgly-flagship__support-grid {
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: 30px;
+}
+
+.bridgly-flagship__support-grid--integrated {
+  margin-top: 0;
 }
 
 .bridgly-flagship__support-card {
@@ -1798,6 +1903,11 @@ p {
   border-radius: 14px;
   cursor: default;
   padding: 22px;
+}
+
+.bridgly-flagship__support-grid--integrated .bridgly-flagship__support-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .bridgly-flagship__support-card.is-active {
@@ -1864,10 +1974,18 @@ p {
   margin-bottom: 7px;
 }
 
+.bridgly-flagship__support-grid--integrated .bridgly-flagship__support-card h3 {
+  color: #f2f2f2;
+}
+
 .bridgly-flagship__support-card p {
   color: #58616b;
   font-size: 13.5px;
   line-height: 1.6;
+}
+
+.bridgly-flagship__support-grid--integrated .bridgly-flagship__support-card p {
+  color: #a8b0b8;
 }
 
 @keyframes bridgly-travel {
@@ -2191,6 +2309,10 @@ p {
     padding: 22px 20px 16px;
   }
 
+  .bridgly-fabric__story {
+    grid-template-columns: 1fr;
+  }
+
   .bridgly-fabric__grid {
     grid-template-columns: 180px minmax(0, 1fr) 180px;
     min-height: 332px;
@@ -2289,6 +2411,14 @@ p {
     padding: 18px 16px 14px;
   }
 
+  .bridgly-fabric__insight {
+    padding: 18px 16px;
+  }
+
+  .bridgly-fabric__insight-promise {
+    font-size: 21px;
+  }
+
   .bridgly-fabric__grid {
     gap: 14px;
     grid-template-columns: 1fr;
@@ -2337,6 +2467,15 @@ p {
 
   .bridgly-fabric__badges {
     justify-content: flex-start;
+  }
+
+  .bridgly-fabric__content {
+    margin-top: 18px;
+    padding-top: 18px;
+  }
+
+  .bridgly-fabric__content-title {
+    font-size: 24px;
   }
 
   .bridgly-flagship__loop {
