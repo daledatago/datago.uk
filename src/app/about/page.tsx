@@ -23,8 +23,8 @@ export default function AboutPage() {
             { name: "About", path: "/about" },
           ],
           about: [
-            "DataGo Solutions Ltd",
-            "Datago Ltd",
+            "DataGo Ltd",
+            "Databricks partner",
             "Bridgly",
             "governed AI systems",
             "enterprise AI readiness",

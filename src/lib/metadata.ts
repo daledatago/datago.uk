@@ -25,9 +25,9 @@ export type SearchRoute = PageMetadata & {
 
 export const SEARCH_KEYWORDS = [
   "DataGo",
-  "DataGo Solutions Ltd",
-  "Datago Ltd",
+  "DataGo Ltd",
   "Bridgly",
+  "Databricks partner",
   "governed AI systems",
   "enterprise AI readiness",
   "AI impact measurement",
@@ -53,7 +53,7 @@ export const PUBLIC_SEARCH_ROUTES = [
     path: "/bridgly",
     title: "Bridgly",
     description:
-      "Bridgly is DataGo's flagship organisational intelligence platform for AI adoption visibility, governance, connectors, and measurable AI outcomes.",
+      "Bridgly is an application being developed by DataGo Ltd for governed, evidence-backed human and AI-assisted work, founded on Databricks.",
     priority: 0.92,
     changeFrequency: "weekly",
     index: true,
@@ -83,7 +83,7 @@ export const PUBLIC_SEARCH_ROUTES = [
     path: "/about",
     title: "About",
     description:
-      "DataGo is the UK company behind Bridgly, providing company trust, product thesis, and governed AI product studio context.",
+      "DataGo Ltd is the legal company, Databricks partner, and contracting entity behind Bridgly, providing company trust and product thesis context.",
     priority: 0.8,
     changeFrequency: "monthly",
     index: true,
@@ -93,7 +93,7 @@ export const PUBLIC_SEARCH_ROUTES = [
     path: "/contact",
     title: "Contact",
     description:
-      "Contact DataGo at info@datago.uk for corporate enquiries, Bridgly adoption, enterprise partnerships, and governed AI product conversations.",
+      "Contact DataGo Ltd at info@datago.uk for corporate enquiries, contracting matters, Databricks partnership conversations, and Bridgly discussions.",
     priority: 0.72,
     changeFrequency: "monthly",
     index: true,
@@ -113,21 +113,21 @@ export const PUBLIC_SEARCH_ROUTES = [
     path: "/privacy",
     title: "Privacy",
     description:
-      "Privacy notice for datago.uk, the public company website for DataGo, including contact information and current mailto-first handling.",
+      "Corporate website privacy notice for datago.uk, operated by DataGo Ltd as the provider company behind Bridgly.",
     priority: 0.32,
     changeFrequency: "yearly",
-    index: false,
-    inSitemap: false,
+    index: true,
+    inSitemap: true,
   },
   {
     path: "/terms",
     title: "Terms",
     description:
-      "Legal notice for datago.uk, including the DataGo company contact route, registered legal identity, company number, and registered office.",
+      "Corporate website terms of use for datago.uk, operated by DataGo Ltd as the provider company behind Bridgly.",
     priority: 0.32,
     changeFrequency: "yearly",
-    index: false,
-    inSitemap: false,
+    index: true,
+    inSitemap: true,
   },
 ] as const satisfies readonly SearchRoute[];
 
@@ -322,7 +322,7 @@ export function rootJsonLd() {
         "@id": datagoId,
         name: site.name,
         legalName: site.legalName,
-        alternateName: [site.searchAlias, "DataGo Solutions", "Datago"],
+        description: site.description,
         url: site.url,
         email: site.email,
         logo: {
@@ -346,6 +346,7 @@ export function rootJsonLd() {
         },
         knowsAbout: [
           "governed AI systems",
+          "Databricks partner",
           "enterprise AI readiness",
           "AI impact measurement",
           "organisational intelligence",
@@ -389,10 +390,11 @@ export function rootJsonLd() {
         name: site.bridgly.name,
         url: site.bridgly.url,
         applicationCategory: "BusinessApplication",
-        applicationSubCategory: "Governed organisational intelligence platform",
+        applicationSubCategory:
+          "Application for governed, evidence-backed human and AI-assisted work",
         operatingSystem: "Web",
         description:
-          "Bridgly is DataGo's flagship platform for governed organisational intelligence, AI adoption visibility, AI governance, and measurable AI outcomes.",
+          "Bridgly is an application being developed by DataGo Ltd for governed, evidence-backed human and AI-assisted work, founded on Databricks.",
         creator: {
           "@id": datagoId,
         },

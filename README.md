@@ -1,6 +1,6 @@
 # DataGo Website
 
-Corporate website for DataGo, the company-level site for Datago Ltd and the trust/thesis layer behind Bridgly.
+Corporate website for DataGo, the company-level site for DataGo Ltd and the trust/thesis layer behind Bridgly.
 
 The public site stays deliberately company-level:
 
@@ -46,7 +46,7 @@ Positioning split:
 - Bridgly is the flagship platform and product destination for organisational intelligence, AI adoption visibility, governance, connectors, and measurable AI outcomes
 - Agents & Pencils is retained only as an optional lab/archive
 
-- Datago Ltd company number: 14751587
+- DataGo Ltd company number: 14751587
 - Registered office: 2 Old Bath Road, Newbury, Berkshire, England, RG14 1QL
 - Contact: info@datago.uk
 - Agents & Pencils is presented as a DataGo lab/archive, not the enterprise-facing company brand

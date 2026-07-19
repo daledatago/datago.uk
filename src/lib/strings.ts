@@ -5,24 +5,26 @@ import type {
 
 export const site = {
   name: "DataGo",
-  legalName: "Datago Ltd",
-  searchAlias: "DataGo Solutions Ltd",
+  legalName: "DataGo Ltd",
   url: "https://datago.uk",
   email: "info@datago.uk",
   description:
-    "DataGo builds governed AI systems for organisations. It is the UK company behind Bridgly, the flagship platform for organisational intelligence, AI adoption visibility, governance, and measurable AI outcomes.",
+    "DataGo Ltd is the legal company, Databricks partner, and contracting entity behind Bridgly. DataGo builds governed AI systems for organisations and routes product evaluation to Bridgly, an application being developed for governed, evidence-backed human and AI-assisted work.",
   assets: {
     hero: "/assets/datago-operating-intelligence.jpg",
   },
   bridgly: {
     name: "Bridgly",
     url: "https://bridgly.ai",
-    attribution: "Bridgly is DataGo's flagship platform.",
+    attribution:
+      "Bridgly is an application being developed by DataGo Ltd, founded on Databricks.",
     pages: {
       aiImpact: "https://bridgly.ai/ai-impact",
       connectors: "https://bridgly.ai/connectors",
       governance: "https://bridgly.ai/governance",
       demo: "https://bridgly.ai/demo",
+      privacy: "https://bridgly.ai/privacy",
+      terms: "https://bridgly.ai/terms",
     },
   },
   legal: {
@@ -53,7 +55,7 @@ export const home = {
     eyebrow: "DataGo Ltd",
     title: "Governed AI systems for organisations learning with AI.",
     body:
-      "DataGo is the UK company behind Bridgly, its flagship product for governed AI-enabled work. We build company trust, governed operating systems, and product direction that help organisations see, govern, and improve how AI changes work.",
+      "DataGo Ltd is the legal company, Databricks partner, and contracting entity behind Bridgly. We build company trust, governed operating systems, and product direction that help organisations see, govern, and improve how AI changes work.",
     primaryCta: "See Bridgly",
     secondaryCta: "Talk to DataGo",
     nodes: [
@@ -143,7 +145,7 @@ export const home = {
     eyebrow: "Flagship platform",
     title: "Bridgly is DataGo's flagship product for governed AI-enabled work.",
     body:
-      "DataGo provides the company thesis, trust layer, and product direction. Bridgly is the premium organisational intelligence platform where that work becomes visible, governed, evidence-backed, and measurable.",
+      "DataGo provides the company thesis, trust layer, Databricks partnership context, and contracting entity behind Bridgly. Bridgly is the application layer being developed for governed, evidence-backed human and AI-assisted work.",
     cta: "Visit bridgly.ai",
     lens: {
       eyebrow: "Operating lens",
@@ -160,7 +162,7 @@ export const home = {
       {
         title: "Bridgly platform",
         body:
-          "The product layer that connects AI activity, work, governance, and measurable outcomes.",
+          "The product layer being developed on Databricks to connect AI activity, work, governance, and measurable outcomes.",
       },
       {
         title: "Organisations learning with AI",
@@ -212,12 +214,12 @@ export const home = {
     {
       question: "What is DataGo?",
       answer:
-        "DataGo is the UK company behind Bridgly. It sets the company trust layer, governed AI thesis, and product direction.",
+        "DataGo Ltd is the legal company, Databricks partner, and contracting entity behind Bridgly. It sets the company trust layer, governed AI thesis, and product direction.",
     },
     {
       question: "What does DataGo build?",
       answer:
-        "DataGo builds governed AI systems for organisations and routes product evaluation to Bridgly, its flagship organisational intelligence platform.",
+        "DataGo builds governed AI systems for organisations and routes product evaluation to Bridgly, an application being developed for governed, evidence-backed human and AI-assisted work.",
     },
     {
       question: "Where should product buyers go next?",
@@ -232,7 +234,7 @@ export const bridglyPage = {
   title: "Bridgly is DataGo's flagship product for",
   titleAccent: "governed AI-enabled work",
   body:
-    "Bridgly is being developed as a premium organisational intelligence platform that connects human work, agent work, tools, evidence, decisions, governance, and outcomes into one operating layer.",
+    "Bridgly is an application being developed by DataGo Ltd for governed, evidence-backed human and AI-assisted work. It is founded on Databricks and is intended to connect human work, agent work, tools, evidence, decisions, governance, and outcomes into one operating layer.",
   note:
     "Questions about Bridgly, enterprise fit, or early product direction? Contact DataGo and we'll route the conversation to the right product or implementation discussion.",
   promise:
@@ -293,7 +295,7 @@ export const bridglyPage = {
   supporting: {
     title: "From scattered AI activity to measurable organisational learning.",
     body:
-      "Bridgly turns work signals into evidence-backed decisions, governed actions, measured outcomes, and reusable institutional memory. The aim is not another dashboard. The aim is a clearer operating layer for how AI changes work.",
+      "Bridgly is being developed to turn work signals into evidence-backed decisions, governed actions, measured outcomes, and reusable institutional memory. The aim is not another dashboard. The aim is a clearer operating layer for how AI changes work.",
     cards: [
       {
         title: "AI-enabled work visibility",
@@ -343,15 +345,15 @@ export const bridglyPage = {
     },
   ],
   relationship: {
-    title: "DataGo establishes company trust. Bridgly carries product detail.",
+    title: "DataGo is the provider company. Bridgly carries product detail.",
     body:
-      "datago.uk should answer who is behind Bridgly, what thesis guides the company, and how enterprises can contact the team. bridgly.ai should answer how the platform works, what it connects, how governance is handled, and how buyers request a demo.",
+      "datago.uk should answer who is behind Bridgly, who contracts with buyers, what thesis guides the company, and how enterprises can contact the team. bridgly.ai should answer how the application is being developed, what it connects, how governance is handled, and how buyers request a demo.",
   },
   answers: [
     {
       question: "What is Bridgly?",
       answer:
-        "Bridgly is DataGo's flagship product for governed AI-enabled work and its premium organisational intelligence platform.",
+        "Bridgly is an application being developed by DataGo Ltd for governed, evidence-backed human and AI-assisted work, founded on Databricks.",
     },
     {
       question: "How does Bridgly support enterprise AI readiness?",
@@ -370,7 +372,7 @@ export const approachPage = {
   eyebrow: "Approach",
   title: "Governed AI transformation needs an operating layer.",
   body:
-    "DataGo builds and supports governed AI systems that connect operational context, measure outcomes, govern decisions, and improve through evidence rather than hype.",
+    "DataGo builds and supports governed AI systems that connect operational context, measure outcomes, govern decisions, and improve through evidence rather than hype. Bridgly is the Databricks-founded application path for putting that approach into practice.",
   pillars: [
     {
       title: "Readiness as evidence",
@@ -441,13 +443,14 @@ export const approachPage = {
 
 export const aboutPage = {
   eyebrow: "About",
-  title: "DataGo is the UK company behind Bridgly.",
+  title: "DataGo Ltd is the legal company behind Bridgly.",
   body:
-    "DataGo provides the company trust layer, product thesis, and governed AI product studio behind Bridgly. Bridgly is the flagship platform for organisational intelligence and measurable AI outcomes.",
+    "DataGo Ltd provides the company trust layer, Databricks partnership context, product thesis, and contracting entity behind Bridgly. Bridgly is the application being developed for governed, evidence-backed human and AI-assisted work.",
   facts: [
     { label: "Company", value: "DataGo" },
     { label: "Registered legal identity", value: site.legalName },
-    { label: "Public/search alias", value: site.searchAlias },
+    { label: "Role", value: "Legal company and contracting entity behind Bridgly" },
+    { label: "Databricks relationship", value: "Databricks partner" },
     { label: "Corporate contact", value: site.email },
     { label: "Flagship product", value: "Bridgly" },
     { label: "Company number", value: site.legal.companyNumber },
@@ -457,12 +460,12 @@ export const aboutPage = {
     {
       title: "DataGo",
       body:
-        "The UK company context, trust layer, operating thesis, and product studio for governed AI systems.",
+        "The UK company context, Databricks partner relationship, operating thesis, and product studio for governed AI systems.",
     },
     {
       title: "Bridgly",
       body:
-        "DataGo's flagship governed organisational intelligence platform for AI visibility, governance, and measurable outcomes.",
+        "The application being developed by DataGo for governed, evidence-backed human and AI-assisted work, founded on Databricks.",
     },
   ],
   founderNote:
@@ -477,7 +480,7 @@ export const aboutPage = {
     {
       question: "Who is behind Bridgly?",
       answer:
-        "Datago Ltd, trading publicly as DataGo, is the UK company behind Bridgly.",
+        "DataGo Ltd is the UK legal company, Databricks partner, and contracting entity behind Bridgly.",
     },
     {
       question: "What is DataGo's role?",
@@ -496,7 +499,7 @@ export const insightsPage = {
   eyebrow: "Insights",
   title: "Company thinking on governed AI transformation.",
   body:
-    "These notes frame how DataGo thinks about enterprise AI readiness, AI governance, adoption visibility, and measurable AI outcomes. Product-specific detail belongs on Bridgly.",
+    "These notes frame how DataGo thinks about enterprise AI readiness, AI governance, adoption visibility, and measurable AI outcomes. Product-specific detail, demonstrations, security, and deployment detail belong on Bridgly.",
   briefs: [
     {
       title: "What should enterprise AI readiness prove?",
@@ -529,7 +532,7 @@ export const contactPage = {
   eyebrow: "Contact",
   title: "Contact DataGo",
   body:
-    "For corporate enquiries, partnerships, product adoption, or questions about Bridgly, email the company directly.",
+    "For corporate enquiries, Databricks partnership conversations, contracting matters, or questions about Bridgly, email DataGo Ltd directly.",
   primary: "Email info@datago.uk",
   note:
     "This site is mailto-first and does not collect enquiry details through a web form.",
@@ -556,25 +559,193 @@ export const labPage = {
 
 export const privacyPage = {
   eyebrow: "Privacy",
-  title: "Privacy notice",
+  title: "Corporate website privacy notice",
   body:
-    "This privacy notice covers the public DataGo company website. It should be reviewed before adding analytics, forms, or additional tracking.",
-  points: [
-    "DataGo can be contacted at info@datago.uk for privacy-related enquiries.",
-    "This site is currently mailto-first and does not collect enquiry details through a web form.",
-    "If analytics, forms, or additional tracking are added later, this notice should be updated before those services go live.",
+    "This notice explains how DataGo Ltd handles personal data in connection with the datago.uk corporate website. It does not govern use of Bridgly, which is covered by the Bridgly Privacy Policy.",
+  updated: "19 July 2026",
+  bridglyNotice:
+    "Use of Bridgly is governed by the Bridgly Privacy Policy, not this corporate website notice.",
+  sections: [
+    {
+      title: "Who we are",
+      paragraphs: [
+        `${site.legalName} operates datago.uk as the corporate website for the legal company, Databricks partner, and contracting entity behind Bridgly.`,
+        `Our registered office is ${site.legal.registeredOffice}. Our company number is ${site.legal.companyNumber}. You can contact us about privacy matters at ${site.email}.`,
+      ],
+    },
+    {
+      title: "Scope of this notice",
+      paragraphs: [
+        "This notice applies to visits to datago.uk, technical website access data, and email enquiries sent to DataGo through the site.",
+        "It does not apply to use of Bridgly, product demonstrations, or product services delivered through bridgly.ai. Those activities are governed by the Bridgly Privacy Policy and related Bridgly terms.",
+      ],
+    },
+    {
+      title: "Website access and technical logs",
+      paragraphs: [
+        "When you access datago.uk, our hosting and delivery providers may process technical data needed to serve the site, such as IP address, request metadata, browser details, device type, referring URL, timestamps, and basic delivery or security logs.",
+        "We use this information to deliver the site, maintain availability, diagnose faults, detect abuse, and protect the website and its infrastructure. The site is intentionally analytics-free at this stage and does not run Google Analytics or similar visitor-tracking scripts.",
+      ],
+      bullets: [
+        "server and CDN request logs",
+        "basic device and browser data",
+        "security and abuse-prevention records",
+      ],
+    },
+    {
+      title: "Email enquiries",
+      paragraphs: [
+        `If you contact us at ${site.email}, we will process the information you provide, which may include your name, email address, organisation, message contents, and any business context you choose to share.`,
+        "We use this information to respond to your enquiry, manage prospective business relationships, handle contracting or partnership discussions, and keep relevant business records.",
+      ],
+    },
+    {
+      title: "Lawful bases",
+      paragraphs: [
+        "We rely on legitimate interests where processing is necessary to operate, secure, and improve the corporate website and to handle business enquiries.",
+        "We may also process data where necessary to take steps at your request before entering into a contract, to perform a contract, or to comply with a legal obligation.",
+      ],
+      bullets: [
+        "legitimate interests in running and securing the corporate website",
+        "pre-contract steps and contract performance for business enquiries",
+        "compliance with legal and regulatory obligations",
+      ],
+    },
+    {
+      title: "Service providers",
+      paragraphs: [
+        "We use service providers to host, secure, and support the website and our business communications. These providers process data on our behalf under appropriate contractual arrangements.",
+        "Depending on the service involved, this may include website hosting, content delivery, email, productivity, and security providers.",
+      ],
+    },
+    {
+      title: "International transfers",
+      paragraphs: [
+        "Some service providers may process data outside the UK. Where this happens, we take steps intended to ensure appropriate safeguards are in place, such as adequacy regulations or contractual protections.",
+      ],
+    },
+    {
+      title: "Retention",
+      paragraphs: [
+        "We keep technical website logs for only as long as reasonably necessary for security, operational, and troubleshooting purposes.",
+        "We keep business enquiries and related correspondence for as long as needed to respond, manage the relationship, assess opportunities, and meet legal, tax, accounting, or record-keeping obligations.",
+      ],
+    },
+    {
+      title: "Your rights",
+      paragraphs: [
+        "Subject to applicable law, you may have rights to request access to your personal data, ask for correction or deletion, object to certain processing, ask us to restrict processing, or request portability where applicable.",
+        `To exercise a privacy right, contact ${site.email}. We may need to verify your identity before responding.`,
+      ],
+    },
+    {
+      title: "Complaints",
+      paragraphs: [
+        "If you have a concern about how we handle personal data, please contact us first so we can try to resolve it.",
+        "You also have the right to lodge a complaint with the UK Information Commissioner's Office (ICO). Details are available at https://ico.org.uk/.",
+      ],
+    },
+    {
+      title: "Changes to this notice",
+      paragraphs: [
+        "We may update this notice from time to time to reflect changes to the website, our legal obligations, or our processing practices. The latest version will be published on this page.",
+      ],
+    },
+  ],
+  relatedLinks: [
+    {
+      label: "Bridgly Privacy Policy",
+      href: site.bridgly.pages.privacy,
+    },
+    {
+      label: "DataGo website terms",
+      href: "/terms",
+    },
   ],
 };
 
 export const termsPage = {
   eyebrow: "Terms",
-  title: "Legal notice",
+  title: "Corporate website terms of use",
   body:
-    "This legal notice identifies the company operating datago.uk and the contact route for corporate enquiries.",
-  points: [
-    `${site.legalName} operates this website under the DataGo name.`,
-    `Company number: ${site.legal.companyNumber}.`,
-    `Registered office: ${site.legal.registeredOffice}.`,
-    `Corporate contact: ${site.email}.`,
+    "These terms govern access to and use of the datago.uk corporate website. They do not govern use of Bridgly, which is subject to Bridgly product terms and policies.",
+  updated: "19 July 2026",
+  bridglyNotice:
+    "Use of Bridgly, including product access, demonstrations, and product services, is governed by Bridgly-specific terms and policies.",
+  sections: [
+    {
+      title: "Company identity",
+      paragraphs: [
+        `${site.legalName} operates datago.uk under the DataGo name. DataGo Ltd is the legal company, Databricks partner, and contracting entity behind Bridgly.`,
+        `Our company number is ${site.legal.companyNumber} and our registered office is ${site.legal.registeredOffice}.`,
+      ],
+    },
+    {
+      title: "Ownership of the website",
+      paragraphs: [
+        "We own or control the website and its contents, including text, branding, layout, graphics, and other material, except where third-party rights apply.",
+      ],
+    },
+    {
+      title: "Acceptable use",
+      paragraphs: [
+        "You may use this website only for lawful purposes. You must not misuse the site, interfere with its operation, attempt unauthorised access, introduce malicious code, or use the site in a way that could damage DataGo, Bridgly, other users, or the underlying infrastructure.",
+      ],
+    },
+    {
+      title: "Intellectual property",
+      paragraphs: [
+        "All intellectual property rights in this website and its content are reserved unless otherwise stated. You may view the site and print or save limited extracts for internal business reference, but you may not reproduce, distribute, adapt, publish, or exploit site content without permission except as allowed by law.",
+      ],
+    },
+    {
+      title: "No reliance",
+      paragraphs: [
+        "This website is provided for general corporate and product-orientation information only. It is not legal, technical, investment, security, or procurement advice, and it should not be relied on as a substitute for formal diligence or contractual documentation.",
+        "Statements about Bridgly describe an application being developed by DataGo and should not be read as a promise of general availability, certification status, or completed marketplace approval unless we expressly state otherwise in writing.",
+      ],
+    },
+    {
+      title: "External links",
+      paragraphs: [
+        "This website may link to external sites, including bridgly.ai. Those sites are provided for convenience. We are not responsible for their content, availability, or terms, and linking does not by itself imply endorsement beyond the stated business relationship.",
+      ],
+    },
+    {
+      title: "Liability",
+      paragraphs: [
+        "To the fullest extent permitted by law, we exclude liability for loss or damage arising from use of, or inability to use, this website or reliance on its content.",
+        "Nothing in these terms excludes or limits liability that cannot lawfully be excluded or limited under applicable law.",
+      ],
+    },
+    {
+      title: "Bridgly relationship",
+      paragraphs: [
+        "datago.uk exists to identify the provider company, company thesis, partnership posture, and contracting route behind Bridgly.",
+        "Product capabilities, demonstrations, security detail, deployment detail, and product-specific legal terms should be reviewed on bridgly.ai and in Bridgly-specific documentation.",
+      ],
+    },
+    {
+      title: "Governing law",
+      paragraphs: [
+        "These terms are governed by the laws of England and Wales. The courts of England and Wales will have exclusive jurisdiction over any dispute arising from or connected with these terms or this website, unless applicable law requires otherwise.",
+      ],
+    },
+    {
+      title: "Contact",
+      paragraphs: [
+        `Questions about this website or these terms can be sent to ${site.email}.`,
+      ],
+    },
+  ],
+  relatedLinks: [
+    {
+      label: "Bridgly terms",
+      href: site.bridgly.pages.terms,
+    },
+    {
+      label: "DataGo privacy notice",
+      href: "/privacy",
+    },
   ],
 };

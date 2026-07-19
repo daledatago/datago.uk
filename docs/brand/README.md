@@ -8,19 +8,22 @@ Two HTML files. Open in any modern browser, no build step.
 |---|---|
 | `brand/Datago Brand Kit.html` | 11-section corporate brand kit · proposal v1 |
 | `website/Datago Home.html` | Home page mockup with hero graphic + thinking notes |
+| `datago-linkedin-pack.md` | LinkedIn logo/backdrop pack and revised tagline |
+| `generate-linkedin-assets.mjs` | Regenerates LinkedIn-ready DataGo PNG/SVG assets |
 
 ## What's a proposal vs locked
 
 **Proposal · open for alignment** — designed without seeing the live datago.uk visuals.
 - Mark: two interlocking squares (alternative options A/B/C documented in Brand Kit §11)
 - Accent colour: deep cobalt `oklch(42% .13 245)` ≈ `#1F4E8E`
+- Current tagline: `Governed AI systems for measurable organisational intelligence.`
 - Wordmark casing: lowercase `datago` (chosen to match Bridgly's family pattern)
 - Hero graphic: Operating Mesh (alternatives B + C documented in Home page thinking notes)
 
 **Already aligned to live content**
 - Strapline: *"Governed organisational intelligence products."*
 - Corporate path: `Buyer → Datago → Bridgly`
-- Family naming: Datago Ltd · Bridgly · Agents & Pencils Lab
+- Family naming: DataGo Ltd · Bridgly · Agents & Pencils Lab
 - Company details: no. 14751587, Newbury · RG14 1QL
 
 ## Mark anatomy (for production export)

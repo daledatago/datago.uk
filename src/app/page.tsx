@@ -17,8 +17,8 @@ export default function Home() {
           name: "DataGo | Governed AI systems for organisations",
           description: site.description,
           about: [
-            "DataGo Solutions Ltd",
-            "Datago Ltd",
+            "DataGo Ltd",
+            "Databricks partner",
             "governed AI systems",
             "enterprise AI readiness",
             "AI governance",
