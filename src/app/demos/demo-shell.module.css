@@ -70,7 +70,7 @@
   color: #fff;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 960px) {
   .headerInner {
     align-items: stretch;
     flex-direction: column;
