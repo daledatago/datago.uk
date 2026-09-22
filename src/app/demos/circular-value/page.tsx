@@ -1,13 +1,5 @@
-import type { Metadata } from "next";
-import { CircularDemo } from "./circular-demo";
+import { permanentRedirect } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "Circular value demonstration",
-  description: "An illustrative commercial decision tool for circular business practices.",
-  robots: { index: false, follow: false },
-  alternates: { canonical: "/demos/circular-value" },
-};
-
-export default function CircularValuePage() {
-  return <CircularDemo />;
+export default function LegacyCircularDemoPage() {
+  permanentRedirect("/demos/circular-economy");
 }

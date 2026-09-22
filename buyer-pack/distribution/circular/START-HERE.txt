@@ -1,7 +1,7 @@
 DATAGO CIRCULAR COMMERCIAL VALUE DEMONSTRATION
 
 Open in a current browser:
-https://datago.uk/demos/circular-value
+https://datago.uk/demos/circular-economy
 
 Suggested three-minute review
 1. Change the recovery rate.

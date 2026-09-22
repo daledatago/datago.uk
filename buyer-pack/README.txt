@@ -4,11 +4,11 @@ Start here: https://datago.uk/demos
 The live browser demonstration is the primary review route. It requires no account, installation or special software.
 
 Assessment workflow
-https://datago.uk/demos/assessment
+https://datago.uk/demos/assessment-authoring
 Try one draft question, run the visible quality checks and record a sample review decision.
 
 Circular commercial value
-https://datago.uk/demos/circular-value
+https://datago.uk/demos/circular-economy
 Change recovery, refurbishment and material-cost assumptions and inspect the result and evidence gaps.
 
 All content, figures and decisions are illustrative. The assessment item is not approved test content. The circular model is not a validated investment model.

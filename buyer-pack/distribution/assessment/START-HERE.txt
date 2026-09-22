@@ -1,7 +1,7 @@
 DATAGO ASSESSMENT WORKFLOW DEMONSTRATION
 
 Open in a current browser:
-https://datago.uk/demos/assessment
+https://datago.uk/demos/assessment-authoring
 
 Suggested three-minute review
 1. Select an answer to see the proposed response guidance.
