@@ -14,8 +14,8 @@ The public site stays deliberately company-level:
 - Terms
 - Contact
 
-Core copy lives in `src/lib/strings.ts`. Reusable layout pieces live in `src/components/`.
-Search-route metadata, canonical URLs, JSON-LD, and sitemap routes live in `src/lib/metadata.ts`.
+Core company-site copy lives in `src/lib/strings.ts`. Reusable layout pieces live in `src/components/`.
+Company-site search metadata, canonical URLs, JSON-LD, and sitemap routes live in `src/lib/metadata.ts`. Demonstration copy and route metadata live in `src/app/demos/`.
 
 Brand handoff files from `Datago Devkit.zip` live in `docs/brand/`. The production site adapts the proposed cobalt palette, interlocking-square mark, D-tile favicon direction, and Operating Mesh hero graphic from that kit.
 
@@ -28,6 +28,14 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Working demonstrations
+
+Open `/demos` for the assessment-authoring workflow, circular commercial-value calculator and conceptual enterprise delivery view. See the [buyer review guide](buyer-pack/README.txt) for individual links, suggested review steps and fallback materials. The packaged review files are in `buyer-pack/zips/`.
+
+The hub and its three views require no account. They are unlisted in site navigation and the sitemap, and their page metadata sets `noindex, nofollow`. They remain accessible to anyone with the URL; these settings do not provide access control. Legacy `/demos/assessment` and `/demos/circular-value` links permanently redirect to the assessment-authoring and circular-economy views respectively.
+
+The assessment checks show a fixed illustrative checklist, and sample review decisions last only until the page is reloaded. The calculator updates locally from the selected assumptions. Neither demonstration calls a model or connects to a customer system. For the proposed customer-controlled architecture and its implementation requirements, see [enterprise deployment and security](docs/enterprise-deployment-and-security.md). For buyer positioning and next decisions, see [prototype positioning](docs/public-sector-prototype-positioning.md).
 
 ## Validation
 

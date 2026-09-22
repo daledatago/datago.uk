@@ -1,6 +1,6 @@
 # Enterprise deployment and security position
 
-Status: proposed architecture for discussion. It is not a claim about features already implemented in the local demonstrations.
+Status: proposed architecture for discussion. It is not a claim about features already implemented in the demonstrations.
 
 ## Recommendation: customer-environment first, interface flexible
 

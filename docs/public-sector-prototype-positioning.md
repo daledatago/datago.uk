@@ -1,6 +1,6 @@
 # DataGo working demonstrations: position and next decisions
 
-Status: local prototype, 22 September 2026. Buyer-facing pages use illustrative content and are not yet published.
+Status: working demonstrations for buyer review, 22 September 2026. Access and review guidance is maintained in the [README](../README.md#working-demonstrations).
 
 ## One DataGo story, two buyer journeys
 
@@ -17,9 +17,7 @@ Bridgly can become the reusable layer for evidence, ownership, decisions and han
 
 ## Enterprise delivery position
 
-Lead with a governed solution delivered into the buyer's approved environment. Business users or CITB staff use the customer-selected interface and identity, while the solution enforces organisation separation, workflow, evidence and audit controls. An approved assistant, skill, API or MCP client can be added later as another interface to the same governed services. It must not hold customer data or bypass server-side permissions.
-
-The full proposed boundary, controls and staged delivery model are in `docs/enterprise-deployment-and-security.md`. These are design proposals, not implemented claims about the current local prototypes.
+Lead with DataGo as the architecture and delivery partner implementing inside the buyer's approved environment. The proposed boundary, controls and staged delivery model are maintained in [enterprise deployment and security](enterprise-deployment-and-security.md).
 
 ## Differentiation to test with buyers
 
@@ -39,6 +37,6 @@ Keep one three-to-five-minute demonstration per buyer. After feedback:
 
 ## Branded delivery
 
-The code is in the DataGo Next.js site. After Dale reviews the content, publish the routes under `datago.uk/demos`, `datago.uk/demos/assessment-authoring`, `datago.uk/demos/circular-economy` and `datago.uk/demos/enterprise-delivery`. These URLs contain no Codex or Claude reference. The pages are unlisted, tagged `noindex`, and absent from the site navigation and sitemap. A custom subdomain can be added later if a separate product identity is useful.
+The demonstrations are part of the DataGo Next.js site. See the [README](../README.md#working-demonstrations) for access, legacy redirects and buyer review materials. A custom subdomain can be added later if a separate product identity is useful.
 
 Do not send a buyer the link as evidence of a complete service. Offer it as an early working prototype with illustrative data. The official buyer forms and procurement rules still control what can be submitted.
