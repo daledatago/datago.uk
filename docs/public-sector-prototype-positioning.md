@@ -15,6 +15,12 @@ The shared entry point is `/demos`. Each opportunity has its own short journey:
 
 Bridgly can become the reusable layer for evidence, ownership, decisions and handovers. That is a plausible product connection, not a claim that these demonstrations are live Bridgly modules. The buyer should first understand the outcome in their own domain. If a pilot reveals a need for durable decision records across teams, show Bridgly as an optional path and verify the actual integration and permissions before promising it.
 
+## Enterprise delivery position
+
+Lead with a governed portal and service. Business users or CITB staff sign in to an organisation workspace, and the service enforces identity, tenant separation, workflow, evidence and audit controls. An approved Copilot, Claude, Codex, skill, API or MCP client can be added later as another interface to the same governed service. It must not hold customer data or bypass server-side permissions.
+
+The full proposed boundary, controls and staged delivery model are in `docs/enterprise-deployment-and-security.md`. These are design proposals, not implemented claims about the current local prototypes.
+
 ## Differentiation to test with buyers
 
 - **Traceability:** a result links back to its source or assumption and its status.
