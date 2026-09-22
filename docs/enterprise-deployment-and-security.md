@@ -26,6 +26,42 @@ Business user or CITB author
 
 The model provider is a replaceable component behind the application. The security boundary sits in the DataGo service and the buyer's identity and data controls, not inside a prompt or a portable skill.
 
+## Data classification before model selection
+
+Model choice should follow the sensitivity of the task. It should not be a free toggle that an end user can change without policy checks.
+
+| Data class | Examples | Initial model route |
+| --- | --- | --- |
+| Public or synthetic | Published HSE guidance, demonstration scenarios | Approved managed model may be suitable |
+| Internal | Draft methods, ordinary working notes | Buyer-approved managed deployment with agreed region, logging and retention |
+| Commercially confidential | SME costs, margins, supplier terms, customer retention, product plans | Private managed deployment or self-hosted open-weight model after a risk assessment |
+| Restricted assessment content | Unreleased item banks, answer keys, test-development analysis | Dedicated buyer environment with tightly limited access; consider private or self-hosted inference |
+| Personal or special-category data | Candidate records, employee data, identifiable customer information | Exclude from the first proof of concept; require a documented lawful purpose, DPIA and explicit security approval before any later use |
+
+The application should block or redact data that is outside the approved class for the selected route. Logs, prompts, retrieved context and outputs inherit the highest sensitivity of their inputs.
+
+## Model routes and sovereignty
+
+“Not used for training” is necessary but not sufficient. Before approving a managed foundation-model service, confirm the exact product and deployment configuration, including:
+
+- processing and storage geography;
+- retention for prompts, files, embeddings, responses and abuse monitoring;
+- human access and support access;
+- subprocessors and cross-border transfers;
+- contract terms covering model training and service improvement;
+- encryption and customer-managed key options;
+- deletion, backup and incident-response arrangements;
+- whether global, data-zone or preview features change any of the above.
+
+The service should support policy-controlled routes rather than depend on one provider:
+
+1. **Managed enterprise model:** suitable where the buyer accepts the provider, contract, geography and retention. CITB's Microsoft environment makes a buyer-owned Microsoft Foundry deployment a route worth assessing, not a foregone conclusion.
+2. **Private cloud or dedicated deployment:** suitable where stronger network, key, capacity or administrative isolation is required.
+3. **Self-hosted open-weight model:** suitable where data must remain within a buyer-controlled environment and the model is capable enough for the task.
+4. **No model route:** required where the data class or use case has not been approved. The workflow can continue with deterministic calculations or human processing.
+
+Open-weight does not automatically mean secure. Self-hosting moves responsibility for model provenance, licence compliance, malicious artefacts, patching, inference infrastructure, access controls, monitoring and evaluation to DataGo or the buyer. It may be the right trade-off for sensitive workloads, but only when those operational controls are funded and tested.
+
 ## Circular commercial-value service
 
 The likely journey is:
@@ -52,6 +88,8 @@ The likely journey is different:
 
 The initial proof of concept need not process candidate records or learner personal data. Keeping the first scope to source documents, draft questions and reviewer decisions reduces risk and makes the quality claim easier to test.
 
+Unreleased questions, answer keys and item-bank analytics are still sensitive even when they contain no personal data. Exposure could undermine assessment integrity and reveal valuable CITB intellectual property. They should be classified, access-controlled and kept out of ordinary consumer assistants.
+
 ## What an agent or skill may do
 
 An optional skill can describe the supported tasks and call the governed API. For example, it could ask the user for assumptions, request a scenario calculation and explain the returned evidence. It should contain no customer data, credentials, hidden buyer material or enforcement logic.
@@ -66,6 +104,7 @@ Do not position a downloadable prompt pack or skill as the enterprise product. P
 - **Identity and roles:** single sign-on where appropriate, multi-factor authentication and separate administrator, author, reviewer and read-only permissions.
 - **Least privilege:** the model and connectors receive only the data needed for the current task.
 - **Model gateway:** use buyer-approved models and regions, prevent provider training on customer inputs contractually, and retain the option to change provider.
+- **Policy-controlled routing:** select the managed, private, self-hosted or no-model path from the tenant policy and data class. Do not let a prompt choose its own route.
 - **Evidence boundaries:** distinguish source evidence, user assumptions, generated content and approved decisions.
 - **Human approval:** high-impact content cannot move to an approved or published state without an authorised person.
 - **Audit history:** record source version, model/configuration identifier, workflow version, edits, reviews, exports and access events.
@@ -73,6 +112,7 @@ Do not position a downloadable prompt pack or skill as the enterprise product. P
 - **Safe aggregation:** remove direct identifiers, apply minimum group thresholds and test re-identification risk before producing sponsor dashboards.
 - **Application security:** secrets management, dependency and vulnerability management, monitoring, backups, incident response and independent testing appropriate to the delivery stage.
 - **AI-specific controls:** test prompt injection, malicious files, unsupported citations, data leakage and unsafe tool use. Treat retrieved content as data, not instructions.
+- **Sovereignty evidence:** retain the approved service configuration, contractual commitments, region, retention settings and subprocessor position for each model route.
 
 ## Sensible delivery stages
 
@@ -88,6 +128,7 @@ Do not position a downloadable prompt pack or skill as the enterprise product. P
 - Named users and basic role separation.
 - Approved source set or limited business dataset.
 - One approved model route.
+- Data-classification rules and an explicit list of prohibited inputs.
 - Full decision and review audit trail.
 - No autonomous publication or cross-tenant aggregation.
 
@@ -111,3 +152,9 @@ Do not position a downloadable prompt pack or skill as the enterprise product. P
 DataGo should test the position that the valuable product is a governed decision service, not an agent tied to one model vendor. The portal and any assistant share the same evidence, permission and audit layer. This could give buyers the convenience of conversational tools without asking them to trust security rules embedded in a prompt.
 
 Bridgly may eventually provide parts of the evidence, ownership, decision and handover layer. Treat that as a product hypothesis until the exact integration, permission and tenant-isolation behaviour is implemented and tested.
+
+## Reference guidance
+
+- UK National Cyber Security Centre, [Guidelines for secure AI system development](https://www.ncsc.gov.uk/collection/guidelines-secure-ai-system-development/guidelines/secure-development), including supply-chain controls and protection of models, data, prompts and logs.
+- UK Government, [AI Playbook for the UK Government](https://www.gov.uk/government/publications/ai-playbook-for-the-uk-government).
+- Microsoft, [Data, privacy and security for models sold by Azure in Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/responsible-ai/openai/data-privacy), which must be checked against the exact deployment type and features proposed at the time of procurement.
