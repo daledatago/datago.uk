@@ -2,29 +2,28 @@
 
 Status: proposed architecture for discussion. It is not a claim about features already implemented in the local demonstrations.
 
-## Recommendation: portal first, agent optional
+## Recommendation: customer-environment first, interface flexible
 
-The enterprise product should be a governed service with its own identity, permissions, data controls and audit record. A web portal is the first user interface. Approved assistants, skills, APIs or MCP clients can call the same service later, but they must not become a second route around its controls.
+DataGo should design and deliver the solution inside the buyer's approved environment, using the identity, data, integration and operational services the buyer selects. The first interface may be a customer-branded web application, an existing buyer portal or an approved enterprise assistant. All interfaces use the same permissions, data controls and audit record.
 
 ```text
 Business user or CITB author
-          |
-          +--> DataGo or buyer-branded portal
-          |
-          +--> Approved enterprise assistant, later and optional
-                         |
-                   Identity and policy
-                         |
-                 Governed application API
-             /            |             \
-     Workflow rules   Evidence record   Model gateway
-             \            |             /
-               Tenant-isolated data store
-                         |
-        Consented, anonymised aggregate insight
+              |
+     Buyer-selected experience
+   Web app | existing portal | assistant
+              |
+       Buyer identity and policy
+              |
+       Governed solution services
+   Workflow | data | evidence | audit
+              |
+          Model gateway
+     /           |             \
+ managed      private/local    no model
+ inference     inference       required
 ```
 
-The model provider is a replaceable component behind the application. The security boundary sits in the DataGo service and the buyer's identity and data controls, not inside a prompt or a portable skill.
+The model provider is a replaceable component behind the application. The security boundary sits in the solution deployed in the buyer's environment, not inside a prompt or a portable skill. DataGo's role is to design, configure, integrate and support the solution under the buyer's access and operational model.
 
 ## Data classification before model selection
 
@@ -67,7 +66,7 @@ Open-weight does not automatically mean secure. Self-hosting moves responsibilit
 The likely journey is:
 
 1. A business user follows a link from Zero Waste Scotland's Business Information Hub or a programme invitation.
-2. The user signs in and joins an organisation workspace.
+2. The user signs in through the identity approach selected by Zero Waste Scotland and enters an isolated organisation workspace.
 3. The business enters a small set of commercial assumptions manually. Later, approved connectors can bring in selected data.
 4. The service calculates scenarios, shows the evidence and uncertainty behind them, and records who owns each assumption.
 5. The business decides whether to revise, pilot or prepare an investment case.
@@ -94,7 +93,7 @@ Unreleased questions, answer keys and item-bank analytics are still sensitive ev
 
 An optional skill can describe the supported tasks and call the governed API. For example, it could ask the user for assumptions, request a scenario calculation and explain the returned evidence. It should contain no customer data, credentials, hidden buyer material or enforcement logic.
 
-Claude, Codex, Microsoft Copilot or another approved client could provide a conversational interface. Each call must use delegated identity, pass through the same authorisation checks and create the same audit record as the portal. A buyer can then choose its preferred interface without changing the underlying controls.
+An approved enterprise assistant could provide a conversational interface. Each call must use delegated identity, pass through the same authorisation checks and create the same audit record as the web application or existing portal. A buyer can then choose its preferred interface without changing the underlying controls.
 
 Do not position a downloadable prompt pack or skill as the enterprise product. Prompts can guide behaviour, but they cannot enforce tenant separation, retention, access rights, deletion or auditability.
 
@@ -149,7 +148,9 @@ Do not position a downloadable prompt pack or skill as the enterprise product. P
 
 ## Differentiation to test
 
-DataGo should test the position that the valuable product is a governed decision service, not an agent tied to one model vendor. The portal and any assistant share the same evidence, permission and audit layer. This could give buyers the convenience of conversational tools without asking them to trust security rules embedded in a prompt.
+DataGo should test the position that the valuable product is a governed decision service, not an agent tied to one model vendor. The customer experience and any assistant share the same evidence, permission and audit layer. This could give buyers the convenience of conversational tools without asking them to trust security rules embedded in a prompt or accept a separate DataGo software estate.
+
+No current brief requires white-labelling or prescribes a DataGo-hosted portal. The circular challenge says the solution is likely to be hosted on or linked from Zero Waste Scotland's Business Information Hub. CITB asks suppliers to explain integration with its Microsoft-based technology ecosystem, architecture, APIs, data management, resilience, support and exit. A buyer-controlled, customer-branded implementation is therefore a sensible design assumption to test, not a confirmed requirement.
 
 Bridgly may eventually provide parts of the evidence, ownership, decision and handover layer. Treat that as a product hypothesis until the exact integration, permission and tenant-isolation behaviour is implemented and tested.
 

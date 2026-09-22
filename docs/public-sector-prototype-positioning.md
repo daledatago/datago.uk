@@ -17,7 +17,7 @@ Bridgly can become the reusable layer for evidence, ownership, decisions and han
 
 ## Enterprise delivery position
 
-Lead with a governed portal and service. Business users or CITB staff sign in to an organisation workspace, and the service enforces identity, tenant separation, workflow, evidence and audit controls. An approved Copilot, Claude, Codex, skill, API or MCP client can be added later as another interface to the same governed service. It must not hold customer data or bypass server-side permissions.
+Lead with a governed solution delivered into the buyer's approved environment. Business users or CITB staff use the customer-selected interface and identity, while the solution enforces organisation separation, workflow, evidence and audit controls. An approved assistant, skill, API or MCP client can be added later as another interface to the same governed services. It must not hold customer data or bypass server-side permissions.
 
 The full proposed boundary, controls and staged delivery model are in `docs/enterprise-deployment-and-security.md`. These are design proposals, not implemented claims about the current local prototypes.
 
@@ -39,6 +39,6 @@ Keep one three-to-five-minute demonstration per buyer. After feedback:
 
 ## Branded delivery
 
-The code is in the DataGo Next.js site. After Dale reviews the content, publish the routes under `datago.uk/demos`, `datago.uk/demos/assessment-authoring` and `datago.uk/demos/circular-economy`. These URLs contain no Codex or Claude reference. The pages are unlisted, tagged `noindex`, and absent from the site navigation and sitemap. A custom subdomain can be added later if a separate product identity is useful.
+The code is in the DataGo Next.js site. After Dale reviews the content, publish the routes under `datago.uk/demos`, `datago.uk/demos/assessment-authoring`, `datago.uk/demos/circular-economy` and `datago.uk/demos/enterprise-delivery`. These URLs contain no Codex or Claude reference. The pages are unlisted, tagged `noindex`, and absent from the site navigation and sitemap. A custom subdomain can be added later if a separate product identity is useful.
 
 Do not send a buyer the link as evidence of a complete service. Offer it as an early working prototype with illustrative data. The official buyer forms and procurement rules still control what can be submitted.

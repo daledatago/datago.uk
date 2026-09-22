@@ -11,3 +11,6 @@ Suggested three-minute review
 All figures are illustrative. This narrow model is not a validated investment case and requires circular-economy and commercial-modelling review.
 
 The PNG is a non-interactive fallback if the live link is restricted. This pack does not replace the official CivTech application form.
+
+Conceptual enterprise delivery view:
+https://datago.uk/demos/enterprise-delivery
