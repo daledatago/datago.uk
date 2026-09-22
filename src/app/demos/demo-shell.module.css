@@ -70,21 +70,6 @@
   color: #fff;
 }
 
-.footer {
-  border-top: 1px solid #dce3e4;
-  padding: 24px;
-}
-
-.footerInner {
-  color: #68716f;
-  display: flex;
-  font-size: 12px;
-  gap: 12px 24px;
-  justify-content: space-between;
-  margin: 0 auto;
-  max-width: 1132px;
-}
-
 @media (max-width: 860px) {
   .headerInner {
     align-items: stretch;
@@ -113,9 +98,5 @@
 @media (max-width: 540px) {
   .brandSection {
     font-size: 12px;
-  }
-
-  .footerInner {
-    flex-direction: column;
   }
 }
