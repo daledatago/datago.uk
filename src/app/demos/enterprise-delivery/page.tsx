@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import styles from "../prototype.module.css";
 
 export const metadata: Metadata = {
@@ -13,14 +12,8 @@ export default function EnterpriseDeliveryPage() {
   return (
     <div className={styles.page}>
       <div className={styles.topline}>
-        <Link href="/demos">← All demonstrations</Link>
         <span>03 / Enterprise delivery</span>
       </div>
-      <nav className={styles.demoTabs} aria-label="Demonstration views">
-        <Link href="/demos/assessment-authoring">Assessment authoring</Link>
-        <Link href="/demos/circular-economy">Circular economy</Link>
-        <span className={styles.activeTab}>Enterprise delivery</span>
-      </nav>
 
       <header className={styles.hero}>
         <span className={styles.eyebrow}>Conceptual architecture · decisions still to agree</span>

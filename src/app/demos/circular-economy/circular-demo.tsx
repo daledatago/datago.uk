@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 import styles from "../prototype.module.css";
 
@@ -21,11 +20,7 @@ export function CircularDemo() {
 
   return (
     <div className={styles.page}>
-      <div className={styles.topline}><Link href="/demos">← All demonstrations</Link><span>02 / Circular value</span></div>
-      <nav className={styles.demoTabs} aria-label="Demonstration views">
-        <span className={styles.activeTab}>Circular economy</span>
-        <Link href="/demos/enterprise-delivery">Enterprise delivery</Link>
-      </nav>
+      <div className={styles.topline}><span>02 / Circular value</span></div>
       <header className={styles.hero}>
         <span className={styles.eyebrow}>Working prototype · illustrative figures</span>
         <h1>Can a circular choice stand up commercially?</h1>

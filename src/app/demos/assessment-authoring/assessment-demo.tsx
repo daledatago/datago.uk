@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 import styles from "../prototype.module.css";
 
@@ -18,11 +17,7 @@ export function AssessmentDemo() {
   ];
   return (
     <div className={styles.page}>
-      <div className={styles.topline}><Link href="/demos">← All demonstrations</Link><span>01 / Assessment workflow</span></div>
-      <nav className={styles.demoTabs} aria-label="Demonstration views">
-        <span className={styles.activeTab}>Assessment authoring</span>
-        <Link href="/demos/enterprise-delivery">Enterprise delivery</Link>
-      </nav>
+      <div className={styles.topline}><span>01 / Assessment workflow</span></div>
       <header className={styles.hero}>
         <span className={styles.eyebrow}>Working prototype · illustrative content</span>
         <h1>From controlled source to a reviewable question.</h1>
