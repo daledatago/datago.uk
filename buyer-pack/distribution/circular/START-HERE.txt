@@ -1,0 +1,16 @@
+DATAGO CIRCULAR COMMERCIAL VALUE DEMONSTRATION
+
+Open in a current browser:
+https://datago.uk/demos/circular-economy
+
+Suggested three-minute review
+1. Change the recovery rate.
+2. Change refurbishment and new-material costs.
+3. Inspect the cost comparison, material-price exposure and evidence gaps.
+
+All figures are illustrative. This narrow model is not a validated investment case and requires circular-economy and commercial-modelling review.
+
+The PNG is a non-interactive fallback if the live link is restricted. This pack does not replace the official CivTech application form.
+
+Conceptual enterprise delivery view:
+https://datago.uk/demos/enterprise-delivery
