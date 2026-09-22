@@ -33,7 +33,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 Open `/demos` for the assessment-authoring workflow, circular commercial-value calculator and conceptual enterprise delivery view. See the [buyer review guide](buyer-pack/README.txt) for individual links, suggested review steps and fallback materials. The packaged review files are in `buyer-pack/zips/`.
 
-The hub and its three views require no account. They are unlisted in site navigation and the sitemap, and their page metadata sets `noindex, nofollow`. They remain accessible to anyone with the URL; these settings do not provide access control. Legacy `/demos/assessment` and `/demos/circular-value` links permanently redirect to the assessment-authoring and circular-economy views respectively.
+All `/demos` routes use a separate buyer-review layout without the main website header or footer. Use the shared demo navigation to move between Overview, Assessment authoring, Circular economy and Enterprise delivery; the DataGo logo returns to Overview. On narrow screens, scroll the navigation horizontally to reach every view. Other routes retain the normal website header and footer.
+
+The hub and its three views require no account. They are unlisted in the main website navigation and the sitemap, and their page metadata sets `noindex, nofollow`. They remain accessible to anyone with the URL; these settings do not provide access control. Legacy `/demos/assessment` and `/demos/circular-value` links permanently redirect to the assessment-authoring and circular-economy views respectively.
 
 The assessment checks show a fixed illustrative checklist, and sample review decisions last only until the page is reloaded. The calculator updates locally from the selected assumptions. Neither demonstration calls a model or connects to a customer system. For the proposed customer-controlled architecture and its implementation requirements, see [enterprise deployment and security](docs/enterprise-deployment-and-security.md). For buyer positioning and next decisions, see [prototype positioning](docs/public-sector-prototype-positioning.md).
 

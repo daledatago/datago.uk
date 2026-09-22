@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { JsonLdScript } from "@/components/json-ld-script";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { SiteChrome } from "@/components/site-chrome";
 import { rootJsonLd, SEARCH_KEYWORDS } from "@/lib/metadata";
 import { site } from "@/lib/strings";
 import "./globals.css";
@@ -81,9 +80,7 @@ export default function RootLayout({
         <JsonLdScript data={rootJsonLd()} />
       </head>
       <body>
-        <SiteHeader />
-        <main>{children}</main>
-        <SiteFooter />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );
