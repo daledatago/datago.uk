@@ -1,0 +1,13 @@
+DATAGO ASSESSMENT WORKFLOW DEMONSTRATION
+
+Open in a current browser:
+https://datago.uk/demos/assessment
+
+Suggested three-minute review
+1. Select an answer to see the proposed response guidance.
+2. Run the visible draft checks.
+3. Record a sample approval or return the item for revision.
+
+The question and review record are illustrative. They are not approved CITB test content and require construction subject-matter and assessment-specialist review.
+
+The PNG is a non-interactive fallback if the live link is restricted. This pack does not replace the official response documents or question spreadsheet.
