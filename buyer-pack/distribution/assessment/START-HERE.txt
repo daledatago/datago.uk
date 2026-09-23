@@ -6,11 +6,13 @@ https://datago.uk/demos/assessment-authoring
 Suggested three-minute review
 1. Select an answer to see the proposed response guidance.
 2. Run the visible draft checks.
-3. Record a sample approval or return the item for revision.
+3. Record a sample approval or return the item with a reason.
+4. Edit and save the stem, then inspect revision and decision history.
+5. Expand question-bank records and preview all ten populated buyer records.
 
 The question and review record are illustrative. They are not approved CITB test content and require construction subject-matter and assessment-specialist review.
 
-The PNG is a non-interactive fallback if the live link is restricted. This pack does not replace the official response documents or question spreadsheet.
+assessment-workflow.png is a full-page capture with draft checks, session history and the populated ten-item export expanded. It includes an illustrative return and revision, not a specialist sign-off. The PNG is a non-interactive fallback if the live link is restricted. This pack does not replace the official response documents or question spreadsheet.
 
 Conceptual enterprise delivery view:
 https://datago.uk/demos/enterprise-delivery
