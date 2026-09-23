@@ -3,42 +3,38 @@
 import { useState } from "react";
 import styles from "../prototype.module.css";
 
-type Decision = "pending" | "returned" | "approved";
+import { bankItems, criterion, exportFields, initialEntry, runDraftChecks, specialistReview, type ReviewEntry } from "./assessment-data";
 
-const options = [
-  "The surface is safe if the task is brief",
-  "The surface may break under a person's weight",
-  "The surface is safe when it looks dry",
-  "The surface is safe if only one person crosses it",
-];
-
-const bankItems = [
-  ["01", "Old roof lights", "Ready for review"],
-  ["02", "Fibre cement sheets", "Source check passed"],
-  ["03", "Corroded metal sheets", "Returned"],
-  ["04", "Slates and tiles", "Assessment review"],
-  ["05", "Roof assessment", "Draft"],
-  ["06", "Avoiding roof access", "Draft"],
-  ["07", "Using a work platform", "Draft"],
-  ["08", "Safe access", "Draft"],
-  ["09", "Remaining fall risk", "Draft"],
-  ["10", "Warning signs", "Draft"],
-];
+function RecordFields({ fields }: { fields: ReturnType<typeof exportFields> }) {
+  return <dl className={styles.recordFields}>{Object.entries(fields).map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>;
+}
 
 export function AssessmentDemo() {
-  const [decision, setDecision] = useState<Decision>("pending");
+  const [history, setHistory] = useState<ReviewEntry[]>([initialEntry(bankItems[0])]);
+  const [checks, setChecks] = useState<ReturnType<typeof runDraftChecks> | null>(null);
   const [showChecks, setShowChecks] = useState(false);
   const [showExport, setShowExport] = useState(false);
   const [editing, setEditing] = useState(false);
-  const [edited, setEdited] = useState(false);
   const [answer, setAnswer] = useState<string | null>(null);
-  const [question, setQuestion] = useState("Why should someone avoid stepping onto a fragile roof surface?");
+  const [pendingQuestion, setPendingQuestion] = useState(bankItems[0].question);
   const [returnReason, setReturnReason] = useState("Distractor C is too easy to dismiss");
+  const current = history[history.length - 1];
+  const { question, decision } = current;
+  const { options } = bankItems[0];
+  const records = bankItems.map((item, index) => exportFields(item, index === 0 ? history : [initialEntry(item)], index === 0 ? checks : null));
 
   function saveEdit() {
+    if (!pendingQuestion.trim()) return;
     setEditing(false);
-    setEdited(true);
-    setDecision("pending");
+    if (pendingQuestion.trim() === question) return;
+    setHistory(entries => [...entries, { revision: entries[entries.length - 1].revision + 1, question: pendingQuestion.trim(), decision: "pending", reason: "Stem revised; previous review and checks require renewal." }]);
+    setChecks(null);
+    setShowChecks(false);
+    setAnswer(null);
+  }
+
+  function recordDecision(nextDecision: "returned" | "approved") {
+    setHistory(entries => [...entries, { ...entries[entries.length - 1], decision: nextDecision, reason: nextDecision === "returned" ? returnReason : "Sample approval for workflow demonstration only; specialist checks remain outstanding." }]);
   }
 
   return (
@@ -69,7 +65,7 @@ export function AssessmentDemo() {
             <small>Paraphrased for this demonstration. The source file and page reference stay attached to the item.</small>
           </div>
           <dl className={styles.sourceDetails}>
-            <div><dt>Assessment criterion</dt><dd>Identify fragile roof surfaces and the controls associated with work on or near them.</dd></div>
+            <div><dt>Assessment criterion</dt><dd>{criterion}</dd></div>
             <div><dt>Authoring instruction</dt><dd>Create a concise question with one defensible answer, three plausible distractors, rationales and a precise citation.</dd></div>
             <div><dt>Human review</dt><dd>Construction accuracy and assessment quality must be checked by named specialists.</dd></div>
           </dl>
@@ -82,21 +78,21 @@ export function AssessmentDemo() {
           {editing ? (
             <div className={styles.editBlock}>
               <label htmlFor="question-edit">Edit the question stem</label>
-              <textarea id="question-edit" value={question} onChange={(event) => setQuestion(event.target.value)} rows={4} />
+              <textarea id="question-edit" value={pendingQuestion} onChange={(event) => setPendingQuestion(event.target.value)} rows={4} />
               <div className={styles.buttonRow}>
-                <button type="button" className={styles.primaryButton} onClick={saveEdit}>Save revision</button>
+                <button type="button" className={styles.primaryButton} disabled={!pendingQuestion.trim()} onClick={saveEdit}>Save revision</button>
                 <button type="button" className={styles.secondaryButton} onClick={() => setEditing(false)}>Cancel</button>
               </div>
             </div>
           ) : (
             <>
               <p className={styles.question}>{question}</p>
-              <button type="button" className={styles.inlineButton} onClick={() => setEditing(true)}>Edit draft</button>
+              <button type="button" className={styles.inlineButton} onClick={() => { setPendingQuestion(question); setEditing(true); }}>Edit draft</button>
             </>
           )}
           <div className={styles.options}>{options.map((option, index) => <button type="button" key={option} className={`${styles.option} ${answer === option ? styles.selectedOption : ""}`} onClick={() => setAnswer(option)}><b>{String.fromCharCode(65 + index)}</b>{option}</button>)}</div>
           {answer && <div className={styles.feedback}>{answer === options[1] ? "Proposed correct answer. A construction specialist still needs to confirm the source match and wording." : "Proposed distractor. The reviewer checks that it is plausible, clearly wrong and fair."}</div>}
-          <div className={styles.sourceBox}><strong>Draft rationale and citation</strong><br/>Fragile material may not support a person&apos;s weight. Proposed key: B.<br/>HSE GEIS5, page 1. Work at Height Regulations 2005, regulation 9.</div>
+          <div className={styles.sourceBox}><strong>Draft rationale and citation</strong><br/>{bankItems[0].rationales[1]} Proposed key: B.<br/>HSE GEIS5, page 1. Proposed rationale and key must be checked again after any stem edit.</div>
         </section>
       </div>
 
@@ -105,21 +101,23 @@ export function AssessmentDemo() {
           <div className={styles.panelHead}><span>Quality gate</span><span className={styles.pill}>Checks support review</span></div>
           <h2>Checks with a clear owner</h2>
           <p>Automated checks narrow the review task. They do not certify that a question is correct or suitable for a live test.</p>
-          <button type="button" className={styles.primaryButton} onClick={() => setShowChecks(!showChecks)}>{showChecks ? "Hide quality checks" : "Run draft checks"}</button>
-          {showChecks && <ul className={styles.checks}>
-            <li><b className={styles.pass}>Pass</b><span>One proposed key and three distinct distractors</span></li>
-            <li><b className={styles.pass}>Pass</b><span>Stem and options meet the plain-language length check</span></li>
-            <li><b className={styles.pass}>Pass</b><span>Source file, page and legislation are attached</span></li>
+          <button type="button" className={styles.primaryButton} onClick={() => {
+            if (!showChecks) setChecks(runDraftChecks({ ...bankItems[0], question }));
+            setShowChecks(!showChecks);
+          }}>{showChecks ? "Hide quality checks" : "Run draft checks"}</button>
+          <p>{checks ? `Results for saved version 0.${current.revision}.` : "Checks have not run for this revision."} Checks always use the saved stem.</p>
+          {showChecks && checks && <ul className={styles.checks}>
+            {checks.map(check => <li key={check.detail}><b className={check.passed ? styles.pass : styles.warning}>{check.passed ? "Pass" : "Revise"}</b><span>{check.detail}</span></li>)}
             <li><b className={styles.warning}>Review</b><span>Only one answer must remain defensible in the full source context</span></li>
             <li><b className={styles.warning}>Review</b><span>Distractor C may be too easy for the intended audience</span></li>
-            <li><b className={styles.warning}>Specialist</b><span>Construction accuracy and assessment validity are still outstanding</span></li>
+            <li><b className={styles.warning}>Specialist</b><span>{specialistReview}</span></li>
           </ul>}
         </section>
 
         <section className={styles.panel}>
           <div className={styles.panelHead}><span>Review decision</span><span className={styles.pill}>{decision === "pending" ? "Awaiting review" : decision === "returned" ? "Returned for revision" : "Illustrative approval"}</span></div>
           <h2>Record the decision and reason</h2>
-          <p>A named reviewer can edit, return or approve the item. The decision, reason and version remain with the question.</p>
+          <p>Record a sample decision for the saved version. Each action retains its reason and stem in this session. Reloading resets the demonstration.</p>
           <label className={styles.selectLabel} htmlFor="return-reason">Reason if returned</label>
           <select id="return-reason" className={styles.select} value={returnReason} onChange={(event) => setReturnReason(event.target.value)}>
             <option>Distractor C is too easy to dismiss</option>
@@ -128,10 +126,15 @@ export function AssessmentDemo() {
             <option>The reading level needs to be reduced</option>
           </select>
           <div className={styles.buttonRow}>
-            <button type="button" className={styles.secondaryButton} onClick={() => setDecision("returned")}>Return with reason</button>
-            <button type="button" className={styles.primaryButton} onClick={() => setDecision("approved")}>Record sample approval</button>
+            <button type="button" className={styles.secondaryButton} disabled={editing} onClick={() => recordDecision("returned")}>Return with reason</button>
+            <button type="button" className={styles.primaryButton} disabled={editing} onClick={() => recordDecision("approved")}>Record sample approval</button>
           </div>
-          <div className={styles.record}><strong>Current review record</strong><br/>Version: {edited ? "0.2, reviewer edit saved" : "0.1, generated draft"}<br/>Decision: {decision === "pending" ? "pending" : decision === "returned" ? `returned: ${returnReason}` : "sample approval recorded"}<br/>Reviewer: demonstration user<br/>Release state: never published to a live test</div>
+          {editing && <p>Save or cancel the stem edit before recording a decision.</p>}
+          <div className={styles.record} aria-live="polite"><strong>Current review record</strong><br/>Version: 0.{current.revision}<br/>Decision: {records[0].Decision}<br/>Reason: {current.reason}<br/>Reviewer: {records[0].Reviewer}<br/>Release state: never published to a live test</div>
+          <details className={styles.history}>
+            <summary>Revision and decision history ({history.length} entries)</summary>
+            <ol>{history.map((entry, index) => <li key={index}><strong>Version 0.{entry.revision} · {entry.decision === "approved" ? "Sample approval" : entry.decision}</strong><p>{entry.question}</p><p>{entry.reason}</p></li>)}</ol>
+          </details>
         </section>
       </div>
 
@@ -140,18 +143,24 @@ export function AssessmentDemo() {
           <div>
             <span className={styles.eyebrow}>Question bank and export</span>
             <h2>One item sits within a controlled set of ten.</h2>
-            <p>The full exercise keeps the status, source and review evidence for every draft. Only accepted items should move into the buyer&apos;s template or question bank.</p>
+            <p>Inspect all ten illustrative drafts below. Item 01 follows your saved edits and decisions. The preview includes pending and returned items for review; none is released for live use.</p>
           </div>
           <button type="button" className={styles.primaryButton} onClick={() => setShowExport(!showExport)}>{showExport ? "Hide export preview" : "Preview buyer export"}</button>
         </div>
-        <div className={styles.bankTable} role="table" aria-label="Illustrative ten-question bank">
-          {bankItems.map(([number, topic, status]) => <div className={styles.bankRow} role="row" key={number}><b role="cell">{number}</b><span role="cell">{topic}</span><small role="cell">{status}</small></div>)}
+        <div className={styles.bankTable} aria-label="Illustrative ten-question bank">
+          {records.map(fields => <details className={styles.bankItem} key={fields["Question number"]}>
+            <summary className={styles.bankRow}><b>{fields["Question number"]}</b><span>{fields.Topic}</span><small>{fields.Decision} · v{fields.Version}</small></summary>
+            <RecordFields fields={fields} />
+          </details>)}
         </div>
         {showExport && <div className={styles.exportPreview}>
           <strong>Buyer template preview</strong>
-          <span>10 draft items · 19 fields per item · sources and rationales included</span>
-          <code>Question number | criterion | source reference | stem | options A to D | key | rationales | confidence | review | risks | accessibility | audit trail</code>
-          <small>Preview only. The official buyer spreadsheet remains the submission format.</small>
+          <span>{records.length} draft items · {Object.keys(records[0]).length} fields per item · sources and proposed rationales included</span>
+          <small>Populated review preview only. The official buyer spreadsheet remains the submission format. All content is illustrative; specialist approval is outstanding.</small>
+          {records.map(fields => <article className={styles.exportItem} key={fields["Question number"]} aria-label={`Export item ${fields["Question number"]}`}>
+            <h3>{fields["Question number"]} · {fields.Topic}</h3>
+            <RecordFields fields={fields} />
+          </article>)}
         </div>}
       </section>
 
