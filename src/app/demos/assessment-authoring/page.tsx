@@ -3,7 +3,7 @@ import { AssessmentDemo } from "./assessment-demo";
 
 export const metadata: Metadata = {
   title: "Assessment authoring demonstration",
-  description: "An illustrative source-to-review workflow for a draft assessment question.",
+  description: "An interactive mock assessment workspace covering question creation, review, management, evidence and reporting.",
   robots: { index: false, follow: false },
   alternates: { canonical: "/demos/assessment-authoring" },
 };
