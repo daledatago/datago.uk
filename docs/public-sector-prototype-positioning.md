@@ -6,9 +6,9 @@ Status: working demonstrations for buyer review, 22 September 2026. Access and r
 
 **DataGo's position:** we make complex decisions inspectable. A person can see the inputs, the uncertainty, the owner and the next action. This draws on DataGo's architecture, data engineering, AI and product design capability without claiming that one generic product solves both opportunities.
 
-The shared entry point is `/demos`. Each opportunity has its own short journey:
+The shared entry point is `/demos`. Each opportunity has its own short journey. The assessment route deliberately removes the shared demonstration menu so a CITB reviewer cannot move into the unrelated circular-economy proposition.
 
-1. **Assessment authoring:** controlled source → draft question and rationale → automated flags → specialist decision → review record. Lead with defensible assessment quality, not a broad AI tutor. Measure time to an accepted item, return reasons and reviewer effort. The current question is a demonstration, not approved test content.
+1. **Assessment authoring:** a contained mock application covering controlled sources → guided drafting → question bank → automated flags → specialist decision → versioned record → management and item-performance reporting. Lead with defensible assessment quality and lifecycle control, not a broad AI tutor. Measure time to an accepted item, return reasons and reviewer effort. All people, operational figures and item-analysis results are mock data; no question is approved test content.
 2. **Circular commercial value:** business assumptions → linear/reuse comparison → price-exposure view → missing evidence → a decision to pilot or revise. Lead with a business case that reveals its assumptions, not a green score. The current cost model is deliberately narrow and does not establish investment viability.
 
 ## Where Bridgly fits

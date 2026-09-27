@@ -14,6 +14,22 @@ const demoLinks = [
 
 export function DemoNavigation() {
   const pathname = usePathname();
+  const isAssessmentWorkspace = pathname.startsWith("/demos/assessment-authoring");
+
+  if (isAssessmentWorkspace) {
+    return (
+      <header className={styles.header}>
+        <div className={styles.headerInner}>
+          <Link aria-label="Assessment Studio prototype" className={styles.brand} href="/demos/assessment-authoring">
+            <DatagoMark size={34} />
+            <span className={styles.brandName}>datago</span>
+            <span className={styles.brandSection}>Assessment prototype</span>
+          </Link>
+          <div className={styles.prototypeStatus}><span />Illustrative, non-production workspace</div>
+        </div>
+      </header>
+    );
+  }
 
   return (
     <header className={styles.header}>

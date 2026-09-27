@@ -70,6 +70,22 @@
   color: #fff;
 }
 
+.prototypeStatus {
+  align-items: center;
+  color: #52645f;
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: 650;
+  gap: 8px;
+}
+
+.prototypeStatus span {
+  background: #c77a2d;
+  border-radius: 50%;
+  height: 8px;
+  width: 8px;
+}
+
 @media (max-width: 960px) {
   .headerInner {
     align-items: stretch;
@@ -92,6 +108,10 @@
 
   .nav::-webkit-scrollbar {
     display: none;
+  }
+
+  .prototypeStatus {
+    padding: 3px 0 8px;
   }
 }
 
