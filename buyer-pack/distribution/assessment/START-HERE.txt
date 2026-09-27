@@ -1,7 +1,7 @@
 DATAGO ASSESSMENT WORKFLOW DEMONSTRATION
 
 Open in a current browser:
-https://datago.uk/demos/assessment-authoring
+https://datago.uk/demos/citb-assessment
 
 Suggested three-minute review
 1. Open Create questions and inspect the approved sources and assessment intent.

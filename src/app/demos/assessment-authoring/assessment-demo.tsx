@@ -275,7 +275,18 @@ function Reporting({ items }: { items: QuestionItem[] }) {
   const max = Math.max(...statuses.map((status) => status.count), 1);
   return <>
     <div className={styles.viewHeading}><div><span className={styles.viewEyebrow}>Management information</span><h2>Question performance</h2><p>Follow workflow health, reviewer effort and item evidence over time.</p></div><button type="button" className={styles.appSecondary}>Download report</button></div>
-    <div className={styles.reportStats}><div><span>Median review time</span><strong>18 min</strong><small>Mock baseline: 31 min</small></div><div><span>First-review acceptance</span><strong>62%</strong><small>8 of 13 reviewed items</small></div><div><span>Source coverage</span><strong>100%</strong><small>Every draft has a reference</small></div><div><span>Items with test evidence</span><strong>3</strong><small>Mock Pearson results linked</small></div></div>
+    <div className={styles.reportStats}><div><span>Time to accepted set</span><strong>5h 40m</strong><small>Mock baseline: 8h 10m</small></div><div><span>Review effort per item</span><strong>18 min</strong><small>Includes returns and revisions</small></div><div><span>First-review acceptance</span><strong>62%</strong><small>8 of 13 reviewed items</small></div><div><span>Evidence completeness</span><strong>100%</strong><small>Required fields present</small></div></div>
+    <section className={`${styles.appCard} ${styles.kpiCard}`}>
+      <div className={styles.cardHeading}><div><span>Measurement method</span><h3>How the prototype would calculate value</h3></div></div>
+      <div className={styles.kpiGrid}>
+        <article><strong>Time to accepted set</strong><p>Approved brief to ten human-accepted questions, including every return and revision.</p><small>Workflow timestamps + active-time record</small></article>
+        <article><strong>Review effort per item</strong><p>Total Assessment Technical Developer and HSE review minutes divided by accepted items.</p><small>Review events + recorded effort</small></article>
+        <article><strong>First-review acceptance</strong><p>Items accepted without return divided by all items receiving a first review.</p><small>Recorded review decisions</small></article>
+        <article><strong>Evidence completeness</strong><p>Records with source, version, location, rationale, named reviewer and decision divided by all records.</p><small>Question passport fields</small></article>
+        <article><strong>Cost per accepted item</strong><p>People and trial technology cost divided by questions that reach human acceptance.</p><small>Time record + agreed trial costs</small></article>
+        <article><strong>Pre-test performance</strong><p>Pearson analysis after 100 responses. Reported separately from authoring productivity.</p><small>Approved item version + test evidence</small></article>
+      </div>
+    </section>
     <div className={styles.dashboardGrid}>
       <section className={styles.appCard}><div className={styles.cardHeading}><div><span>Workflow</span><h3>Items by lifecycle stage</h3></div></div><div className={styles.barChart}>{statuses.map((status) => <div key={status.label}><span>{status.label}</span><div><i style={{ width: `${Math.max((status.count / max) * 100, 8)}%`, background: status.colour }}/></div><b>{status.count}</b></div>)}</div></section>
       <section className={styles.appCard}><div className={styles.cardHeading}><div><span>Review reasons</span><h3>Why questions are returned</h3></div></div><div className={styles.reasonList}><div><span>Distractor quality</span><b>38%</b></div><div><span>More than one defensible answer</span><b>25%</b></div><div><span>Source precision</span><b>19%</b></div><div><span>Reading level</span><b>12%</b></div><div><span>Other</span><b>6%</b></div></div></section>

@@ -1,5 +1,5 @@
 import { permanentRedirect } from "next/navigation";
 
 export default function LegacyAssessmentDemoPage() {
-  permanentRedirect("/demos/assessment-authoring");
+  permanentRedirect("/demos/citb-assessment");
 }
