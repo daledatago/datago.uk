@@ -4,7 +4,7 @@ Start here: https://datago.uk/demos
 The live browser demonstration is the primary review route. It requires no account, installation or special software.
 
 Assessment workflow
-https://datago.uk/demos/assessment-authoring
+https://datago.uk/demos/citb-assessment
 Try one draft question, run the visible quality checks and record a sample review decision.
 
 Circular commercial value
