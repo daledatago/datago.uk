@@ -20,7 +20,7 @@ export function CircularDemo() {
 
   return (
     <div className={styles.page}>
-      <div className={styles.topline}><span>02 / Circular value</span></div>
+      <div className={styles.topline}><span>Zero Waste Scotland · CivTech 12.3</span></div>
       <header className={styles.hero}>
         <span className={styles.eyebrow}>Working prototype · illustrative figures</span>
         <h1>Can a circular choice stand up commercially?</h1>
