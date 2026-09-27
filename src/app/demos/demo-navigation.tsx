@@ -15,6 +15,7 @@ const demoLinks = [
 export function DemoNavigation() {
   const pathname = usePathname();
   const isAssessmentWorkspace = pathname.startsWith("/demos/citb-assessment") || pathname.startsWith("/demos/assessment-authoring");
+  const isCircularWorkspace = pathname.startsWith("/demos/circular-economy") || pathname.startsWith("/demos/circular-value");
 
   if (isAssessmentWorkspace) {
     return (
@@ -24,6 +25,21 @@ export function DemoNavigation() {
             <DatagoMark size={34} />
             <span className={styles.brandName}>datago</span>
             <span className={styles.brandSection}>CITB assessment prototype</span>
+          </Link>
+          <div className={styles.prototypeStatus}><span />Illustrative, non-production workspace</div>
+        </div>
+      </header>
+    );
+  }
+
+  if (isCircularWorkspace) {
+    return (
+      <header className={styles.header}>
+        <div className={styles.headerInner}>
+          <Link aria-label="Circular economy prototype" className={styles.brand} href="/demos/circular-economy">
+            <DatagoMark size={34} />
+            <span className={styles.brandName}>datago</span>
+            <span className={styles.brandSection}>Circular economy prototype</span>
           </Link>
           <div className={styles.prototypeStatus}><span />Illustrative, non-production workspace</div>
         </div>
