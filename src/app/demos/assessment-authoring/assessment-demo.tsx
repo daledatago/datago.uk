@@ -17,16 +17,17 @@ type QuestionItem = {
   owner: string;
   updated: string;
   passRate?: number;
+  decisions?: Array<{ status: Status; note: string; at: string }>;
 };
 
 const startingItems: QuestionItem[] = [
   { id: "q-001", code: "WAH-001", title: "Why should someone avoid stepping onto a fragile roof surface?", topic: "Fragile surfaces", status: "Needs review", difficulty: "Foundation", source: "HSE GEIS5, p1", owner: "A. Patel", updated: "Today" },
-  { id: "q-002", code: "WAH-002", title: "Which feature can indicate that a roof surface may be fragile?", topic: "Fragile surfaces", status: "Approved for pre-test", difficulty: "Standard", source: "HSE GEIS5, p1", owner: "J. Morgan", updated: "Yesterday" },
-  { id: "q-003", code: "WAH-003", title: "What should be considered before work starts near a fragile surface?", topic: "Planning work", status: "Returned", difficulty: "Standard", source: "INDG401, p4", owner: "A. Patel", updated: "Yesterday" },
-  { id: "q-004", code: "WAH-004", title: "When should warning notices be used around fragile surfaces?", topic: "Warning controls", status: "Draft", difficulty: "Foundation", source: "WAH Reg 9", owner: "Unassigned", updated: "2 days ago" },
+  { id: "q-002", code: "WAH-002", title: "A roof has older fibre cement sheets. No safe assessment has been completed. How should you treat the sheets when planning the work?", topic: "Roof assessment", status: "Needs review", difficulty: "Standard", source: "HSE GEIS5, p1–2", owner: "A. Patel", updated: "1 Oct 2026" },
+  { id: "q-003", code: "WAH-003", title: "What should be considered before work starts near a fragile surface?", topic: "Planning work", status: "Returned", difficulty: "Standard", source: "INDG401, p2–3", owner: "A. Patel", updated: "Yesterday" },
+  { id: "q-004", code: "WAH-004", title: "An access route crosses roof tiles and old roof lights. Their strength has not been assessed. Which surfaces should be treated as potentially fragile?", topic: "Roof assessment", status: "Needs review", difficulty: "Standard", source: "HSE GEIS5, p1–2", owner: "A. Patel", updated: "1 Oct 2026" },
   { id: "q-005", code: "WAH-005", title: "Which control best reduces the need to step onto a fragile roof?", topic: "Access controls", status: "Needs review", difficulty: "Advanced", source: "HSE GEIS5, p2", owner: "J. Morgan", updated: "2 days ago" },
   { id: "q-006", code: "WAH-006", title: "What is the first action when a roof's condition is uncertain?", topic: "Roof assessment", status: "Analysed", difficulty: "Standard", source: "INDG401, p3", owner: "S. Lewis", updated: "4 days ago", passRate: 71 },
-  { id: "q-007", code: "WAH-007", title: "Which protection is appropriate where fragile material cannot be avoided?", topic: "Fall protection", status: "Approved for pre-test", difficulty: "Advanced", source: "HSE GEIS5, p3", owner: "S. Lewis", updated: "5 days ago" },
+  { id: "q-007", code: "WAH-007", title: "Which protection is appropriate where fragile material cannot be avoided?", topic: "Fall protection", status: "Approved for pre-test", difficulty: "Advanced", source: "HSE GEIS5, p2", owner: "S. Lewis", updated: "5 days ago" },
   { id: "q-008", code: "WAH-008", title: "What information should be included in the work plan?", topic: "Planning work", status: "Analysed", difficulty: "Standard", source: "INDG401, p5", owner: "A. Patel", updated: "1 week ago", passRate: 64 },
   { id: "q-009", code: "WAH-009", title: "Who should confirm that a working platform is suitable?", topic: "Competence", status: "Needs review", difficulty: "Foundation", source: "HSE GEIS5, p2", owner: "J. Morgan", updated: "1 week ago" },
   { id: "q-010", code: "WAH-010", title: "Which record should be retained after the roof assessment?", topic: "Evidence", status: "Draft", difficulty: "Foundation", source: "INDG401, p3", owner: "Unassigned", updated: "1 week ago" },
@@ -69,7 +70,7 @@ function StatusBadge({ status }: { status: Status }) {
 export function AssessmentDemo() {
   const [view, setView] = useState<View>("overview");
   const [items, setItems] = useState<QuestionItem[]>(startingItems);
-  const [selectedId, setSelectedId] = useState("q-001");
+  const [selectedId, setSelectedId] = useState("q-002");
   const [query, setQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<Status | "All">("All");
   const [generated, setGenerated] = useState(false);
@@ -98,20 +99,22 @@ export function AssessmentDemo() {
     if (!generated) {
       const generatedItems: QuestionItem[] = [
         { id: "q-013", code: "WAH-013", title: "Which action should be taken when fragile roof lights are identified?", topic: "Fragile surfaces", status: "Draft", difficulty: "Standard", source: "HSE GEIS5, p1", owner: "Unassigned", updated: "Just now" },
-        { id: "q-014", code: "WAH-014", title: "What should a worker do if the agreed access route changes?", topic: "Planning work", status: "Draft", difficulty: "Standard", source: "INDG401, p4", owner: "Unassigned", updated: "Just now" },
-        { id: "q-015", code: "WAH-015", title: "Why should fragile areas be clearly marked before work begins?", topic: "Warning controls", status: "Draft", difficulty: "Foundation", source: "WAH Reg 9", owner: "Unassigned", updated: "Just now" },
+        { id: "q-014", code: "WAH-014", title: "What should a worker do if the agreed access route changes?", topic: "Planning work", status: "Draft", difficulty: "Standard", source: "INDG401, p2–3", owner: "Unassigned", updated: "Just now" },
+        { id: "q-015", code: "WAH-015", title: "What should a warning notice at the approach to a fragile roof surface make clear?", topic: "Warning controls", status: "Draft", difficulty: "Foundation", source: "WAH Reg 9", owner: "Unassigned", updated: "Just now" },
       ];
       setItems((current) => [...generatedItems, ...current]);
       setGenerated(true);
     }
     setStatusFilter("Draft");
     setView("bank");
-    setNotice("Three provisional questions were added to the draft queue.");
+    setNotice(generated ? "The fixed sample set is already in this session’s bank. No duplicate records were added." : "Three provisional questions were added to the draft queue.");
   }
 
-  function updateDecision(status: Status, message: string) {
-    setItems((current) => current.map((item) => item.id === selected.id ? { ...item, status, updated: "Just now" } : item));
-    setNotice(message);
+  function updateDecision(status: Status, note: string) {
+    if (!note.trim()) return;
+    const at = new Date().toISOString();
+    setItems((current) => current.map((item) => item.id === selected.id ? { ...item, status, updated: "Just now", decisions: [...(item.decisions ?? []), { status, note: note.trim(), at }] } : item));
+    setNotice(`${selected.code}: ${status}. Demo reviewer note saved for this browser session. No live publication took place.`);
   }
 
   return (
@@ -124,7 +127,7 @@ export function AssessmentDemo() {
         </div>
         <div className={styles.prototypeNote}>
           <strong>Prototype boundary</strong>
-          <span>No candidate data, live publishing or production integration.</span>
+          <span>Fixed content, no model calls. Illustrative reviews and counts reset on reload.</span>
         </div>
       </section>
 
@@ -152,7 +155,7 @@ export function AssessmentDemo() {
             {view === "overview" ? <Overview counts={counts} items={items} onNavigate={setView} onSelect={selectQuestion}/> : null}
             {view === "create" ? <CreateQuestions onGenerate={generateDraftSet}/> : null}
             {view === "bank" ? <QuestionBank items={filteredItems} query={query} statusFilter={statusFilter} onQuery={setQuery} onStatus={setStatusFilter} onSelect={selectQuestion}/> : null}
-            {view === "review" ? <ReviewQuestion item={selected} onDecision={updateDecision} onChoose={() => setView("bank")}/> : null}
+            {view === "review" ? <ReviewQuestion key={selected.id} item={selected} onDecision={updateDecision} onChoose={() => setView("bank")}/> : null}
             {view === "reporting" ? <Reporting items={items}/> : null}
           </div>
         </div>
@@ -167,12 +170,14 @@ export function AssessmentDemo() {
 }
 
 function Overview({ counts, items, onNavigate, onSelect }: { counts: { all: number; review: number; approved: number; analysed: number }; items: QuestionItem[]; onNavigate: (view: View) => void; onSelect: (id: string) => void }) {
+  const sourceCount = items.filter((item) => Boolean(item.source)).length;
+  const ownerCount = items.filter((item) => item.owner !== "Unassigned").length;
   const recent = items.filter((item) => item.status === "Needs review" || item.status === "Returned").slice(0, 4);
   return <>
     <div className={styles.viewHeading}><div><span className={styles.viewEyebrow}>Workspace overview</span><h2>Good morning, Dale</h2><p>Here is the current position across the prototype question bank.</p></div><button type="button" className={styles.appPrimary} onClick={() => onNavigate("create")}>＋ Create question set</button></div>
     <div className={styles.statGrid}>
-      <button type="button" onClick={() => onNavigate("bank")}><span>Question records</span><strong>{counts.all}</strong><small>Across 7 topics</small></button>
-      <button type="button" onClick={() => onNavigate("review")}><span>Awaiting review</span><strong>{counts.review}</strong><small>2 assigned today</small></button>
+      <button type="button" onClick={() => onNavigate("bank")}><span>Question records</span><strong>{counts.all}</strong><small>Across {new Set(items.map((item) => item.topic)).size} topics</small></button>
+      <button type="button" onClick={() => onNavigate("review")}><span>Awaiting review</span><strong>{counts.review}</strong><small>Illustrative reviewer queue</small></button>
       <button type="button" onClick={() => onNavigate("bank")}><span>Ready for pre-test</span><strong>{counts.approved}</strong><small>Human approved</small></button>
       <button type="button" onClick={() => onNavigate("reporting")}><span>With test evidence</span><strong>{counts.analysed}</strong><small>Linked to results</small></button>
     </div>
@@ -183,8 +188,8 @@ function Overview({ counts, items, onNavigate, onSelect }: { counts: { all: numb
       </section>
       <section className={styles.appCard}>
         <div className={styles.cardHeading}><div><span>Lifecycle</span><h3>Question record coverage</h3></div></div>
-        <div className={styles.coverageRing}><div><strong>83%</strong><span>complete</span></div></div>
-        <ul className={styles.coverageList}><li><span className={styles.dotGreen}/>Sources attached <b>15 / 15</b></li><li><span className={styles.dotBlue}/>Review owner assigned <b>13 / 15</b></li><li><span className={styles.dotAmber}/>Test evidence linked <b>3 / 15</b></li></ul>
+        <div className={styles.coverageRing}><div><strong>{Math.round(sourceCount / Math.max(items.length, 1) * 100)}%</strong><span>source linked</span></div></div>
+        <ul className={styles.coverageList}><li><span className={styles.dotGreen}/>Sources attached <b>{sourceCount} / {items.length}</b></li><li><span className={styles.dotBlue}/>Review owner assigned <b>{ownerCount} / {items.length}</b></li><li><span className={styles.dotAmber}/>Mock test evidence <b>{counts.analysed} / {items.length}</b></li></ul>
       </section>
     </div>
     <section className={styles.processStrip}>
@@ -195,25 +200,25 @@ function Overview({ counts, items, onNavigate, onSelect }: { counts: { all: numb
 
 function CreateQuestions({ onGenerate }: { onGenerate: () => void }) {
   return <>
-    <div className={styles.viewHeading}><div><span className={styles.viewEyebrow}>Guided authoring</span><h2>Create a question set</h2><p>Define the evidence and assessment intent before any provisional questions are drafted.</p></div></div>
+    <div className={styles.viewHeading}><div><span className={styles.viewEyebrow}>Guided authoring</span><h2>Create a question set</h2><p>This walkthrough uses three fixed sample drafts and a fixed source set. A future service would let CITB configure the assessment brief.</p></div></div>
     <div className={styles.authoringLayout}>
       <section className={styles.appCard}>
-        <div className={styles.formSection}><span className={styles.formNumber}>1</span><div><h3>Choose approved evidence</h3><p>Only sources in the controlled set are available to the drafting method.</p></div></div>
-        <div className={styles.sourcePicker}><label><input type="checkbox" defaultChecked/><span><b>HSE GEIS5</b><small>Fragile roofs · version 11/2012</small></span><em>Approved</em></label><label><input type="checkbox" defaultChecked/><span><b>HSE INDG401</b><small>Working at height · version 01/2024</small></span><em>Approved</em></label><label><input type="checkbox" defaultChecked/><span><b>Work at Height Regulations 2005</b><small>Regulation 9 · current source</small></span><em>Approved</em></label></div>
+        <div className={styles.formSection}><span className={styles.formNumber}>1</span><div><h3>Choose approved evidence</h3><p>The fixed samples use these public sources. Approval labels illustrate the future CITB source control.</p></div></div>
+        <div className={styles.sourcePicker}><label><input type="checkbox" checked readOnly disabled/><span><b>HSE GEIS5</b><small>Fragile roofs · version 11/2012</small></span><em>Approved</em></label><label><input type="checkbox" checked readOnly disabled/><span><b>HSE INDG401</b><small>Working at height · version 01/2014</small></span><em>Approved</em></label><label><input type="checkbox" checked readOnly disabled/><span><b>Work at Height Regulations 2005</b><small>Regulation 9 · current source</small></span><em>Approved</em></label></div>
         <div className={styles.formSection}><span className={styles.formNumber}>2</span><div><h3>Set the assessment intent</h3><p>These fields travel with every resulting question record.</p></div></div>
-        <div className={styles.formGrid}><label><span>Learning objective</span><select defaultValue="fragile"><option value="fragile">Identify fragile surfaces and suitable controls</option><option>Plan work at height safely</option><option>Select suitable access equipment</option></select></label><label><span>Target audience</span><select><option>Operatives</option><option>Specialists</option><option>Managers and professionals</option></select></label><label><span>Questions required</span><select defaultValue="3"><option value="3">3 questions</option><option>5 questions</option><option>10 questions</option></select></label><label><span>Difficulty mix</span><select><option>Balanced</option><option>Foundation</option><option>Advanced</option></select></label></div>
-        <div className={styles.formSection}><span className={styles.formNumber}>3</span><div><h3>Apply authoring rules</h3><p>The system checks the structure. Named specialists still decide whether the content is valid.</p></div></div>
+        <div className={styles.formGrid}><label><span>Learning objective</span><select disabled defaultValue="fragile"><option value="fragile">Identify fragile surfaces and suitable controls</option><option>Plan work at height safely</option><option>Select suitable access equipment</option></select></label><label><span>Target audience</span><select disabled><option>Operatives</option><option>Specialists</option><option>Managers and professionals</option></select></label><label><span>Questions required</span><select disabled defaultValue="3"><option value="3">3 questions</option><option>5 questions</option><option>10 questions</option></select></label><label><span>Difficulty mix</span><select disabled><option>Balanced</option><option>Foundation</option><option>Advanced</option></select></label></div>
+        <div className={styles.formSection}><span className={styles.formNumber}>3</span><div><h3>Apply authoring rules</h3><p>These are proposed checks for a future service. This demo does not run content, readability or similarity validation.</p></div></div>
         <div className={styles.ruleGrid}><span>✓ Four options with one proposed key</span><span>✓ Rationale for every option</span><span>✓ Precise source reference</span><span>✓ Plain-English wording check</span><span>✓ Duplicate and similarity check</span><span>✓ Human review required</span></div>
-        <div className={styles.generateBar}><div><strong>Ready to prepare 3 provisional questions</strong><small>Estimated processing time: under one minute for this demonstration</small></div><button type="button" className={styles.appPrimary} onClick={onGenerate}>Prepare draft set</button></div>
+        <div className={styles.generateBar}><div><strong>Ready to prepare 3 provisional questions</strong><small>Loads fixed sample records. No AI generation takes place.</small></div><button type="button" className={styles.appPrimary} onClick={onGenerate}>Prepare draft set</button></div>
       </section>
-      <aside className={styles.contextPanel}><span className={styles.contextIcon}>i</span><h3>What happens next?</h3><ol><li>The drafting method uses only the selected sources.</li><li>Structural checks run against each question.</li><li>Drafts enter the bank with full source links.</li><li>Named reviewers accept, amend or return them.</li></ol><div><strong>AI does not approve content</strong><p>The model, rules and configuration used are recorded with each draft.</p></div></aside>
+      <aside className={styles.contextPanel}><span className={styles.contextIcon}>i</span><h3>What happens next?</h3><ol><li>The demonstration loads the fixed sample source references.</li><li>The check panel explains proposed controls, with human review still required.</li><li>Three fixed drafts enter the bank with source links and a rationale for every option.</li><li>Named reviewers accept, amend or return them.</li></ol><div><strong>AI does not approve content</strong><p>This demonstration uses authored fixtures. Model and configuration records would be added in the prototype engagement.</p></div></aside>
     </div>
   </>;
 }
 
 function QuestionBank({ items, query, statusFilter, onQuery, onStatus, onSelect }: { items: QuestionItem[]; query: string; statusFilter: Status | "All"; onQuery: (value: string) => void; onStatus: (value: Status | "All") => void; onSelect: (id: string) => void }) {
   return <>
-    <div className={styles.viewHeading}><div><span className={styles.viewEyebrow}>Controlled content</span><h2>Question bank</h2><p>Search, filter and inspect every versioned question record.</p></div><button type="button" className={styles.appSecondary}>Export view</button></div>
+    <div className={styles.viewHeading}><div><span className={styles.viewEyebrow}>Controlled content</span><h2>Question bank</h2><p>Search, filter and inspect every versioned question record.</p></div><span className={styles.prototypeNote}>Export planned for the prototype engagement</span></div>
     <section className={styles.appCard}>
       <div className={styles.bankToolbar}><label className={styles.searchBox}><span>⌕</span><input aria-label="Search question bank" value={query} onChange={(event) => onQuery(event.target.value)} placeholder="Search questions, topics or sources"/></label><label><span className={styles.srOnly}>Filter by status</span><select value={statusFilter} onChange={(event) => onStatus(event.target.value as Status | "All")}><option>All</option><option>Draft</option><option>Needs review</option><option>Returned</option><option>Approved for pre-test</option><option>Analysed</option><option>Retired</option></select></label></div>
       <div className={styles.questionTable} role="table" aria-label="Question bank">
@@ -225,41 +230,135 @@ function QuestionBank({ items, query, statusFilter, onQuery, onStatus, onSelect 
   </>;
 }
 
-function ReviewQuestion({ item, onDecision, onChoose }: { item: QuestionItem; onDecision: (status: Status, message: string) => void; onChoose: () => void }) {
-  const variants: Record<string, { options: string[]; key: number; rationale: string; extract: string }> = {
+function ReviewQuestion({ item, onDecision, onChoose }: { item: QuestionItem; onDecision: (status: Status, note: string) => void; onChoose: () => void }) {
+  const [reviewNote, setReviewNote] = useState("");
+  const variants: Record<string, { options: string[]; key: number; rationale: string; extract: string; rationales: string[]; version: string }> = {
     "WAH-001": {
-      options: ["The surface is safe if the task is brief", "The surface may break under a person's weight", "The surface is safe when it looks dry", "The surface is safe if only one person crosses it"],
-      key: 1,
-      rationale: "Fragile material may fail without warning and may not support a person's weight. The duration of the task does not make the surface safe.",
-      extract: "Roof lights, fibre cement, corroded metal, slates and tiles may all be fragile.",
+        "options": [
+            "The surface is safe if the task is brief",
+            "The surface may break under a person's weight",
+            "The surface is safe when it looks dry",
+            "The surface is safe if only one person crosses it"
+        ],
+        "key": 1,
+        "rationale": "Fragile material may fail without warning. Neither the task duration nor its appearance establishes that it can support a person.",
+        "extract": "GEIS5 identifies several common roof surfaces that may be fragile, including roof lights, non-reinforced fibre cement, corroded metal, slates and tiles.",
+        "rationales": [
+            "A brief task does not establish load-bearing capacity.",
+            "A fragile surface may not support a person. This is the proposed key.",
+            "Dry appearance does not establish the strength of the surface.",
+            "Restricting numbers does not establish that the surface is safe."
+        ],
+        "version": "0.2"
     },
     "WAH-013": {
-      options: ["Continue if the roof light is clearly visible", "Stop and make sure the identified area is controlled in the work plan", "Step around the roof light without changing the plan", "Cover the roof light with any loose material available"],
-      key: 1,
-      rationale: "Identifying a fragile roof light changes the known risk. The work plan and controls should address the fragile area before work continues.",
-      extract: "Roof lights may be difficult to see in certain conditions and should be treated as potentially fragile unless there is clear evidence otherwise.",
+        "options": [
+            "Continue if the roof light is clearly visible",
+            "Stop and make sure the identified area is controlled in the work plan",
+            "Step around the roof light without changing the plan",
+            "Cover the roof light with any loose material available"
+        ],
+        "key": 1,
+        "rationale": "Identifying a fragile roof light changes the known risk. The work plan and controls need to address the area before work continues.",
+        "extract": "GEIS5 identifies old roof lights as likely to be fragile and calls for a safe system of work and competent assessment.",
+        "rationales": [
+            "Visibility does not remove the risk of falling through the roof light.",
+            "The identified risk must be addressed in the work plan. This is the proposed key.",
+            "An improvised route does not replace a reviewed safe system of work.",
+            "Loose covering is not evidence of a suitable load-bearing or protective control."
+        ],
+        "version": "0.2"
     },
-  };
-  const review = variants[item.code] ?? {
-    options: ["Proceed without checking the agreed controls", "Use the approved source and work plan before acting", "Rely only on how the surface looks", "Leave the decision to an unbriefed worker"],
-    key: 1,
-    rationale: "This is illustrative review content. A subject expert would confirm the precise answer, distractors and source wording before pre-test approval.",
-    extract: "The exact approved extract linked to this question would appear here for the reviewer.",
-  };
+    "WAH-014": {
+        "options": [
+            "Use the new route if it looks shorter",
+            "Pause and have the changed route assessed before using it",
+            "Follow another worker who has crossed it",
+            "Keep the original plan but use the new route"
+        ],
+        "key": 1,
+        "rationale": "A changed access route may introduce different risks. Review its suitability and the safe working arrangements before use.",
+        "extract": "INDG401 explains planning, competence and checking that each place of work at height is safe whenever it is used.",
+        "rationales": [
+            "A shorter route is not evidence of safe access.",
+            "The changed route needs a suitable assessment before use. This is the proposed key.",
+            "Following another person does not establish that the route is safe.",
+            "A plan that does not reflect the route cannot demonstrate how its risks are controlled."
+        ],
+        "version": "0.2"
+    },
+    "WAH-015": {
+        "options": [
+            "That crossing is permitted if the task is brief",
+            "That the area contains a fragile surface hazard",
+            "That no other precautions are needed",
+            "That a previous inspection makes the roof permanently safe"
+        ],
+        "key": 1,
+        "rationale": "Regulation 9 includes prominent warning notices at an approach to a fragile surface where reasonably practicable. A warning does not replace the other required controls.",
+        "extract": "Regulation 9(3) addresses warning notices at approaches to fragile surfaces, or other means of making people aware where notices are not reasonably practicable.",
+        "rationales": [
+            "The length of the task does not remove the hazard.",
+            "The notice communicates the fragile-surface hazard. This is the proposed key.",
+            "Warning notices do not replace the other controls for fragile surfaces.",
+            "An earlier inspection cannot establish permanent safety."
+        ],
+        "version": "0.2"
+    },
+    "WAH-002": {
+        "options": [
+            "Use the sheets where they have no visible cracks.",
+            "Use the sheets if they are dry and the task is brief.",
+            "Treat the sheets as fragile until a competent person confirms otherwise.",
+            "Use the same route that a worker crossed on an earlier visit."
+        ],
+        "key": 2,
+        "rationale": "C is the proposed answer. Non-reinforced fibre cement sheets are among the surfaces HSE identifies as likely to be fragile. A competent assessment is needed before treating the roof as non-fragile. Appearance, weather and previous access do not establish that it is safe.",
+        "extract": "GEIS5 pages 1 and 2 describe likely fragile roof materials and competent assessment. INDG401 revision 2, January 2014, page 3 explains checking each place before use.",
+        "rationales": [
+            "An absence of visible cracks does not establish load-bearing capacity.",
+            "Dry weather and a short task do not establish that a sheet is non-fragile.",
+            "Proposed key. C is the proposed answer. Non-reinforced fibre cement sheets are among the surfaces HSE identifies as likely to be fragile. A competent assessment is needed before treating the roof as non-fragile. Appearance, weather and previous access do not establish that it is safe.",
+            "An earlier crossing does not establish the current condition or safety of the roof."
+        ],
+        "version": "0.3"
+    },
+    "WAH-004": {
+        "options": [
+            "Roof lights only, because the tiles look intact.",
+            "Tiles only, because the roof lights look intact.",
+            "Visibly damaged areas only, because the route has been used before.",
+            "Both the tiles and roof lights, unless a competent person confirms otherwise."
+        ],
+        "key": 3,
+        "rationale": "D is the proposed answer. HSE lists roof lights and slates or tiles among surfaces likely to be fragile. Both need to be considered in the assessment. Their appearance and previous use of the route do not establish that either is safe.",
+        "extract": "GEIS5 pages 1 and 2 describe likely fragile roof materials and competent assessment. INDG401 revision 2, January 2014, page 3 explains checking each place before use.",
+        "rationales": [
+            "This excludes tiles without evidence of their strength.",
+            "This excludes roof lights without evidence of their strength.",
+            "Visible damage and previous use are insufficient tests of fragility.",
+            "Proposed key. D is the proposed answer. HSE lists roof lights and slates or tiles among surfaces likely to be fragile. Both need to be considered in the assessment. Their appearance and previous use of the route do not establish that either is safe."
+        ],
+        "version": "0.3"
+    }
+};
+  const review = variants[item.code];
+  const sourceUrl = item.source.includes("INDG401") ? "https://www.hse.gov.uk/pubns/indg401.pdf" : item.source.includes("Reg") ? "https://www.legislation.gov.uk/uksi/2005/735/regulation/9" : "https://www.hse.gov.uk/pubns/geis5.pdf";
   return <>
     <div className={styles.viewHeading}><div><span className={styles.viewEyebrow}>Human review</span><h2>Review question</h2><p>Check the source, wording, answer and evidence before recording a decision.</p></div><button type="button" className={styles.appSecondary} onClick={onChoose}>Choose another question</button></div>
     <div className={styles.reviewLayout}>
       <section className={styles.appCard}>
-        <div className={styles.itemHeader}><div><span className={styles.questionCode}>{item.code}</span><StatusBadge status={item.status}/></div><small>Version 0.2 · updated {item.updated}</small></div>
+        <div className={styles.itemHeader}><div><span className={styles.questionCode}>{item.code}</span><StatusBadge status={item.status}/></div><small>Version {review?.version ?? "0.2"} · updated {item.updated}</small></div>
         <h3 className={styles.reviewQuestion}>{item.title}</h3>
-        <div className={styles.reviewOptions}>{review.options.map((option, index) => <div key={option} className={index === review.key ? styles.proposedAnswer : undefined}><b>{String.fromCharCode(65 + index)}</b><span>{option}</span>{index === review.key ? <em>Proposed key</em> : null}</div>)}</div>
-        <div className={styles.rationaleBox}><span>Proposed rationale</span><p>{review.rationale}</p></div>
-        <div className={styles.reviewActions}><label><span>Reviewer note</span><textarea defaultValue="Source supports the proposed key. Check whether option C is sufficiently plausible for the intended audience." rows={3}/></label><div><button type="button" className={styles.returnButton} onClick={() => onDecision("Returned", `${item.code} was returned with the reviewer note.`)}>Return for revision</button><button type="button" className={styles.approveButton} onClick={() => onDecision("Approved for pre-test", `${item.code} was approved for pre-test. No live publication took place.`)}>Approve for pre-test</button></div></div>
+        {review ? <><div className={styles.reviewOptions}>{review.options.map((option, index) => <div key={option} className={index === review.key ? styles.proposedAnswer : undefined}><b>{String.fromCharCode(65 + index)}</b><span>{option}</span>{index === review.key ? <em>Proposed key</em> : null}</div>)}</div>
+        <div className={styles.rationaleBox}><span>Proposed rationale</span><p>{review.rationale}</p></div><details className={styles.rationaleBox}><summary>Why each option is or is not the proposed answer</summary>{review.rationales.map((reason, index) => <p key={index}><b>{String.fromCharCode(65 + index)}</b>. {reason}</p>)}</details></> : <div className={styles.rationaleBox}><strong>Metadata-only sample</strong><p>This record illustrates the bank lifecycle. Its question options have not been authored in this walkthrough, so it cannot be approved here. Use WAH-002 or WAH-004, or prepare the fixed sample set to try a full review.</p></div>}
+        <div className={styles.reviewActions}><label><span>Reviewer note</span><textarea value={reviewNote} onChange={(event) => setReviewNote(event.target.value)} placeholder="Record the evidence checked and your reason for this decision" rows={3}/><small>A reason is required. All decisions are illustrative and reset on reload.</small></label><div><button type="button" className={styles.returnButton} disabled={!review || !reviewNote.trim()} onClick={() => onDecision("Returned", reviewNote)}>Return for revision</button><button type="button" className={styles.approveButton} disabled={!review || !reviewNote.trim()} onClick={() => onDecision("Approved for pre-test", reviewNote)}>Approve for pre-test</button></div></div>
+      {item.decisions?.length ? <div className={styles.rationaleBox}><strong>Session decision history</strong>{item.decisions.map((decision, index) => <p key={`${decision.at}-${index}`}><b>{decision.status}</b> · Demo reviewer · {decision.at}<br/>{decision.note}</p>)}</div> : null}
       </section>
       <aside className={styles.reviewEvidence}>
-        <section><div className={styles.evidenceHeading}><span>Source evidence</span><b>Matched</b></div><strong>{item.source}</strong><blockquote>{review.extract}</blockquote><a href="https://www.hse.gov.uk/pubns/geis5.pdf" target="_blank" rel="noreferrer">Open public source ↗</a></section>
-        <section><div className={styles.evidenceHeading}><span>Automated checks</span><b>5 passed</b></div><ul><li><span>✓</span>One proposed answer</li><li><span>✓</span>Four distinct options</li><li><span>✓</span>Source and page attached</li><li><span>✓</span>Plain-language threshold</li><li><span>!</span>Distractor quality needs review</li></ul></section>
-        <section><div className={styles.evidenceHeading}><span>Question passport</span></div><dl><div><dt>Objective</dt><dd>Fragile surfaces</dd></div><div><dt>Method</dt><dd>Approved model route</dd></div><div><dt>Assessment owner</dt><dd>{item.owner}</dd></div><div><dt>HSE review</dt><dd>Pending</dd></div><div><dt>Publication</dt><dd>Never live</dd></div></dl></section>
+        <section><div className={styles.evidenceHeading}><span>Source evidence</span><b>Review needed</b></div><strong>{item.source}</strong><p><small>Source summary, paraphrased</small></p><p>{review?.extract ?? "Open the linked source to check the precise passage. This metadata-only sample has no checked passage."}</p><p><small>{item.source.includes("INDG401") ? "Revision 2 · January 2014" : item.source.includes("Reg") ? "Work at Height Regulations 2005 · regulation 9" : "GEIS5 · November 2012"}</small></p><a href={sourceUrl} target="_blank" rel="noreferrer">Open public source ↗</a></section>
+        <section><div className={styles.evidenceHeading}><span>Proposed checks</span><b>Illustrative</b></div><ul><li><span>i</span>One defensible proposed answer</li><li><span>i</span>Four distinct and plausible options</li><li><span>i</span>Source version and passage</li><li><span>i</span>Reading level and accessibility</li><li><span>!</span>Specialist validation not performed</li></ul></section>
+        <section><div className={styles.evidenceHeading}><span>Question passport</span></div><dl><div><dt>Objective</dt><dd>{item.topic}</dd></div><div><dt>Method</dt><dd>Authored demo fixture, no model</dd></div><div><dt>Assessment owner</dt><dd>{item.owner}</dd></div><div><dt>HSE review</dt><dd>Pending</dd></div><div><dt>Publication</dt><dd>Never live</dd></div></dl></section>
       </aside>
     </div>
   </>;
@@ -270,28 +369,29 @@ function Reporting({ items }: { items: QuestionItem[] }) {
     { label: "Draft", count: items.filter((item) => item.status === "Draft").length, colour: "var(--report-grey)" },
     { label: "In review", count: items.filter((item) => item.status === "Needs review" || item.status === "Returned").length, colour: "var(--report-amber)" },
     { label: "Pre-test ready", count: items.filter((item) => item.status === "Approved for pre-test").length, colour: "var(--report-blue)" },
+    { label: "Retired", count: items.filter((item) => item.status === "Retired").length, colour: "var(--report-grey)" },
     { label: "Analysed", count: items.filter((item) => item.status === "Analysed").length, colour: "var(--report-green)" },
   ];
   const max = Math.max(...statuses.map((status) => status.count), 1);
   return <>
-    <div className={styles.viewHeading}><div><span className={styles.viewEyebrow}>Management information</span><h2>Question performance</h2><p>Follow workflow health, reviewer effort and item evidence over time.</p></div><button type="button" className={styles.appSecondary}>Download report</button></div>
-    <div className={styles.reportStats}><div><span>Time to accepted set</span><strong>5h 40m</strong><small>Mock baseline: 8h 10m</small></div><div><span>Review effort per item</span><strong>18 min</strong><small>Includes returns and revisions</small></div><div><span>First-review acceptance</span><strong>62%</strong><small>8 of 13 reviewed items</small></div><div><span>Evidence completeness</span><strong>100%</strong><small>Required fields present</small></div></div>
+    <div className={styles.viewHeading}><div><span className={styles.viewEyebrow}>Management information</span><h2>Question performance</h2><p>Lifecycle totals use this session’s bank. The trial measures below are a separate illustrative reporting fixture, not measured demo performance.</p></div><span className={styles.prototypeNote}>Illustrative report</span></div>
+    <div className={styles.reportStats}><div><span>Time to accepted set</span><strong>5h 40m</strong><small>Mock baseline: 8h 10m</small></div><div><span>Review effort per item</span><strong>18 min</strong><small>Mock: 180 review minutes / 10 accepted</small></div><div><span>First-review acceptance</span><strong>62%</strong><small>8 of 13 reviewed items</small></div><div><span>Evidence completeness</span><strong>100%</strong><small>Mock: 13 complete / 13 reviewed</small></div></div>
     <section className={`${styles.appCard} ${styles.kpiCard}`}>
       <div className={styles.cardHeading}><div><span>Measurement method</span><h3>How the prototype would calculate value</h3></div></div>
       <div className={styles.kpiGrid}>
         <article><strong>Time to accepted set</strong><p>Approved brief to ten human-accepted questions, including every return and revision.</p><small>Workflow timestamps + active-time record</small></article>
         <article><strong>Review effort per item</strong><p>Total Assessment Technical Developer and HSE review minutes divided by accepted items.</p><small>Review events + recorded effort</small></article>
-        <article><strong>First-review acceptance</strong><p>Items accepted without return divided by all items receiving a first review.</p><small>Recorded review decisions</small></article>
-        <article><strong>Evidence completeness</strong><p>Records with source, version, location, rationale, named reviewer and decision divided by all records.</p><small>Question passport fields</small></article>
-        <article><strong>Cost per accepted item</strong><p>People and trial technology cost divided by questions that reach human acceptance.</p><small>Time record + agreed trial costs</small></article>
-        <article><strong>Pre-test performance</strong><p>Pearson analysis after 100 responses. Reported separately from authoring productivity.</p><small>Approved item version + test evidence</small></article>
+        <article><strong>First-review acceptance</strong><p>Items accepted without return divided by all items completing a first review, multiplied by 100. Report returns and rejections separately.</p><small>Recorded review decisions</small></article>
+        <article><strong>Evidence completeness</strong><p>Records with source, version, location, rationale, named reviewer and decision divided by all reviewed records, multiplied by 100.</p><small>Question passport fields</small></article>
+        <article><strong>Cost per accepted item</strong><p>People and trial technology cost divided by questions that reach human acceptance.</p><small>Include returns and rejections. No accepted items: report a failed trial without a per-item figure.</small></article>
+        <article><strong>Pre-test performance</strong><p>Pearson analysis after 100 responses. Reported separately from authoring productivity.</p><small>Approved item version + test evidence. Timing may extend beyond eight weeks.</small></article>
       </div>
     </section>
     <div className={styles.dashboardGrid}>
       <section className={styles.appCard}><div className={styles.cardHeading}><div><span>Workflow</span><h3>Items by lifecycle stage</h3></div></div><div className={styles.barChart}>{statuses.map((status) => <div key={status.label}><span>{status.label}</span><div><i style={{ width: `${Math.max((status.count / max) * 100, 8)}%`, background: status.colour }}/></div><b>{status.count}</b></div>)}</div></section>
-      <section className={styles.appCard}><div className={styles.cardHeading}><div><span>Review reasons</span><h3>Why questions are returned</h3></div></div><div className={styles.reasonList}><div><span>Distractor quality</span><b>38%</b></div><div><span>More than one defensible answer</span><b>25%</b></div><div><span>Source precision</span><b>19%</b></div><div><span>Reading level</span><b>12%</b></div><div><span>Other</span><b>6%</b></div></div></section>
+      <section className={styles.appCard}><div className={styles.cardHeading}><div><span>Review reasons</span><h3>Illustrative return reasons</h3></div></div><div className={styles.reasonList}><div><span>Distractor quality</span><b>38%</b></div><div><span>More than one defensible answer</span><b>25%</b></div><div><span>Source precision</span><b>19%</b></div><div><span>Reading level</span><b>12%</b></div><div><span>Other</span><b>6%</b></div></div></section>
     </div>
-    <section className={styles.appCard}><div className={styles.cardHeading}><div><span>Item evidence</span><h3>Analysed questions</h3></div><button type="button">View all evidence</button></div><div className={styles.performanceTable}><div><b>Question</b><b>Responses</b><b>Pass rate</b><b>Evidence</b><b>Next action</b></div>{items.filter((item) => item.status === "Analysed").map((item) => <div key={item.id}><span><strong>{item.code}</strong><small>{item.topic}</small></span><span>100</span><span>{item.passRate}%</span><span><em>Linked</em></span><span>{(item.passRate ?? 0) < 60 ? "Specialist review" : "Retain and monitor"}</span></div>)}</div></section>
+    <section className={styles.appCard}><div className={styles.cardHeading}><div><span>Item evidence</span><h3>Analysed questions</h3></div><span>Mock item results, no live test data</span></div><div className={styles.performanceTable}><div><b>Question</b><b>Responses</b><b>Pass rate</b><b>Evidence</b><b>Next action</b></div>{items.filter((item) => item.status === "Analysed").map((item) => <div key={item.id}><span><strong>{item.code}</strong><small>{item.topic}</small></span><span>100</span><span>{item.passRate}%</span><span><em>Linked</em></span><span>{"CITB / Pearson interpretation needed"}</span></div>)}</div></section>
     <p className={styles.reportDisclaimer}>All figures on this screen are mock data. A live service would receive approved item-analysis results from CITB&apos;s assessment process.</p>
   </>;
 }
