@@ -37,7 +37,9 @@ All `/demos` routes use a separate buyer-review layout without the main website 
 
 The hub and its three views require no account. They are unlisted in the main website navigation and the sitemap, and their page metadata sets `noindex, nofollow`. They remain accessible to anyone with the URL; these settings do not provide access control. Legacy `/demos/assessment` and `/demos/assessment-authoring` links permanently redirect to `/demos/citb-assessment`; `/demos/circular-value` redirects to `/demos/circular-economy`.
 
-The assessment demonstration is an interactive mock application. It starts with twelve illustrative question records and includes a guided source-and-intent form, a draft-generation action that adds three more records, a searchable and filterable question bank, a human-review screen, recorded return and approval actions, and lifecycle and item-performance reporting. The interface is responsive on mobile. State changes last for the current browser session and reset on reload.
+The assessment demonstration is an interactive mock application. It starts with twelve illustrative question records and includes a guided source-and-intent form, an action that loads three fixed draft records once per session, a searchable and filterable question bank, a human-review screen with a required reason and session history for authored examples, guarded return and approval actions, and lifecycle and item-performance reporting. The interface is responsive on mobile. State changes last for the current browser session and reset on reload.
+
+The source and intent controls are fixed for this walkthrough. Metadata-only examples cannot receive a review approval. Reporting separates session bank counts from a separate mock trial fixture. See [1 October review and acceptance](docs/citb-review-2026-10-01.md) for the local candidate changes and release boundary.
 
 The demonstration does not call a model, connect to Pearson, publish an item or use candidate data. The item-analysis values, people and operational measures are mock data. No item is approved CITB test content or released for live assessment use.
 
