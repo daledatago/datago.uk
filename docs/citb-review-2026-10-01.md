@@ -52,3 +52,9 @@ The owner requested these prototype changes. For this bounded release, commit on
 - Full repository lint and production/type build passed. Local checks covered Q2 return with an attributable session reason and timestamp, Q4 key D, and the new sample creation/review flow. Mobile review was inspected at 375px content width without horizontal overflow.
 
 Submission files and the tender portal are unchanged by this prototype release.
+
+## Gap repairs, 3 October 2026
+
+The demo now distinguishes the supplied HSE sources from supplier-added Regulation 9, which requires approval. A visible delivery-boundaries panel distinguishes fixed authored samples, browser review actions and sample KPIs from future model calls, source ingestion, identity, durable audit and Pearson integration. Reloading resets the illustrated assessment state. No historical model, prompt or run metadata has been invented. The response candidates are separately dated; no submitted document has been overwritten.
+
+Validation: full ESLint and Next build/typecheck passed. No new AI service, live source integration or production assurance is claimed.
