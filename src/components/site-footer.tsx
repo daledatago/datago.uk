@@ -11,6 +11,7 @@ export function SiteFooter() {
           <p className="footer-muted">
             Registered office: {site.legal.registeredOffice}
           </p>
+          <p className="footer-muted">© {new Date().getUTCFullYear()} {site.legalName}</p>
           <a className="footer-email" href={`mailto:${site.email}`}>
             {site.email}
           </a>

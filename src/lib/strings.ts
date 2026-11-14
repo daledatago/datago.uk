@@ -9,7 +9,7 @@ export const site = {
   url: "https://datago.uk",
   email: "info@datago.uk",
   description:
-    "DataGo Ltd is the legal company, Databricks partner, and contracting entity behind Bridgly. DataGo builds governed AI systems for organisations and routes product evaluation to Bridgly, an application being developed for governed, evidence-backed human and AI-assisted work.",
+    "UK data and AI consultancy for public-sector and regulated organisations. Databricks and Microsoft Fabric, analytics, AI, secure operations and Bridgly.",
   assets: {
     hero: "/assets/datago-operating-intelligence.jpg",
   },
@@ -17,7 +17,7 @@ export const site = {
     name: "Bridgly",
     url: "https://bridgly.ai",
     attribution:
-      "Bridgly is an application being developed by DataGo Ltd, founded on Databricks.",
+      "Bridgly is DataGo’s governance control plane for AI agents.",
     pages: {
       aiImpact: "https://bridgly.ai/ai-impact",
       connectors: "https://bridgly.ai/connectors",
@@ -35,16 +35,17 @@ export const site = {
 
 export const navItems = [
   { href: "/", label: "Home" },
+  { href: "/services", label: "Services" },
+  { href: "/public-sector", label: "Public sector" },
+  { href: "/work", label: "Work" },
   { href: "/bridgly", label: "Bridgly" },
-  { href: "/approach", label: "Approach" },
-  { href: "/insights", label: "Insights" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
 
 export const footerLinks = [
   { href: "/bridgly", label: "Bridgly" },
-  { href: "/insights", label: "Insights" },
+  { href: "/accessibility", label: "Accessibility statement" },
   { href: "/about", label: "About" },
   { href: "/privacy", label: "Privacy" },
   { href: "/terms", label: "Terms" },

@@ -23,26 +23,12 @@ export type SearchRoute = PageMetadata & {
   changeFrequency: ChangeFrequency;
 };
 
-export const SEARCH_KEYWORDS = [
-  "DataGo",
-  "DataGo Ltd",
-  "Bridgly",
-  "Databricks partner",
-  "governed AI systems",
-  "enterprise AI readiness",
-  "AI impact measurement",
-  "organisational intelligence",
-  "AI governance",
-  "AI transformation",
-  "AI adoption visibility",
-  "measurable AI outcomes",
-  "product-led AI transformation",
-];
+export const SEARCH_KEYWORDS = ["DataGo", "Databricks", "Microsoft Fabric", "Data consultancy", "AI governance", "Bridgly"];
 
 export const PUBLIC_SEARCH_ROUTES = [
   {
     path: "/",
-    title: "Governed AI Systems",
+    title: "DataGo Ltd, UK data and AI consultancy",
     description: site.description,
     priority: 1,
     changeFrequency: "weekly",
@@ -53,29 +39,9 @@ export const PUBLIC_SEARCH_ROUTES = [
     path: "/bridgly",
     title: "Bridgly",
     description:
-      "Bridgly is an application being developed by DataGo Ltd for governed, evidence-backed human and AI-assisted work, founded on Databricks.",
+      "Bridgly is DataGo’s governance control plane for AI agents.",
     priority: 0.92,
     changeFrequency: "weekly",
-    index: true,
-    inSitemap: true,
-  },
-  {
-    path: "/approach",
-    title: "Approach",
-    description:
-      "DataGo's approach to governed AI transformation connects enterprise AI readiness, governance, adoption visibility, and impact measurement.",
-    priority: 0.86,
-    changeFrequency: "monthly",
-    index: true,
-    inSitemap: true,
-  },
-  {
-    path: "/insights",
-    title: "Insights",
-    description:
-      "Company-level thinking from DataGo on governed AI systems, enterprise AI readiness, AI governance, adoption visibility, and measurable outcomes.",
-    priority: 0.82,
-    changeFrequency: "monthly",
     index: true,
     inSitemap: true,
   },
@@ -83,17 +49,21 @@ export const PUBLIC_SEARCH_ROUTES = [
     path: "/about",
     title: "About",
     description:
-      "DataGo Ltd is the legal company, Databricks partner, and contracting entity behind Bridgly, providing company trust and product thesis context.",
+      "Meet Dale Harrison, founder of DataGo Ltd, and find our company details.",
     priority: 0.8,
     changeFrequency: "monthly",
     index: true,
     inSitemap: true,
   },
+  { path: "/services", title: "Services", description: "DataGo consultancy services.", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/public-sector", title: "Public sector", description: "Working with DataGo in the public sector.", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/work", title: "Work", description: "Ask DataGo about relevant experience.", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/accessibility", title: "Accessibility statement", description: "Accessibility and reporting problems on datago.uk.", priority: 0.7, changeFrequency: "monthly" },
   {
     path: "/contact",
     title: "Contact",
     description:
-      "Contact DataGo Ltd at info@datago.uk for corporate enquiries, contracting matters, Databricks partnership conversations, and Bridgly discussions.",
+      "Contact DataGo Ltd about data and AI consultancy, procurement or Bridgly.",
     priority: 0.72,
     changeFrequency: "monthly",
     index: true,
@@ -129,7 +99,7 @@ export const PUBLIC_SEARCH_ROUTES = [
     index: true,
     inSitemap: true,
   },
-] as const satisfies readonly SearchRoute[];
+] satisfies readonly SearchRoute[];
 
 export function absoluteUrl(path = "/") {
   if (path === "/") {
@@ -140,9 +110,7 @@ export function absoluteUrl(path = "/") {
 }
 
 function titleWithBrand(title: string) {
-  return title === "Governed AI Systems"
-    ? `${site.name} | Governed AI systems for organisations`
-    : `${title} | ${site.name}`;
+  return title.startsWith("DataGo Ltd") ? title : `${title} | ${site.name}`;
 }
 
 export function pageMetadata({
@@ -155,7 +123,7 @@ export function pageMetadata({
   const url = absoluteUrl(path);
 
   return {
-    title,
+    title: path === "/" ? { absolute: brandedTitle } : title,
     description,
     alternates: {
       canonical: url,
@@ -171,10 +139,10 @@ export function pageMetadata({
       siteName: site.name,
       images: [
         {
-          url: site.assets.hero,
-          width: 1672,
-          height: 941,
-          alt: "Abstract operating intelligence network for DataGo.",
+          url: "/assets/datago-social.png",
+          width: 1200,
+          height: 630,
+          alt: "DataGo company logo",
         },
       ],
       type: "website",
@@ -183,7 +151,7 @@ export function pageMetadata({
       card: "summary_large_image",
       title: brandedTitle,
       description,
-      images: [site.assets.hero],
+      images: ["/assets/datago-social.png"],
     },
   };
 }
@@ -257,7 +225,7 @@ export function pageJsonLd({
     },
     primaryImageOfPage: {
       "@type": "ImageObject",
-      url: absoluteUrl(site.assets.hero),
+      url: absoluteUrl("/assets/datago-social.png"),
     },
     inLanguage: "en-GB",
   };
@@ -312,7 +280,7 @@ export function rootJsonLd() {
   const datagoId = `${site.url}/#organization`;
   const websiteId = `${site.url}/#website`;
   const bridglyId = `${site.bridgly.url}/#software`;
-  const logoUrl = absoluteUrl("/assets/datago-mark.svg");
+  const logoUrl = absoluteUrl("/assets/datago-wordmark.png");
 
   return {
     "@context": "https://schema.org",
@@ -330,7 +298,9 @@ export function rootJsonLd() {
           url: logoUrl,
         },
         image: logoUrl,
+        sameAs: ["https://www.linkedin.com/company/datago-uk/"],
         foundingLocation: "United Kingdom",
+        founder: { "@type": "Person", name: "Dale Harrison" },
         identifier: {
           "@type": "PropertyValue",
           propertyID: "UK Companies House",
@@ -344,17 +314,7 @@ export function rootJsonLd() {
           postalCode: "RG14 1QL",
           addressCountry: "GB",
         },
-        knowsAbout: [
-          "governed AI systems",
-          "Databricks partner",
-          "enterprise AI readiness",
-          "AI impact measurement",
-          "organisational intelligence",
-          "AI governance",
-          "AI transformation",
-          "AI adoption visibility",
-          "measurable AI outcomes",
-        ],
+        knowsAbout: SEARCH_KEYWORDS,
         brand: {
           "@id": bridglyId,
         },
@@ -391,24 +351,17 @@ export function rootJsonLd() {
         url: site.bridgly.url,
         applicationCategory: "BusinessApplication",
         applicationSubCategory:
-          "Application for governed, evidence-backed human and AI-assisted work",
+          "Governance control plane for AI agents",
         operatingSystem: "Web",
         description:
-          "Bridgly is an application being developed by DataGo Ltd for governed, evidence-backed human and AI-assisted work, founded on Databricks.",
+          "Bridgly is DataGo’s governance control plane for AI agents.",
         creator: {
           "@id": datagoId,
         },
         publisher: {
           "@id": datagoId,
         },
-        featureList: [
-          "AI adoption visibility",
-          "AI impact measurement",
-          "Enterprise AI governance",
-          "Connectors for work and AI systems",
-          "Permission-aware organisational context",
-          "Measurable improvement loops",
-        ],
+        featureList: ["Signed rules", "Enforcement at connected points", "Decision records"],
         mainEntityOfPage: site.bridgly.url,
       },
     ],
