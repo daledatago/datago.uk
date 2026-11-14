@@ -21,7 +21,7 @@ export default function ContactPage() {
             { name: "Home", path: "/" },
             { name: "Contact", path: "/contact" },
           ],
-          about: ["DataGo", "Bridgly", "enterprise AI readiness"],
+          about: ["DataGo", "Bridgly"],
           mainEntity: {
             "@type": "Organization",
             "@id": `${site.url}/#organization`,
@@ -40,7 +40,7 @@ export default function ContactPage() {
       <PageIntro
         eyebrow={contactPage.eyebrow}
         title={contactPage.title}
-        body={contactPage.body}
+        body="Contact us about data and AI consultancy, supplier queries or Bridgly."
       >
         <ButtonLink href={`mailto:${site.email}`}>{contactPage.primary}</ButtonLink>
       </PageIntro>
@@ -51,7 +51,7 @@ export default function ContactPage() {
             <span>Corporate email</span>
             <a href={`mailto:${site.email}`}>{site.email}</a>
           </div>
-          <p>{contactPage.note}</p>
+          <p>DataGo Ltd, company number {site.legal.companyNumber}. Registered office: {site.legal.registeredOffice}.</p>
         </div>
       </section>
 
@@ -59,8 +59,8 @@ export default function ContactPage() {
         <div className="site-shell two-column two-column--center">
           <SectionHeading
             eyebrow="Product route"
-            title={contactPage.route.title}
-            body={contactPage.route.body}
+            title="Bridgly enquiries"
+            body="Visit bridgly.ai for product details and demos."
           />
           <ButtonLink href={contactPage.route.href} variant="dark">
             {contactPage.route.cta}

@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   creator: site.name,
   publisher: site.legalName,
   title: {
-    default: `${site.name} | Governed AI systems for organisations`,
+    default: `${site.name} | UK data and AI consultancy`,
     template: `%s | ${site.name}`,
   },
   description: site.description,
@@ -47,22 +47,22 @@ export const metadata: Metadata = {
     type: "website",
     url: site.url,
     siteName: site.name,
-    title: `${site.name} | Governed AI systems for organisations`,
+    title: `${site.name} | Data and AI consultancy`,
     description: site.description,
     images: [
       {
-        url: site.assets.hero,
-        width: 1672,
-        height: 941,
-        alt: "Abstract operating intelligence network for DataGo.",
+        url: "/assets/datago-social.png",
+        width: 1200,
+        height: 630,
+        alt: "DataGo company logo",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} | Governed AI systems for organisations`,
+    title: `${site.name} | Data and AI consultancy`,
     description: site.description,
-    images: [site.assets.hero],
+    images: ["/assets/datago-social.png"],
   },
 };
 
@@ -73,7 +73,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="en-GB"
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
       <head>
