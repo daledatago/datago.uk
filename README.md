@@ -1,23 +1,45 @@
 # DataGo Website
 
-Corporate website for DataGo, the company-level site for DataGo Ltd and the trust/thesis layer behind Bridgly.
+The website for DataGo Ltd, a UK data and AI consultancy and the company behind Bridgly.
 
-The public site stays deliberately company-level:
+Pages:
 
-- Home
-- Bridgly
-- Approach
-- Insights
+- Home: the hero message, the structure map, the "If you are…" switcher, the five focus areas, accelerators, how we deliver, who we work with, products, working with the public sector, trust and contact
+- Five service pages on one template: `/services/[slug]`
+- Bridgly: a short page that links to bridgly.ai
 - About
-- Lab
-- Privacy
-- Terms
-- Contact
+- Contact, with the enquiry form
+- Privacy, Terms and the Accessibility statement
 
-Core company-site copy lives in `src/lib/strings.ts`. Reusable layout pieces live in `src/components/`.
-Company-site search metadata, canonical URLs, JSON-LD, and sitemap routes live in `src/lib/metadata.ts`. Demonstration copy and route metadata live in `src/app/demos/`.
+`/approach`, `/insights` and `/lab` were retired on 16 November 2026 and redirect to Home.
 
-Brand handoff files from `Datago Devkit.zip` live in `docs/brand/`. The production site adapts the proposed cobalt palette, interlocking-square mark, D-tile favicon direction, and Operating Mesh hero graphic from that kit.
+All copy lives in `src/lib/strings.ts`; components carry no English of their own. Layout pieces live in `src/components/`. Search metadata, canonical URLs, JSON-LD and sitemap routes live in `src/lib/metadata.ts`. Demonstration copy and route metadata live in `src/app/demos/`.
+
+### Claims rules
+
+Nothing on the site is invented. A fact the owner has not yet confirmed is a `confirms` entry in `strings.ts` and shows on the page as a visible `[CONFIRM: …]` tag. Replace the entry with the fact, or remove the tile. Researched examples appear only as "typical needs", never as clients or delivered work. Bridgly is described only with the approved claims in `site.bridgly`.
+
+### Look and feel
+
+The "Cobalt Grid" tokens are at the top of `src/app/globals.css`, with light and dark themes. Type is Archivo, Public Sans and Source Code Pro, self-hosted through `next/font/google`. Diagram labels are HTML text at 13px or more; no text sits inside a scaled SVG. All motion stops under reduced motion.
+
+Brand handoff files from `Datago Devkit.zip` live in `docs/brand/`. The record of the November 2026 refresh, with acceptance values, measurements and screenshots, is in `docs/refresh-2026-11-16/`.
+
+## Contact form
+
+The form posts to the route handler `src/app/api/contact/route.ts`, which sends one email through Resend with the enquirer as reply-to. Nothing is stored. Spam checks: a honeypot field, a minimum time to submit, Cloudflare Turnstile verified on the server, and a basic rate limit per IP address.
+
+Set these five variables in Vercel (names are in `.env.example`; never commit values):
+
+```
+RESEND_API_KEY
+CONTACT_TO_EMAIL
+CONTACT_FROM_EMAIL
+TURNSTILE_SECRET_KEY
+NEXT_PUBLIC_TURNSTILE_SITE_KEY
+```
+
+Until all five are set, the form says plainly that it is not yet connected and offers the email address. `NEXT_PUBLIC_TURNSTILE_SITE_KEY` is read at build time, so redeploy after setting them.
 
 ## Getting Started
 
@@ -49,23 +71,18 @@ The calculator updates locally from the selected assumptions. Neither demonstrat
 
 ```bash
 npm run lint
+npm run typecheck
+npm test
 npm run build
 ```
 
 ## Production Notes
 
-The first production draft keeps the site mailto-first and uses the public Companies House record for statutory company details.
+Statutory company details come from the public Companies House record and appear in one place: the footer legal line on every page.
 
-Positioning split:
-
-- DataGo is the company trust layer, thesis, and governed AI product studio
-- Bridgly is the flagship platform and product destination for organisational intelligence, AI adoption visibility, governance, connectors, and measurable AI outcomes
-- Agents & Pencils is retained only as an optional lab/archive
-
-- DataGo Ltd company number: 14751587
+- DataGo Ltd, registered in England and Wales, company number 14751587
 - Registered office: 2 Old Bath Road, Newbury, Berkshire, England, RG14 1QL
 - Contact: info@datago.uk
-- Agents & Pencils is presented as a DataGo lab/archive, not the enterprise-facing company brand
 
 The production domain should be `datago.uk`, with `www.datago.uk` redirected to the apex domain.
 
@@ -73,5 +90,7 @@ Search readiness:
 
 - `robots.txt` allows normal search crawlers plus OpenAI's OAI-SearchBot, ChatGPT-User, and GPTBot, matching Bridgly's current crawler posture.
 - `sitemap.xml` lists the canonical public routes.
-- `llms.txt` summarises DataGo, Bridgly, the company/product relationship, and product routing.
+- `llms.txt` summarises DataGo, its five areas of work and Bridgly.
 - Root JSON-LD describes DataGo, datago.uk, and Bridgly with Bridgly product references pointing to `https://bridgly.ai`.
+
+A `Content-Security-Policy` header is set in `next.config.ts`. The only third-party host it allows is `challenges.cloudflare.com`, for the contact form's security check.

@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { ButtonLink } from "@/components/button-link";
+import Link from "next/link";
+import { ContactSection } from "@/components/contact-section";
 import { JsonLdScript } from "@/components/json-ld-script";
-import { PageIntro } from "@/components/page-intro";
-import { SectionHeading } from "@/components/section-heading";
 import { pageJsonLd, routeMetadata } from "@/lib/metadata";
-import { contactPage, site } from "@/lib/strings";
+import { contact, site, ui } from "@/lib/strings";
 
 export const metadata: Metadata = routeMetadata("/contact");
 
@@ -14,14 +13,13 @@ export default function ContactPage() {
       <JsonLdScript
         data={pageJsonLd({
           path: "/contact",
-          name: "Contact DataGo",
+          name: `${contact.title} | ${site.name}`,
           description: metadata.description as string,
           type: "ContactPage",
           breadcrumbs: [
-            { name: "Home", path: "/" },
-            { name: "Contact", path: "/contact" },
+            { name: ui.home, path: "/" },
+            { name: contact.pageEyebrow, path: "/contact" },
           ],
-          about: ["DataGo", "Bridgly", "enterprise AI readiness"],
           mainEntity: {
             "@type": "Organization",
             "@id": `${site.url}/#organization`,
@@ -36,36 +34,15 @@ export default function ContactPage() {
           },
         })}
       />
-
-      <PageIntro
-        eyebrow={contactPage.eyebrow}
-        title={contactPage.title}
-        body={contactPage.body}
-      >
-        <ButtonLink href={`mailto:${site.email}`}>{contactPage.primary}</ButtonLink>
-      </PageIntro>
-
-      <section className="content-band content-band--light">
-        <div className="site-shell contact-panel">
-          <div>
-            <span>Corporate email</span>
-            <a href={`mailto:${site.email}`}>{site.email}</a>
-          </div>
-          <p>{contactPage.note}</p>
+      <section aria-labelledby="contact-h" className="page-head" id="contact">
+        <div className="shell">
+          <nav aria-label={ui.breadcrumb} className="crumbs">
+            <Link href="/">{ui.home}</Link>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">{contact.pageEyebrow}</span>
+          </nav>
         </div>
-      </section>
-
-      <section className="content-band">
-        <div className="site-shell two-column two-column--center">
-          <SectionHeading
-            eyebrow="Product route"
-            title={contactPage.route.title}
-            body={contactPage.route.body}
-          />
-          <ButtonLink href={contactPage.route.href} variant="dark">
-            {contactPage.route.cta}
-          </ButtonLink>
-        </div>
+        <ContactSection eyebrow={contact.pageEyebrow} heading="h1" />
       </section>
     </>
   );

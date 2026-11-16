@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { BridglyFlagshipShowcase } from "@/components/bridgly-flagship-showcase";
-import { ButtonLink } from "@/components/button-link";
-import { InfoCard } from "@/components/info-card";
+import { Arrow } from "@/components/arrow";
+import { Confirms } from "@/components/confirm";
 import { JsonLdScript } from "@/components/json-ld-script";
-import { SectionHeading } from "@/components/section-heading";
-import { faqJsonLd, pageJsonLd, routeMetadata } from "@/lib/metadata";
-import { bridglyPage, site } from "@/lib/strings";
+import { OutcomeDemo } from "@/components/outcome-demo";
+import { PageHead } from "@/components/page-head";
+import { pageJsonLd, routeMetadata } from "@/lib/metadata";
+import { bridglyPage, site, ui } from "@/lib/strings";
 
 export const metadata: Metadata = routeMetadata("/bridgly");
 
@@ -15,93 +15,71 @@ export default function BridglyPage() {
       <JsonLdScript
         data={pageJsonLd({
           path: "/bridgly",
-          name: "Bridgly | DataGo",
+          name: `${bridglyPage.title} | ${site.name}`,
           description: metadata.description as string,
           breadcrumbs: [
-            { name: "Home", path: "/" },
-            { name: "Bridgly", path: "/bridgly" },
+            { name: ui.home, path: "/" },
+            { name: bridglyPage.title, path: "/bridgly" },
           ],
-          about: [
-            "Bridgly",
-            "AI adoption visibility",
-            "AI governance",
-            "AI impact measurement",
-            "organisational intelligence",
-          ],
-          mainEntity: {
-            "@id": `${site.bridgly.url}/#software`,
-          },
+          about: [site.bridgly.name],
+          mainEntity: { "@id": `${site.bridgly.url}/#software` },
         })}
       />
-      <JsonLdScript data={faqJsonLd(bridglyPage.answers)} />
 
-      <BridglyFlagshipShowcase
-        hero={{
-          eyebrow: bridglyPage.eyebrow,
-          title: bridglyPage.title,
-          accent: bridglyPage.titleAccent,
-          body: bridglyPage.body,
-          note: bridglyPage.note,
-          primaryCta: bridglyPage.cta,
-          secondaryCta: bridglyPage.secondaryCta,
-        }}
-        loop={bridglyPage.loop}
-        loopLabel={bridglyPage.loopLabel}
-        promise={bridglyPage.promise}
-        supporting={bridglyPage.supporting}
-      />
+      <PageHead
+        body={bridglyPage.body}
+        crumb={bridglyPage.title}
+        eyebrow={bridglyPage.eyebrow}
+        title={bridglyPage.title}
+      >
+        <div className="hero__cta">
+          <a className="btn" href={site.bridgly.url} rel="noopener">
+            {site.bridgly.cta} <Arrow />
+          </a>
+        </div>
+        <p className="more">
+          <Confirms items={bridglyPage.confirms} />
+        </p>
+      </PageHead>
 
-      <section className="content-band content-band--light">
-        <div className="site-shell">
-          <SectionHeading
-            eyebrow="Product detail lives on Bridgly"
-            title="Route product intent to bridgly.ai."
-            body="This page keeps the DataGo-to-Bridgly relationship clear. Detailed feature, connector, governance, impact, and demo content belongs on Bridgly."
-          />
-          <div className="card-grid card-grid--three">
-            {bridglyPage.routes.map((item) => (
-              <article className="info-card info-card--linked" key={item.title}>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-                <ButtonLink href={item.href} variant="secondary">
-                  Open on Bridgly
-                </ButtonLink>
-              </article>
-            ))}
-          </div>
+      <section aria-labelledby="what-h" className="section section--alt">
+        <div className="shell">
+          <article className="card product" data-reveal="">
+            <h2 className="vh" id="what-h">
+              {bridglyPage.whatTitle}
+            </h2>
+            <p className="product__line">{site.bridgly.line}</p>
+            <ul className="product__list">
+              {site.bridgly.claims.map((claim) => (
+                <li key={claim}>{claim}</li>
+              ))}
+            </ul>
+            <OutcomeDemo
+              groupLabel={bridglyPage.demo.groupLabel}
+              note={bridglyPage.demo.note}
+              options={bridglyPage.demo.options}
+            />
+          </article>
         </div>
       </section>
 
-      <section className="content-band">
-        <div className="site-shell two-column">
-          <SectionHeading
-            title={bridglyPage.relationship.title}
-            body={bridglyPage.relationship.body}
-          />
-          <div className="identity-stack">
-            <p>DataGo</p>
-            <span>Company</span>
-            <p>Bridgly</p>
-            <span>Flagship product</span>
+      <section className="section">
+        <div className="shell duo">
+          <div className="tile" data-reveal="">
+            <h2 className="org__title">{bridglyPage.moreTitle}</h2>
+            <p>{bridglyPage.more}</p>
+            <p>
+              <a className="textlink" href={site.bridgly.url} rel="noopener">
+                {site.bridgly.cta}&nbsp;<Arrow />
+              </a>
+            </p>
+            <p>
+              <Confirms items={bridglyPage.bridglyConfirms} />
+            </p>
           </div>
-        </div>
-      </section>
-
-      <section className="content-band content-band--light">
-        <div className="site-shell">
-          <SectionHeading
-            eyebrow="Answer-ready summary"
-            title="Quick answers about Bridgly"
-            body="These concise answers reinforce what Bridgly is, how it supports enterprise AI readiness, and where buyers should go next."
-          />
-          <div className="card-grid card-grid--three">
-            {bridglyPage.answers.map((item) => (
-              <InfoCard
-                body={item.answer}
-                key={item.question}
-                title={item.question}
-              />
-            ))}
+          <div className="tile" data-reveal="">
+            <h2 className="org__title">{bridglyPage.companyTitle}</h2>
+            <p>{bridglyPage.company}</p>
           </div>
         </div>
       </section>

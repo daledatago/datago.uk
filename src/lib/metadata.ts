@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { site } from "@/lib/strings";
+import { services, site } from "@/lib/strings";
 
 type ChangeFrequency =
   | "always"
@@ -26,55 +26,47 @@ export type SearchRoute = PageMetadata & {
 export const SEARCH_KEYWORDS = [
   "DataGo",
   "DataGo Ltd",
+  "UK data and AI consultancy",
+  "practical AI applications",
+  "analytics and decision support",
+  "data governance and assurance",
+  "data platforms and integration",
+  "secure production delivery",
+  "Azure",
+  "Databricks",
+  "public sector data and AI",
   "Bridgly",
-  "Databricks partner",
-  "governed AI systems",
-  "enterprise AI readiness",
-  "AI impact measurement",
-  "organisational intelligence",
-  "AI governance",
-  "AI transformation",
-  "AI adoption visibility",
-  "measurable AI outcomes",
-  "product-led AI transformation",
 ];
 
-export const PUBLIC_SEARCH_ROUTES = [
+const HOME_TITLE = "Data, governance and AI delivery";
+
+export const PUBLIC_SEARCH_ROUTES: readonly SearchRoute[] = [
   {
     path: "/",
-    title: "Governed AI Systems",
+    title: HOME_TITLE,
     description: site.description,
     priority: 1,
     changeFrequency: "weekly",
     index: true,
     inSitemap: true,
   },
+  ...services.map(
+    (service): SearchRoute => ({
+      path: `/services/${service.slug}`,
+      title: service.name,
+      description: service.page.description,
+      priority: 0.9,
+      changeFrequency: "monthly",
+      index: true,
+      inSitemap: true,
+    }),
+  ),
   {
     path: "/bridgly",
     title: "Bridgly",
     description:
-      "Bridgly is an application being developed by DataGo Ltd for governed, evidence-backed human and AI-assisted work, founded on Databricks.",
-    priority: 0.92,
-    changeFrequency: "weekly",
-    index: true,
-    inSitemap: true,
-  },
-  {
-    path: "/approach",
-    title: "Approach",
-    description:
-      "DataGo's approach to governed AI transformation connects enterprise AI readiness, governance, adoption visibility, and impact measurement.",
-    priority: 0.86,
-    changeFrequency: "monthly",
-    index: true,
-    inSitemap: true,
-  },
-  {
-    path: "/insights",
-    title: "Insights",
-    description:
-      "Company-level thinking from DataGo on governed AI systems, enterprise AI readiness, AI governance, adoption visibility, and measurable outcomes.",
-    priority: 0.82,
+      "Bridgly is a DataGo product for governing AI agents. People decide. Agents act within the rules you sign. Bridgly proves both.",
+    priority: 0.8,
     changeFrequency: "monthly",
     index: true,
     inSitemap: true,
@@ -83,8 +75,8 @@ export const PUBLIC_SEARCH_ROUTES = [
     path: "/about",
     title: "About",
     description:
-      "DataGo Ltd is the legal company, Databricks partner, and contracting entity behind Bridgly, providing company trust and product thesis context.",
-    priority: 0.8,
+      "DataGo Ltd is a UK data and AI consultancy and technical delivery partner, and the company behind Bridgly.",
+    priority: 0.7,
     changeFrequency: "monthly",
     index: true,
     inSitemap: true,
@@ -93,28 +85,28 @@ export const PUBLIC_SEARCH_ROUTES = [
     path: "/contact",
     title: "Contact",
     description:
-      "Contact DataGo Ltd at info@datago.uk for corporate enquiries, contracting matters, Databricks partnership conversations, and Bridgly discussions.",
-    priority: 0.72,
+      "Discuss a project with DataGo. Tell us the problem you are trying to solve, or about a requirement you are preparing.",
+    priority: 0.7,
     changeFrequency: "monthly",
     index: true,
     inSitemap: true,
   },
   {
-    path: "/lab",
-    title: "Lab/archive",
+    path: "/accessibility",
+    title: "Accessibility statement",
     description:
-      "Agents & Pencils is a quiet DataGo lab/archive for agent-native product ideas; DataGo and Bridgly are the primary enterprise-facing path.",
-    priority: 0.38,
+      "How accessible datago.uk is, how it was tested, what has not yet been tested and how to tell us about a problem.",
+    priority: 0.3,
     changeFrequency: "yearly",
-    index: false,
-    inSitemap: false,
+    index: true,
+    inSitemap: true,
   },
   {
     path: "/privacy",
     title: "Privacy",
     description:
-      "Corporate website privacy notice for datago.uk, operated by DataGo Ltd as the provider company behind Bridgly.",
-    priority: 0.32,
+      "How DataGo Ltd handles personal data on datago.uk, including the contact form.",
+    priority: 0.3,
     changeFrequency: "yearly",
     index: true,
     inSitemap: true,
@@ -122,14 +114,13 @@ export const PUBLIC_SEARCH_ROUTES = [
   {
     path: "/terms",
     title: "Terms",
-    description:
-      "Corporate website terms of use for datago.uk, operated by DataGo Ltd as the provider company behind Bridgly.",
-    priority: 0.32,
+    description: "Terms of use for the datago.uk website, run by DataGo Ltd.",
+    priority: 0.3,
     changeFrequency: "yearly",
     index: true,
     inSitemap: true,
   },
-] as const satisfies readonly SearchRoute[];
+];
 
 export function absoluteUrl(path = "/") {
   if (path === "/") {
@@ -140,10 +131,12 @@ export function absoluteUrl(path = "/") {
 }
 
 function titleWithBrand(title: string) {
-  return title === "Governed AI Systems"
-    ? `${site.name} | Governed AI systems for organisations`
+  return title === HOME_TITLE
+    ? `${site.name} | ${HOME_TITLE}`
     : `${title} | ${site.name}`;
 }
+
+export const homeTitle = `${site.name} | ${HOME_TITLE}`;
 
 export function pageMetadata({
   title,
@@ -174,7 +167,7 @@ export function pageMetadata({
           url: site.assets.hero,
           width: 1672,
           height: 941,
-          alt: "Abstract operating intelligence network for DataGo.",
+          alt: "DataGo",
         },
       ],
       type: "website",
@@ -287,23 +280,6 @@ export function pageJsonLd({
   };
 }
 
-export function faqJsonLd(
-  questions: Array<{ question: string; answer: string }>,
-) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: questions.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
-}
-
 export function jsonLd(data: unknown) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
@@ -345,15 +321,11 @@ export function rootJsonLd() {
           addressCountry: "GB",
         },
         knowsAbout: [
-          "governed AI systems",
-          "Databricks partner",
-          "enterprise AI readiness",
-          "AI impact measurement",
-          "organisational intelligence",
-          "AI governance",
-          "AI transformation",
-          "AI adoption visibility",
-          "measurable AI outcomes",
+          "practical AI applications",
+          "analytics and decision support",
+          "data governance and assurance",
+          "data platforms and integration",
+          "secure production delivery",
         ],
         brand: {
           "@id": bridglyId,
@@ -390,25 +362,14 @@ export function rootJsonLd() {
         name: site.bridgly.name,
         url: site.bridgly.url,
         applicationCategory: "BusinessApplication",
-        applicationSubCategory:
-          "Application for governed, evidence-backed human and AI-assisted work",
         operatingSystem: "Web",
-        description:
-          "Bridgly is an application being developed by DataGo Ltd for governed, evidence-backed human and AI-assisted work, founded on Databricks.",
+        description: site.bridgly.line,
         creator: {
           "@id": datagoId,
         },
         publisher: {
           "@id": datagoId,
         },
-        featureList: [
-          "AI adoption visibility",
-          "AI impact measurement",
-          "Enterprise AI governance",
-          "Connectors for work and AI systems",
-          "Permission-aware organisational context",
-          "Measurable improvement loops",
-        ],
         mainEntityOfPage: site.bridgly.url,
       },
     ],

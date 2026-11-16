@@ -1,22 +1,39 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import type { ReactNode } from "react";
+import { RevealObserver } from "@/components/reveal-observer";
 
-export function SiteChrome({ children }: { children: React.ReactNode }) {
+type SiteChromeProps = {
+  children: ReactNode;
+  header: ReactNode;
+  footer: ReactNode;
+  skipLabel: string;
+};
+
+export function SiteChrome({ children, header, footer, skipLabel }: SiteChromeProps) {
   const pathname = usePathname();
   const isDemo = pathname === "/demos" || pathname.startsWith("/demos/");
 
   if (isDemo) {
-    return <main>{children}</main>;
+    return (
+      <div className="demo-root" data-theme="light">
+        <main>{children}</main>
+      </div>
+    );
   }
 
   return (
-    <>
-      <SiteHeader />
-      <main>{children}</main>
-      <SiteFooter />
-    </>
+    <div className="site">
+      <a className="skip" href="#main">
+        {skipLabel}
+      </a>
+      {header}
+      <main id="main" tabIndex={-1}>
+        {children}
+      </main>
+      {footer}
+      <RevealObserver key={pathname} />
+    </div>
   );
 }
