@@ -49,13 +49,13 @@ const nextConfig: NextConfig = {
       ...Object.entries(movedServices).map(([from, to]) => ({
         source: `/services/${from}`,
         destination: `/services#${to}`,
-        permanent: false,
+        permanent: true,
       })),
-      // Bridgly has its own site. There is no Bridgly page here.
-      { source: "/bridgly", destination: "https://bridgly.ai", permanent: false },
       // Insights and Lab described Bridgly in retired terms and were retired.
       { source: "/insights", destination: "/", permanent: false },
       { source: "/lab", destination: "/", permanent: false },
+      // Bridgly has its own site. The short page that stood here is retired.
+      { source: "/bridgly", destination: "https://bridgly.ai", permanent: true },
     ];
   },
 };

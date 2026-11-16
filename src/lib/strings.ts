@@ -103,7 +103,7 @@ export const services: Service[] = [
     changes: [
       "One place to ask, across everything a person is allowed to see.",
       "Every answer shows where it came from, and says so when the sources fall short.",
-      "A person approves anything that matters.",
+      "A person stays in the loop for anything that matters.",
     ],
   },
   {
@@ -128,12 +128,12 @@ export const services: Service[] = [
     layer: 2,
     name: "Governance and assurance",
     short: "Governance",
-    outcome: "You know who owns what, who approved it and why, for data and for AI.",
-    how: "Ownership, permissions, human approval and a record, designed in from the start.",
+    outcome: "AI and data you can trust and explain, with controls built in.",
+    how: "Access controls, human review and a clear record, designed in from the start.",
     problem:
-      "Nobody can say who owns the data, who may see it, or who approved what the AI is doing.",
+      "Nobody can say with confidence what the data means, who may see it, or why the AI gave the answer it did.",
     changes: [
-      "Every dataset and every AI use has a named owner.",
+      "Each dataset and each use of AI is documented, so its purpose is clear.",
       "People see only what they are allowed to see.",
       "Decisions leave a record that can be checked later.",
     ],
@@ -204,7 +204,7 @@ export const home = {
       },
       {
         name: "Governed, and run in production.",
-        body: "Clear ownership, human approval, and a service that is monitored and improved.",
+        body: "Controls built in, a person in the loop, and a service that is monitored and improved.",
       },
     ],
   },
@@ -649,27 +649,26 @@ export const footer = {
       label: "What we do",
       links: services.map((service) => ({
         href: `/services#${service.slug}`,
-        label: service.name,
-        external: false,
+        label: service.name
       })),
     },
     {
       title: "Company",
       label: "Company and product",
       links: [
-        { href: "/about", label: "About", external: false },
-        { href: "/#how", label: "How we work", external: false },
-        { href: "/contact", label: "Contact", external: false },
-        { href: site.bridgly.url, label: site.bridgly.name, external: true },
+        { href: "/about", label: "About" },
+        { href: "/#how", label: "How we work" },
+        { href: "/contact", label: "Contact" },
+        { href: site.bridgly.url, label: site.bridgly.name },
       ],
     },
     {
       title: "Legal",
       label: "Legal",
       links: [
-        { href: "/privacy", label: "Privacy", external: false },
-        { href: "/terms", label: "Terms", external: false },
-        { href: "/accessibility", label: "Accessibility", external: false },
+        { href: "/privacy", label: "Privacy" },
+        { href: "/terms", label: "Terms" },
+        { href: "/accessibility", label: "Accessibility" },
       ],
     },
   ],

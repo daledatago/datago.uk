@@ -27,9 +27,10 @@ type LayerStackProps = {
 
 /**
  * The five kinds of work as five layers of one system, drawn in CSS 3D. The
- * drawing is a second way to choose a layer for mouse users; the tab list is
- * the control, with the usual arrow-key behaviour. Without scripting every
- * panel is shown in full.
+ * drawing is a picture only: it is hidden from assistive technology and takes
+ * no clicks. The tab list is the one control, with the usual arrow-key
+ * behaviour, and the drawing follows it. Without scripting every panel is
+ * shown in full.
  */
 export function LayerStack({ layers, labels }: LayerStackProps) {
   const [selected, setSelected] = useState(0);
@@ -83,20 +84,14 @@ export function LayerStack({ layers, labels }: LayerStackProps) {
   }
 
   return (
-    <div className="lstack">
-      <div
-        aria-hidden="true"
-        className="lstack__viz"
-        onPointerLeave={onLeave}
-        onPointerMove={onMove}
-      >
+    <div className="lstack" onPointerLeave={onLeave} onPointerMove={onMove}>
+      <div aria-hidden="true" className="lstack__viz">
         <div className="lstack__scene" ref={scene}>
           {layers.map((layer, index) => (
             <div
               className="lstack__plane"
               data-on={index === selected ? "" : undefined}
               key={layer.slug}
-              onClick={() => setSelected(index)}
               style={{ "--i": layer.layer } as React.CSSProperties}
             >
               <span className="lstack__tag">
@@ -130,8 +125,10 @@ export function LayerStack({ layers, labels }: LayerStackProps) {
               tabIndex={index === selected ? 0 : -1}
               type="button"
             >
-              <span className="lstack__n">{layer.n}</span>
-              {layer.name}
+              <span>
+                <span className="lstack__n">{layer.n}</span>
+                {layer.name}
+              </span>
             </button>
           ))}
         </div>

@@ -45,11 +45,11 @@ export function CursorRing() {
         node.dataset.on = "";
       }
       const target = event.target as Element | null;
-      const over = target?.closest?.("a, button, [role='tab'], .lstack__plane");
+      const over = target?.closest?.("a, button, [role='tab']");
       node.toggleAttribute("data-over", Boolean(over));
       node.toggleAttribute(
         "data-field",
-        !over && Boolean(target?.closest?.(".stage, .svc__view, .lstack__viz")),
+        !over && Boolean(target?.closest?.(".stage, .svc__view")),
       );
       if (!frame) {
         frame = requestAnimationFrame(tick);

@@ -75,8 +75,10 @@ export function ServicesExplorer({
             {items.map((item, index) => (
               <li key={item.slug}>
                 <a aria-current={index === active ? "true" : undefined} href={`#${item.slug}`}>
-                  <span>{item.n}</span>
-                  {item.short}
+                  <span>
+                    <i>{item.n}</i>
+                    {item.short}
+                  </span>
                 </a>
               </li>
             ))}
