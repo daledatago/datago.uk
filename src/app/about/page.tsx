@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Arrow } from "@/components/arrow";
-import { Confirms } from "@/components/confirm";
 import { JsonLdScript } from "@/components/json-ld-script";
 import { PageHead } from "@/components/page-head";
 import { pageJsonLd, routeMetadata } from "@/lib/metadata";
@@ -67,26 +66,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section aria-labelledby="people-h" className="section section--alt">
-        <div className="shell">
-          <div className="section__head" data-reveal="">
-            <h2 id="people-h">{aboutPage.people.title}</h2>
-          </div>
-          <ul className="trust">
-            {aboutPage.people.tiles.map((tile) => (
-              <li className="tile tile--todo" data-reveal="" key={tile.title}>
-                <h3>{tile.title}</h3>
-                {tile.body ? <p>{tile.body}</p> : null}
-                <p>
-                  <Confirms items={tile.confirms} />
-                </p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section aria-labelledby="approach-h" className="section">
+      <section aria-labelledby="approach-h" className="section section--alt">
         <div className="shell cta-band" data-reveal="">
           <h2 id="approach-h">{aboutPage.approach.title}</h2>
           <p className="lede">{aboutPage.approach.body}</p>

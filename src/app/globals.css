@@ -127,7 +127,7 @@ body {
 .logo { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; text-decoration: none; font-family: var(--display); font-weight: 700; font-size: 20px; letter-spacing: -0.02em; }
 .logo svg { flex: none; }
 .site .datago-mark__sq-1 { fill: var(--ink); }
-.site .datago-mark__sq-2 { fill: var(--brand); }
+.site .datago-mark__sq-2 { fill: var(--ink); fill-opacity: .5; }
 .nav { display: none; }
 .nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; text-decoration: none; color: var(--muted); font-weight: 500; font-size: 15px; border-radius: var(--radius); }
 .nav a:hover { color: var(--ink); background: var(--surface-2); }
@@ -200,6 +200,7 @@ a.node:hover, a.node.is-hot { border-color: var(--brand); background: var(--bran
 
 /* Products */
 .products { display: grid; gap: 20px; }
+.products.products--one { grid-template-columns: 1fr; }
 @media (min-width: 980px) { .products { grid-template-columns: 1.6fr 1fr; } }
 .card { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
 .section--alt .card { background: var(--bg); }
@@ -293,8 +294,9 @@ a.node:hover, a.node.is-hot { border-color: var(--brand); background: var(--bran
 @media (min-width: 980px) { .contact { grid-template-columns: .8fr 1.2fr; gap: 80px; } }
 .contact__aside { display: grid; gap: 20px; align-content: start; }
 .contact__aside h2 { font-size: clamp(30px, 4vw, 44px); }
-.contact__alt { border-top: 1px solid var(--line); padding-top: 20px; display: grid; gap: 6px; font-size: 16px; color: var(--muted); }
-.contact__alt a { color: var(--ink); font-weight: 600; text-underline-offset: 3px; display: inline-flex; align-items: center; min-height: 44px; }
+.contact__main { display: grid; gap: 16px; align-content: start; }
+.contact__alt { font-size: 16px; color: var(--muted); }
+.contact__address { color: var(--ink); font-weight: 600; user-select: all; overflow-wrap: anywhere; }
 .form { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; display: grid; gap: 18px; }
 @media (min-width: 720px) { .form { padding: 32px; } .form__row { grid-template-columns: 1fr 1fr; } }
 .form__row { display: grid; gap: 18px; }

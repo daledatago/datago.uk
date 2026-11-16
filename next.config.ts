@@ -40,6 +40,8 @@ const nextConfig: NextConfig = {
       // Insights and Lab described Bridgly in retired terms and were retired.
       { source: "/insights", destination: "/", permanent: false },
       { source: "/lab", destination: "/", permanent: false },
+      // Bridgly has its own site. The short page that stood here is retired.
+      { source: "/bridgly", destination: "https://bridgly.ai", permanent: true },
     ];
   },
 };

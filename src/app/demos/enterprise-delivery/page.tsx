@@ -17,7 +17,7 @@ export default function EnterpriseDeliveryPage() {
 
       <header className={styles.hero}>
         <span className={styles.eyebrow}>Conceptual architecture · decisions still to agree</span>
-        <h1>Delivered into the customer&apos;s environment.</h1>
+        <h1>Delivered into the buyer&apos;s environment.</h1>
         <p>The experience, identity, data and policies belong to the buyer. DataGo brings the architecture, workflow and integration approach, then works within the services and model routes the buyer approves.</p>
       </header>
 
@@ -26,27 +26,27 @@ export default function EnterpriseDeliveryPage() {
         <h2 id="architecture-title">One governed route from user to outcome</h2>
         <div className={styles.architectureFlow}>
           <div className={styles.architectureNode}>
-            <small>Customer experience</small>
+            <small>User experience</small>
             <strong>Web application · existing portal · approved assistant</strong>
           </div>
           <div className={styles.flowArrow} aria-hidden="true">↓</div>
           <div className={styles.customerBoundary}>
-            <div className={styles.boundaryLabel}>Customer environment</div>
+            <div className={styles.boundaryLabel}>Buyer environment</div>
             <div className={styles.architectureRow}>
               <div><small>Access</small><strong>Identity and roles</strong></div>
               <div><small>Decisioning</small><strong>Workflow and rules</strong></div>
-              <div><small>Information</small><strong>Customer data and evidence</strong></div>
+              <div><small>Information</small><strong>Buyer data and evidence</strong></div>
               <div><small>Assurance</small><strong>Audit and monitoring</strong></div>
             </div>
             <div className={styles.gateway}>Policy gateway selects the approved processing route</div>
             <div className={styles.modelRoutes}>
               <div><small>Route A</small><strong>Managed inference</strong><span>Only for approved data, geography and terms</span></div>
-              <div><small>Route B</small><strong>Private or local inference</strong><span>For workloads that must stay under customer control</span></div>
+              <div><small>Route B</small><strong>Private or local inference</strong><span>For workloads that must stay under buyer control</span></div>
               <div><small>Route C</small><strong>No model required</strong><span>Rules, calculations and human review continue</span></div>
             </div>
           </div>
         </div>
-        <p className={styles.architectureNote}>The current demonstrations use public or synthetic information. They do not implement this enterprise architecture or process customer data.</p>
+        <p className={styles.architectureNote}>The current demonstrations use public or synthetic information. They do not implement this enterprise architecture or process buyer data.</p>
       </section>
 
       <div className={styles.grid}>
@@ -76,14 +76,14 @@ export default function EnterpriseDeliveryPage() {
 
       <div className={styles.grid}>
         <section className={styles.panel}>
-          <div className={styles.panelHead}><span>Customer control</span><span className={styles.pill}>Design principle</span></div>
+          <div className={styles.panelHead}><span>Buyer control</span><span className={styles.pill}>Design principle</span></div>
           <h2>What stays under buyer policy</h2>
           <ul className={styles.checks}>
             <li>Identity, roles and access approval</li><li>Raw business or assessment data</li><li>Model route and processing geography</li><li>Encryption keys, secrets and retention</li><li>Evidence, decision history and audit records</li>
           </ul>
         </section>
         <section className={styles.panel}>
-          <div className={styles.panelHead}><span>DataGo role</span><span className={styles.pill}>Delivery partner</span></div>
+          <div className={styles.panelHead}><span>DataGo role</span><span className={styles.pill}>Delivery</span></div>
           <h2>What DataGo brings</h2>
           <ul className={styles.checks}>
             <li>Discovery and target architecture</li><li>Data, workflow and AI engineering</li><li>Integration with the buyer&apos;s existing services</li><li>Testing, measurement and security evidence</li><li>Handover, support and an agreed exit route</li>

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Arrow } from "@/components/arrow";
-import { Confirms } from "@/components/confirm";
 import { JsonLdScript } from "@/components/json-ld-script";
 import { pageJsonLd, pageMetadata } from "@/lib/metadata";
 import { servicePage, services, site, ui } from "@/lib/strings";
@@ -104,7 +103,6 @@ export default async function ServicePage({ params }: ServiceProps) {
           <div className="section__head" data-reveal="">
             <p className="eyebrow">{servicePage.problems.eyebrow}</p>
             <h2 id="problems-h">{page.problemsTitle}</h2>
-            <p className="lede">{servicePage.problems.lede}</p>
           </div>
           <ul className="cards3">
             {page.problems.map((problem, index) => (
@@ -116,11 +114,6 @@ export default async function ServicePage({ params }: ServiceProps) {
               </li>
             ))}
           </ul>
-          {page.example ? (
-            <p className="note more" data-reveal="">
-              <strong>{servicePage.problems.exampleLabel}</strong> {page.example}
-            </p>
-          ) : null}
         </div>
       </section>
 
@@ -157,11 +150,6 @@ export default async function ServicePage({ params }: ServiceProps) {
               </li>
             ))}
           </ol>
-          <p className="note more" data-reveal="">
-            <strong>{servicePage.delivery.acceleratorsLabel}</strong>{" "}
-            {servicePage.delivery.accelerators}{" "}
-            <Confirms items={servicePage.delivery.acceleratorsConfirms} />
-          </p>
         </div>
       </section>
 
@@ -170,10 +158,7 @@ export default async function ServicePage({ params }: ServiceProps) {
           <div className="section__head" data-reveal="">
             <p className="eyebrow">{servicePage.technical.eyebrow}</p>
             <h2 id="technical-h">{servicePage.technical.title}</h2>
-            <p className="lede">
-              {servicePage.technical.lede}{" "}
-              <Confirms items={servicePage.technical.confirms} />
-            </p>
+            <p className="lede">{servicePage.technical.lede}</p>
           </div>
           <dl className="spec" data-reveal="">
             {page.technical.map((item) => (
@@ -220,8 +205,14 @@ export default async function ServicePage({ params }: ServiceProps) {
             <h3>{servicePage.controls.bridgly.title}</h3>
             <p>{servicePage.controls.bridgly.body}</p>
             <p>
-              <a className="textlink" href={site.bridgly.url} rel="noopener">
+              <a
+                className="textlink"
+                href={site.bridgly.url}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
                 {site.bridgly.cta}&nbsp;<Arrow />
+                <span className="vh"> {ui.newTab}</span>
               </a>
             </p>
           </div>
@@ -243,34 +234,6 @@ export default async function ServicePage({ params }: ServiceProps) {
                 <p>{phase.body}</p>
               </li>
             ))}
-            <li className="tile tile--todo" data-reveal="">
-              <h3>{servicePage.buying.pricing.title}</h3>
-              <p>
-                <Confirms items={servicePage.buying.pricing.confirms} />
-              </p>
-            </li>
-            <li className="tile tile--todo" data-reveal="" style={delay(80)}>
-              <h3>{servicePage.buying.routes.title}</h3>
-              <p>
-                {servicePage.buying.routes.before}
-                <Link href={servicePage.buying.routes.link.href}>
-                  {servicePage.buying.routes.link.label}
-                </Link>
-                {servicePage.buying.routes.after}
-              </p>
-              <p>
-                <Confirms items={servicePage.buying.routes.confirms} />
-              </p>
-            </li>
-            <li className="tile tile--todo" data-reveal="" style={delay(160)}>
-              <h3>{servicePage.buying.evidence.title}</h3>
-              <p>
-                <Confirms
-                  clearance={servicePage.buying.evidence.clearance}
-                  items={servicePage.buying.evidence.confirms}
-                />
-              </p>
-            </li>
           </ul>
         </div>
       </section>

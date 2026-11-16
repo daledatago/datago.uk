@@ -4,9 +4,9 @@ The website for DataGo Ltd, a UK data and AI consultancy and the company behind 
 
 Pages:
 
-- Home: the hero message, the structure map, the "If you are…" switcher, the five focus areas, accelerators, how we deliver, who we work with, products, working with the public sector, trust and contact
+- Home: the hero message, the structure map, the five focus areas, how we deliver, products and contact
 - Five service pages on one template: `/services/[slug]`
-- Bridgly: a short page that links to bridgly.ai
+- Bridgly: `/bridgly` redirects permanently to bridgly.ai; every Bridgly link opens bridgly.ai in a new tab
 - About
 - Contact, with the enquiry form
 - Privacy, Terms and the Accessibility statement
@@ -17,7 +17,7 @@ All copy lives in `src/lib/strings.ts`; components carry no English of their own
 
 ### Claims rules
 
-Nothing on the site is invented. A fact the owner has not yet confirmed is a `confirms` entry in `strings.ts` and shows on the page as a visible `[CONFIRM: …]` tag. Replace the entry with the fact, or remove the tile. Researched examples appear only as "typical needs", never as clients or delivered work. Bridgly is described only with the approved claims in `site.bridgly`.
+Nothing on the site is invented. A fact the owner has not confirmed is left out. Bridgly is described only with the approved claims in `site.bridgly`.
 
 ### Look and feel
 
@@ -29,7 +29,7 @@ Brand handoff files from `Datago Devkit.zip` live in `docs/brand/`. The record o
 
 The form posts to the route handler `src/app/api/contact/route.ts`, which sends one email through Resend with the enquirer as reply-to. Nothing is stored. Spam checks: a honeypot field, a minimum time to submit, Cloudflare Turnstile verified on the server, and a basic rate limit per IP address.
 
-Set these five variables in Vercel (names are in `.env.example`; never commit values):
+Set these variables in Vercel (names are in `.env.example`; never commit values):
 
 ```
 RESEND_API_KEY
@@ -39,7 +39,7 @@ TURNSTILE_SECRET_KEY
 NEXT_PUBLIC_TURNSTILE_SITE_KEY
 ```
 
-Until all five are set, the form says plainly that it is not yet connected and offers the email address. `NEXT_PUBLIC_TURNSTILE_SITE_KEY` is read at build time, so redeploy after setting them.
+`CONTACT_TO_EMAIL` is the recipient; if it is unset the code falls back to dale.harrison@datago.uk. Until the other four are set, the form says plainly on sending that it is not yet connected and shows the email address. `NEXT_PUBLIC_TURNSTILE_SITE_KEY` is read at build time, so redeploy after setting them.
 
 ## Getting Started
 
@@ -82,7 +82,8 @@ Statutory company details come from the public Companies House record and appear
 
 - DataGo Ltd, registered in England and Wales, company number 14751587
 - Registered office: 2 Old Bath Road, Newbury, Berkshire, England, RG14 1QL
-- Contact: info@datago.uk
+- VAT registration number: GB 444 6881 64
+- Contact: dale.harrison@datago.uk
 
 The production domain should be `datago.uk`, with `www.datago.uk` redirected to the apex domain.
 

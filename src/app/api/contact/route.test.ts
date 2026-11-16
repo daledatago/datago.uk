@@ -1,5 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { RATE_LIMIT_MAX, resetRateLimit } from "@/lib/contact";
+import {
+  DEFAULT_CONTACT_TO_EMAIL,
+  RATE_LIMIT_MAX,
+  resetRateLimit,
+} from "@/lib/contact";
 import { POST } from "./route";
 
 const TURNSTILE_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
@@ -18,7 +22,6 @@ function validBody(overrides: Record<string, unknown> = {}) {
     name: "Test Person",
     email: "test.person@example.org",
     organisation: "Example Council",
-    topic: "Analytics and decision support",
     message: "We would like to discuss a reporting project.",
     website: "",
     startedAt: Date.now() - 10_000,
@@ -99,7 +102,7 @@ describe("POST /api/contact", () => {
     expect(email.from).toBe(ENV.CONTACT_FROM_EMAIL);
     expect(email.to).toEqual([ENV.CONTACT_TO_EMAIL]);
     expect(email.reply_to).toBe("test.person@example.org");
-    expect(email.subject).toContain("Analytics and decision support");
+    expect(email.subject).toBe("Website enquiry from Test Person");
     expect(email.text).toContain("We would like to discuss a reporting project.");
   });
 
@@ -172,6 +175,17 @@ describe("POST /api/contact", () => {
 
     const otherAddress = await post(validBody(), "198.51.100.8");
     expect(otherAddress.status).toBe(200);
+  });
+
+  it("falls back to the default recipient when CONTACT_TO_EMAIL is unset", async () => {
+    const fetchMock = mockFetch();
+    vi.stubEnv("CONTACT_TO_EMAIL", "");
+    const response = await post(validBody());
+
+    expect(response.status).toBe(200);
+    const [send] = callsTo(fetchMock, RESEND_URL);
+    const email = JSON.parse((send[1] as RequestInit).body as string);
+    expect(email.to).toEqual([DEFAULT_CONTACT_TO_EMAIL]);
   });
 
   it("says it is not configured when a variable is missing", async () => {

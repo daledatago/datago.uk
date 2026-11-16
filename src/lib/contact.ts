@@ -2,28 +2,21 @@
  * Contact enquiry handling for /api/contact.
  *
  * Nothing is stored. A valid enquiry becomes one email, sent through the
- * Resend HTTP API to CONTACT_TO_EMAIL with the enquirer as reply-to.
+ * Resend HTTP API to CONTACT_TO_EMAIL (or the default recipient below when
+ * that variable is unset) with the enquirer as reply-to.
  * Message contents are never logged.
  */
 
+/** The form cannot send until all four of these are set. */
 export const CONTACT_ENV_NAMES = [
   "RESEND_API_KEY",
-  "CONTACT_TO_EMAIL",
   "CONTACT_FROM_EMAIL",
   "TURNSTILE_SECRET_KEY",
   "NEXT_PUBLIC_TURNSTILE_SITE_KEY",
 ] as const;
 
-export const CONTACT_TOPICS = [
-  "Practical AI applications",
-  "Analytics and decision support",
-  "Governance and assurance",
-  "Data platforms and integration",
-  "Secure production delivery",
-  "A tender or framework",
-  "Bridgly",
-  "Something else",
-] as const;
+/** Where enquiries go when CONTACT_TO_EMAIL is not set. Not a secret. */
+export const DEFAULT_CONTACT_TO_EMAIL = "dale.harrison@datago.uk";
 
 /** A person takes longer than this to fill the form in. */
 export const MIN_SUBMIT_MS = 3_000;
@@ -47,7 +40,6 @@ export type ContactFields = {
   name: string;
   email: string;
   organisation: string;
-  topic: string;
   message: string;
 };
 
@@ -72,7 +64,7 @@ export type ContactResult =
 
 type Env = Record<string, string | undefined>;
 
-/** True only when all five variables are present. */
+/** True only when all four required variables are present. */
 export function isContactConfigured(env: Env = process.env): boolean {
   return CONTACT_ENV_NAMES.every((name) => Boolean(env[name]?.trim()));
 }
@@ -84,7 +76,7 @@ export function readContactConfig(env: Env = process.env): ContactConfig | null 
 
   return {
     resendApiKey: env.RESEND_API_KEY!.trim(),
-    toEmail: env.CONTACT_TO_EMAIL!.trim(),
+    toEmail: env.CONTACT_TO_EMAIL?.trim() || DEFAULT_CONTACT_TO_EMAIL,
     fromEmail: env.CONTACT_FROM_EMAIL!.trim(),
     turnstileSecret: env.TURNSTILE_SECRET_KEY!.trim(),
   };
@@ -146,7 +138,6 @@ export function validateFields(body: Record<string, unknown>): {
     name: oneLine(text(body.name)),
     email: text(body.email),
     organisation: oneLine(text(body.organisation)),
-    topic: text(body.topic),
     message: text(body.message),
   };
   const errors: Partial<Record<keyof ContactFields, string>> = {};
@@ -162,10 +153,6 @@ export function validateFields(body: Record<string, unknown>): {
 
   if (fields.organisation.length > LIMITS.organisation) {
     errors.organisation = "Organisation must be 150 characters or fewer.";
-  }
-
-  if (!(CONTACT_TOPICS as readonly string[]).includes(fields.topic)) {
-    fields.topic = "Something else";
   }
 
   if (fields.message.length < 10) {
@@ -218,7 +205,6 @@ async function sendEmail(
     `Name: ${fields.name}`,
     `Email: ${fields.email}`,
     `Organisation: ${fields.organisation || "(not given)"}`,
-    `About: ${fields.topic}`,
     "",
     fields.message,
     "",
@@ -236,7 +222,7 @@ async function sendEmail(
         from: config.fromEmail,
         to: [config.toEmail],
         reply_to: fields.email,
-        subject: `Website enquiry: ${fields.topic} (${fields.name})`,
+        subject: `Website enquiry from ${fields.name}`,
         text: lines.join("\n"),
       }),
     });

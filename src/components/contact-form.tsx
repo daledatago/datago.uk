@@ -12,7 +12,6 @@ export type ContactFormCopy = {
     email: string;
     organisation: string;
     optional: string;
-    topic: string;
     message: string;
     messageHint: string;
     honeypot: string;
@@ -25,7 +24,6 @@ export type ContactFormCopy = {
     sending: string;
     noscript: string;
   };
-  notConnected: { title: string; body: string; cta: string };
   errors: {
     name: string;
     email: string;
@@ -46,11 +44,11 @@ export type ContactFormCopy = {
 };
 
 type ContactFormProps = {
-  /** True when all five environment variables are set. */
+  /** True when the sending and security-check variables are set. */
   configured: boolean;
   siteKey: string;
+  /** Shown as plain, selectable text when the form cannot send. */
   email: string;
-  topics: readonly string[];
   copy: ContactFormCopy;
 };
 
@@ -81,11 +79,10 @@ const TURNSTILE_SRC =
   "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-export function ContactForm({ configured, siteKey, email, topics, copy }: ContactFormProps) {
+export function ContactForm({ configured, siteKey, email, copy }: ContactFormProps) {
   const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({});
   const [status, setStatus] = useState<Status>(null);
   const [sending, setSending] = useState(false);
-  const [connected, setConnected] = useState(configured);
   const formRef = useRef<HTMLFormElement>(null);
   const statusRef = useRef<HTMLDivElement>(null);
   const checkRef = useRef<HTMLDivElement>(null);
@@ -98,7 +95,7 @@ export function ContactForm({ configured, siteKey, email, topics, copy }: Contac
   }, []);
 
   useEffect(() => {
-    if (!connected || !siteKey) {
+    if (!configured || !siteKey) {
       return;
     }
 
@@ -151,7 +148,7 @@ export function ContactForm({ configured, siteKey, email, topics, copy }: Contac
       widgetRef.current = null;
       tokenRef.current = "";
     };
-  }, [connected, siteKey]);
+  }, [configured, siteKey]);
 
   function show(next: Status) {
     setStatus(next);
@@ -215,7 +212,8 @@ export function ContactForm({ configured, siteKey, email, topics, copy }: Contac
 
     setErrors({});
 
-    if (!tokenRef.current) {
+    // Without a site key the server answers "not connected" in words.
+    if (configured && !tokenRef.current) {
       show({ kind: "error", text: copy.status.checkPending, offerEmail: true });
       return;
     }
@@ -230,7 +228,6 @@ export function ContactForm({ configured, siteKey, email, topics, copy }: Contac
           name: data.get("name"),
           email: data.get("email"),
           organisation: data.get("organisation"),
-          topic: data.get("topic"),
           message: data.get("message"),
           website: data.get("website"),
           startedAt: startedAt.current,
@@ -256,7 +253,6 @@ export function ContactForm({ configured, siteKey, email, topics, copy }: Contac
       if (result?.code === "invalid" && result.fields) {
         showFieldErrors(result.fields);
       } else if (result?.code === "not_configured") {
-        setConnected(false);
         show({ kind: "error", text: copy.status.not_configured, offerEmail: true });
       } else if (
         result?.code === "rate_limited" ||
@@ -288,32 +284,17 @@ export function ContactForm({ configured, siteKey, email, topics, copy }: Contac
       {status?.offerEmail ? (
         <>
           {" "}
-          <a href={`mailto:${email}`}>{email}</a>
+          <span className="contact__address">{email}</span>
         </>
       ) : null}
     </div>
   );
 
-  if (!connected) {
-    return (
-      <div className="form" data-reveal="" id="form" data-state="not-connected">
-        {statusBox}
-        <div className="form__notice" role="note">
-          <p className="form__notice-title">{copy.notConnected.title}</p>
-          <p>{copy.notConnected.body}</p>
-          <a className="btn" href={`mailto:${email}`}>
-            {copy.notConnected.cta} {email} <Arrow />
-          </a>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <form
       className="form"
       data-reveal=""
-      data-state="connected"
+      data-state={configured ? "connected" : "not-connected"}
       id="form"
       noValidate
       onSubmit={onSubmit}
@@ -322,7 +303,7 @@ export function ContactForm({ configured, siteKey, email, topics, copy }: Contac
       {statusBox}
       <noscript>
         <p className="form__status is-error">
-          {copy.form.noscript} <a href={`mailto:${email}`}>{email}</a>
+          {copy.form.noscript} <span className="contact__address">{email}</span>
         </p>
       </noscript>
       <div className="form__row">
@@ -359,27 +340,17 @@ export function ContactForm({ configured, siteKey, email, topics, copy }: Contac
           </span>
         </div>
       </div>
-      <div className="form__row">
-        <div className="field">
-          <label htmlFor="f-org">
-            {copy.form.organisation} <span className="hint">{copy.form.optional}</span>
-          </label>
-          <input
-            autoComplete="organization"
-            id="f-org"
-            maxLength={150}
-            name="organisation"
-            type="text"
-          />
-        </div>
-        <div className="field">
-          <label htmlFor="f-topic">{copy.form.topic}</label>
-          <select id="f-topic" name="topic">
-            {topics.map((topic) => (
-              <option key={topic}>{topic}</option>
-            ))}
-          </select>
-        </div>
+      <div className="field">
+        <label htmlFor="f-org">
+          {copy.form.organisation} <span className="hint">{copy.form.optional}</span>
+        </label>
+        <input
+          autoComplete="organization"
+          id="f-org"
+          maxLength={150}
+          name="organisation"
+          type="text"
+        />
       </div>
       <div className="field">
         <label htmlFor="f-msg">{copy.form.message}</label>
@@ -401,11 +372,13 @@ export function ContactForm({ configured, siteKey, email, topics, copy }: Contac
         <label htmlFor="f-web">{copy.form.honeypot}</label>
         <input autoComplete="off" id="f-web" name="website" tabIndex={-1} type="text" />
       </div>
-      <div className="form__check">
-        <b>{copy.form.check}</b>
-        <span className="hint">{copy.form.checkHint}</span>
-        <div ref={checkRef} />
-      </div>
+      {configured ? (
+        <div className="form__check">
+          <b>{copy.form.check}</b>
+          <span className="hint">{copy.form.checkHint}</span>
+          <div ref={checkRef} />
+        </div>
+      ) : null}
       <p className="form__legal">
         {copy.form.legalBefore}
         <Link href="/privacy">{copy.form.legalLink}</Link>

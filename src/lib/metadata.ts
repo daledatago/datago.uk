@@ -32,9 +32,6 @@ export const SEARCH_KEYWORDS = [
   "data governance and assurance",
   "data platforms and integration",
   "secure production delivery",
-  "Azure",
-  "Databricks",
-  "public sector data and AI",
   "Bridgly",
 ];
 
@@ -62,20 +59,10 @@ export const PUBLIC_SEARCH_ROUTES: readonly SearchRoute[] = [
     }),
   ),
   {
-    path: "/bridgly",
-    title: "Bridgly",
-    description:
-      "Bridgly is a DataGo product for governing AI agents. People decide. Agents act within the rules you sign. Bridgly proves both.",
-    priority: 0.8,
-    changeFrequency: "monthly",
-    index: true,
-    inSitemap: true,
-  },
-  {
     path: "/about",
     title: "About",
     description:
-      "DataGo Ltd is a UK data and AI consultancy and technical delivery partner, and the company behind Bridgly.",
+      "DataGo Ltd is a UK data and AI consultancy, and the company behind Bridgly.",
     priority: 0.7,
     changeFrequency: "monthly",
     index: true,
@@ -85,7 +72,7 @@ export const PUBLIC_SEARCH_ROUTES: readonly SearchRoute[] = [
     path: "/contact",
     title: "Contact",
     description:
-      "Discuss a project with DataGo. Tell us the problem you are trying to solve, or about a requirement you are preparing.",
+      "Discuss a project with DataGo. Tell us the problem you are trying to solve.",
     priority: 0.7,
     changeFrequency: "monthly",
     index: true,
@@ -307,6 +294,7 @@ export function rootJsonLd() {
         },
         image: logoUrl,
         foundingLocation: "United Kingdom",
+        vatID: site.legal.vatNumber.replace(/\s/g, ""),
         identifier: {
           "@type": "PropertyValue",
           propertyID: "UK Companies House",
