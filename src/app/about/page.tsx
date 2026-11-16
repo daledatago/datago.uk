@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { ButtonLink } from "@/components/button-link";
-import { InfoCard } from "@/components/info-card";
+import Link from "next/link";
+import { Arrow } from "@/components/arrow";
+import { Confirms } from "@/components/confirm";
 import { JsonLdScript } from "@/components/json-ld-script";
-import { PageIntro } from "@/components/page-intro";
-import { SectionHeading } from "@/components/section-heading";
-import { faqJsonLd, pageJsonLd, routeMetadata } from "@/lib/metadata";
-import { aboutPage, site } from "@/lib/strings";
+import { PageHead } from "@/components/page-head";
+import { pageJsonLd, routeMetadata } from "@/lib/metadata";
+import { aboutPage, site, ui } from "@/lib/strings";
 
 export const metadata: Metadata = routeMetadata("/about");
 
@@ -15,89 +15,88 @@ export default function AboutPage() {
       <JsonLdScript
         data={pageJsonLd({
           path: "/about",
-          name: "About DataGo",
+          name: `${aboutPage.title} | ${site.name}`,
           description: metadata.description as string,
           type: "AboutPage",
           breadcrumbs: [
-            { name: "Home", path: "/" },
-            { name: "About", path: "/about" },
+            { name: ui.home, path: "/" },
+            { name: aboutPage.eyebrow, path: "/about" },
           ],
-          about: [
-            "DataGo Ltd",
-            "Databricks partner",
-            "Bridgly",
-            "governed AI systems",
-            "enterprise AI readiness",
-          ],
-          mainEntity: {
-            "@id": `${site.url}/#organization`,
-          },
+          mainEntity: { "@id": `${site.url}/#organization` },
         })}
       />
-      <JsonLdScript data={faqJsonLd(aboutPage.answers)} />
 
-      <PageIntro
+      <PageHead
+        body={aboutPage.body}
+        crumb={aboutPage.eyebrow}
         eyebrow={aboutPage.eyebrow}
         title={aboutPage.title}
-        body={aboutPage.body}
       />
 
-      <section className="content-band content-band--light">
-        <div className="site-shell facts-grid">
-          {aboutPage.facts.map((fact) => (
-            <div className="fact" key={fact.label}>
-              <span>{fact.label}</span>
-              <strong>{fact.value}</strong>
-            </div>
-          ))}
+      <section className="section section--alt">
+        <div className="shell">
+          <dl className="facts" data-reveal="">
+            {aboutPage.facts.map((fact) => (
+              <div key={fact.label}>
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 
-      <section className="content-band">
-        <div className="site-shell">
-          <SectionHeading title="Brand architecture" />
-          <div className="card-grid card-grid--three">
-            {aboutPage.architecture.map((item) => (
-              <InfoCard body={item.body} key={item.title} title={item.title} />
+      <section aria-labelledby="two-h" className="section">
+        <div className="shell">
+          <div className="section__head" data-reveal="">
+            <h2 id="two-h">{aboutPage.twoWays.title}</h2>
+          </div>
+          <div className="duo">
+            {aboutPage.twoWays.items.map((item) => (
+              <div className="tile tile--fact" data-reveal="" key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+                <p>
+                  <Link className="textlink" href={item.link.href}>
+                    {item.link.label}&nbsp;<Arrow />
+                  </Link>
+                </p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="content-band content-band--light">
-        <div className="site-shell note-band">
-          <p>{aboutPage.founderNote}</p>
-        </div>
-      </section>
-
-      <section className="content-band">
-        <div className="site-shell two-column two-column--center">
-          <SectionHeading
-            eyebrow="Product route"
-            title={aboutPage.route.title}
-            body={aboutPage.route.body}
-          />
-          <ButtonLink href={site.bridgly.url} variant="dark">
-            {aboutPage.route.cta}
-          </ButtonLink>
-        </div>
-      </section>
-
-      <section className="content-band content-band--light">
-        <div className="site-shell">
-          <SectionHeading
-            eyebrow="Answer-ready summary"
-            title="Quick answers about DataGo"
-            body="These short answers help search engines, answer engines, and buyers understand the company-to-product relationship."
-          />
-          <div className="card-grid card-grid--three">
-            {aboutPage.answers.map((item) => (
-              <InfoCard
-                body={item.answer}
-                key={item.question}
-                title={item.question}
-              />
+      <section aria-labelledby="people-h" className="section section--alt">
+        <div className="shell">
+          <div className="section__head" data-reveal="">
+            <h2 id="people-h">{aboutPage.people.title}</h2>
+          </div>
+          <ul className="trust">
+            {aboutPage.people.tiles.map((tile) => (
+              <li className="tile tile--todo" data-reveal="" key={tile.title}>
+                <h3>{tile.title}</h3>
+                {tile.body ? <p>{tile.body}</p> : null}
+                <p>
+                  <Confirms items={tile.confirms} />
+                </p>
+              </li>
             ))}
+          </ul>
+        </div>
+      </section>
+
+      <section aria-labelledby="approach-h" className="section">
+        <div className="shell cta-band" data-reveal="">
+          <h2 id="approach-h">{aboutPage.approach.title}</h2>
+          <p className="lede">{aboutPage.approach.body}</p>
+          <div className="hero__cta">
+            <Link className="btn btn--ghost" href={aboutPage.approach.link.href}>
+              {aboutPage.approach.link.label}
+            </Link>
+            <Link className="btn" href="/#contact">
+              {ui.cta} <Arrow />
+            </Link>
           </div>
         </div>
       </section>
