@@ -22,7 +22,14 @@ export function SiteFooter() {
               <ul>
                 {column.links.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href}>{link.label}</Link>
+                    {link.external ? (
+                      <a href={link.href} rel="noopener noreferrer" target="_blank">
+                        {link.label}
+                        <span className="vh"> {ui.newTab}</span>
+                      </a>
+                    ) : (
+                      <Link href={link.href}>{link.label}</Link>
+                    )}
                   </li>
                 ))}
               </ul>

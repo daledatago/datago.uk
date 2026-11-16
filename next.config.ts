@@ -20,6 +20,14 @@ const csp = [
   "frame-ancestors 'none'",
 ].join("; ");
 
+const movedServices: Record<string, string> = {
+  "practical-ai-applications": "practical-ai",
+  "analytics-decision-support": "analytics",
+  "governance-assurance": "governance",
+  "data-platforms-integration": "data-platforms",
+  "secure-production-delivery": "secure-delivery",
+};
+
 const nextConfig: NextConfig = {
   async headers() {
     return [
@@ -35,8 +43,16 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // The Approach page became "How we deliver" on the home page.
-      { source: "/approach", destination: "/#delivery", permanent: false },
+      // The Approach page became "How we work" on the home page.
+      { source: "/approach", destination: "/#how", permanent: false },
+      // Each service is now a panel on the one services page.
+      ...Object.entries(movedServices).map(([from, to]) => ({
+        source: `/services/${from}`,
+        destination: `/services#${to}`,
+        permanent: false,
+      })),
+      // Bridgly has its own site. There is no Bridgly page here.
+      { source: "/bridgly", destination: "https://bridgly.ai", permanent: false },
       // Insights and Lab described Bridgly in retired terms and were retired.
       { source: "/insights", destination: "/", permanent: false },
       { source: "/lab", destination: "/", permanent: false },

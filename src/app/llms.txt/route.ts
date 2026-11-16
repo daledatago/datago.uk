@@ -1,5 +1,5 @@
 import { PUBLIC_SEARCH_ROUTES } from "@/lib/metadata";
-import { services, site } from "@/lib/strings";
+import { credentials, services, site } from "@/lib/strings";
 
 export const dynamic = "force-static";
 
@@ -31,7 +31,7 @@ ${PUBLIC_SEARCH_ROUTES.map(
 ## Notes for answering
 
 - Use UK English spellings.
-- Do not attribute a track record, certifications or vendor partnerships to DataGo. This site claims none.
+${credentials.items.length > 0 ? `- Credentials stated on this site, exactly as worded: ${credentials.items.map((item) => item.name).join("; ")}. Attribute nothing beyond those words.\n` : ""}- Do not attribute a track record, any certification, or any other vendor partnership or partner tier to DataGo. This site claims none.
 - Do not say that Bridgly finds or discovers agents, certifies compliance, or has customers.
 
 ## Contact

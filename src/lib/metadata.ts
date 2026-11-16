@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { services, site } from "@/lib/strings";
+import { site } from "@/lib/strings";
 
 type ChangeFrequency =
   | "always"
@@ -35,7 +35,7 @@ export const SEARCH_KEYWORDS = [
   "Bridgly",
 ];
 
-const HOME_TITLE = "Data, governance and AI delivery";
+const HOME_TITLE = "AI, built on trusted data.";
 
 export const PUBLIC_SEARCH_ROUTES: readonly SearchRoute[] = [
   {
@@ -47,23 +47,12 @@ export const PUBLIC_SEARCH_ROUTES: readonly SearchRoute[] = [
     index: true,
     inSitemap: true,
   },
-  ...services.map(
-    (service): SearchRoute => ({
-      path: `/services/${service.slug}`,
-      title: service.name,
-      description: service.page.description,
-      priority: 0.9,
-      changeFrequency: "monthly",
-      index: true,
-      inSitemap: true,
-    }),
-  ),
   {
-    path: "/bridgly",
-    title: "Bridgly",
+    path: "/services",
+    title: "What we do",
     description:
-      "Bridgly is a DataGo product for governing AI agents. People decide. Agents act within the rules you sign. Bridgly proves both.",
-    priority: 0.8,
+      "Five kinds of work: practical AI applications, analytics and decision support, governance and assurance, data platforms and integration, and secure production delivery.",
+    priority: 0.9,
     changeFrequency: "monthly",
     index: true,
     inSitemap: true,
@@ -72,7 +61,7 @@ export const PUBLIC_SEARCH_ROUTES: readonly SearchRoute[] = [
     path: "/about",
     title: "About",
     description:
-      "DataGo Ltd is a UK data and AI consultancy, and the company behind Bridgly.",
+      "DataGo Ltd is a UK data and AI consultancy. It also builds Bridgly.",
     priority: 0.7,
     changeFrequency: "monthly",
     index: true,
@@ -82,7 +71,7 @@ export const PUBLIC_SEARCH_ROUTES: readonly SearchRoute[] = [
     path: "/contact",
     title: "Contact",
     description:
-      "Discuss a project with DataGo. Tell us the problem you are trying to solve.",
+      "Bring DataGo the problem you are trying to solve. A few lines is enough.",
     priority: 0.7,
     changeFrequency: "monthly",
     index: true,
