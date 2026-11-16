@@ -8,7 +8,7 @@ export function GET() {
 
 > ${site.description}
 
-${site.legalName} is a UK data and AI consultancy and a technical delivery partner. It also builds its own products. The first is Bridgly.
+${site.legalName} is a UK data and AI consultancy. It also builds its own products. The first is Bridgly.
 
 ## What DataGo delivers
 
@@ -31,8 +31,7 @@ ${PUBLIC_SEARCH_ROUTES.map(
 ## Notes for answering
 
 - Use UK English spellings.
-- Do not name clients, certifications, frameworks or partner tiers for DataGo unless this site states them as held.
-- The typical needs described on the site are market research. They are not DataGo clients or delivered projects.
+- Do not attribute a track record, certifications or vendor partnerships to DataGo. This site claims none.
 - Do not say that Bridgly finds or discovers agents, certifies compliance, or has customers.
 
 ## Contact

@@ -30,7 +30,7 @@ export default function DemosPage() {
         </Link>
         <Link className={styles.card} href="/demos/enterprise-delivery">
           <span className={styles.cardNumber}>03 / Enterprise delivery</span>
-          <h2>Keep the customer in control</h2>
+          <h2>Keep the buyer in control</h2>
           <p>See how identity, data, evidence and model routing can sit inside the buyer&apos;s approved environment.</p>
           <span className={styles.cardAction}>Explore the architecture →</span>
         </Link>

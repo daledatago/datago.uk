@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Confirms } from "@/components/confirm";
 import { DatagoMark } from "@/components/datago-mark";
 import { footer, site, ui } from "@/lib/strings";
 
@@ -31,13 +30,12 @@ export function SiteFooter() {
           ))}
         </div>
         <div className="footer__legal">
-          <p>
-            {footer.legalLine(year)} <Confirms items={site.legal.confirms} />
-          </p>
+          <p>{footer.legalLine(year)}</p>
           <p>
             {footer.productLine}{" "}
-            <a href={site.bridgly.url} rel="noopener">
+            <a href={site.bridgly.url} rel="noopener noreferrer" target="_blank">
               {site.bridgly.urlLabel}
+              <span className="vh"> {ui.newTab}</span>
             </a>
           </p>
         </div>

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Arrow } from "@/components/arrow";
-import { Confirms } from "@/components/confirm";
 import { JsonLdScript } from "@/components/json-ld-script";
 import { OutcomeDemo } from "@/components/outcome-demo";
 import { PageHead } from "@/components/page-head";
@@ -33,13 +32,11 @@ export default function BridglyPage() {
         title={bridglyPage.title}
       >
         <div className="hero__cta">
-          <a className="btn" href={site.bridgly.url} rel="noopener">
+          <a className="btn" href={site.bridgly.url} rel="noopener noreferrer" target="_blank">
             {site.bridgly.cta} <Arrow />
+            <span className="vh"> {ui.newTab}</span>
           </a>
         </div>
-        <p className="more">
-          <Confirms items={bridglyPage.confirms} />
-        </p>
       </PageHead>
 
       <section aria-labelledby="what-h" className="section section--alt">
@@ -69,12 +66,15 @@ export default function BridglyPage() {
             <h2 className="org__title">{bridglyPage.moreTitle}</h2>
             <p>{bridglyPage.more}</p>
             <p>
-              <a className="textlink" href={site.bridgly.url} rel="noopener">
+              <a
+                className="textlink"
+                href={site.bridgly.url}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
                 {site.bridgly.cta}&nbsp;<Arrow />
+                <span className="vh"> {ui.newTab}</span>
               </a>
-            </p>
-            <p>
-              <Confirms items={bridglyPage.bridglyConfirms} />
             </p>
           </div>
           <div className="tile" data-reveal="">

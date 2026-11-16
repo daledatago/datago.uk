@@ -1,6 +1,5 @@
-import { Confirms } from "@/components/confirm";
 import { ContactForm } from "@/components/contact-form";
-import { CONTACT_TOPICS, isContactConfigured } from "@/lib/contact";
+import { isContactConfigured } from "@/lib/contact";
 import { contact, site } from "@/lib/strings";
 
 type ContactSectionProps = {
@@ -13,7 +12,6 @@ export function ContactSection({ heading: Heading, eyebrow }: ContactSectionProp
   const configured = isContactConfigured();
   const copy = {
     form: contact.form,
-    notConnected: contact.notConnected,
     errors: contact.errors,
     status: contact.status,
   };
@@ -23,24 +21,19 @@ export function ContactSection({ heading: Heading, eyebrow }: ContactSectionProp
       <div className="contact__aside" data-reveal="">
         <p className="eyebrow">{eyebrow}</p>
         <Heading id="contact-h">{contact.title}</Heading>
-        <p className="lede">
-          {contact.lede} <Confirms items={contact.ledeConfirms} />
-        </p>
-        <div className="contact__alt">
-          <span>{contact.emailLabel}</span>
-          <a href={`mailto:${site.email}`}>{site.email}</a>
-          <span>
-            <Confirms items={contact.emailConfirms} />
-          </span>
-        </div>
+        <p className="lede">{contact.lede}</p>
       </div>
-      <ContactForm
-        configured={configured}
-        copy={copy}
-        email={site.email}
-        siteKey={configured ? (process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "") : ""}
-        topics={CONTACT_TOPICS}
-      />
+      <div className="contact__main">
+        <ContactForm
+          configured={configured}
+          copy={copy}
+          email={site.email}
+          siteKey={configured ? (process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "") : ""}
+        />
+        <p className="contact__alt">
+          {contact.emailLabel} <span className="contact__address">{site.email}</span>
+        </p>
+      </div>
     </div>
   );
 }

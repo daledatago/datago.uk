@@ -1,12 +1,11 @@
 /**
  * All site copy lives here. Components carry no English of their own.
  *
- * Claims rules (owner's positioning brief, 16 November 2026):
- * - Nothing is invented: no clients, accreditations, listings, team size,
- *   accelerator names or figures. Each unknown is a `confirms` entry, shown on
- *   the page as a visible [CONFIRM: ...] tag until the owner supplies the fact.
- * - Researched examples appear only as "typical needs", never as clients or
- *   delivered projects.
+ * Claims rules (owner's review, 16 November 2026):
+ * - Outcome first, technology second. Technology is named only as tools we
+ *   work with, never as a partnership or tier.
+ * - Nothing is claimed that is not established: no track record, no target
+ *   market, no accreditations or listings. An unknown is left out, not shown.
  * - Bridgly is described only with the approved claims in `site.bridgly`.
  */
 
@@ -14,7 +13,7 @@ export const site = {
   name: "DataGo",
   legalName: "DataGo Ltd",
   url: "https://datago.uk",
-  email: "info@datago.uk",
+  email: "dale.harrison@datago.uk",
   tagline: "A UK data and AI consultancy, and the company behind Bridgly.",
   description:
     "DataGo is a UK data and AI consultancy. We bring trusted data foundations, practical governance and AI together to help organisations make better decisions and improve how they work.",
@@ -41,7 +40,7 @@ export const site = {
     companyNumber: "14751587",
     registeredIn: "England and Wales",
     registeredOffice: "2 Old Bath Road, Newbury, Berkshire, England, RG14 1QL",
-    confirms: ["place of registration; VAT number if registered"],
+    vatNumber: "GB 444 6881 64",
   },
 };
 
@@ -54,8 +53,7 @@ export const ui = {
   menu: "Menu",
   theme: "Dark theme",
   cta: "Discuss a project",
-  confirmPrefix: "CONFIRM",
-  clearance: "NEEDS CLIENT CLEARANCE",
+  newTab: "(opens in a new tab)",
   breadcrumb: "Breadcrumb",
   home: "Home",
 };
@@ -63,9 +61,7 @@ export const ui = {
 export const navItems = [
   { href: "/#work", label: "What we deliver" },
   { href: "/#delivery", label: "How we deliver" },
-  { href: "/#sectors", label: "Who we work with" },
   { href: "/#products", label: "Products" },
-  { href: "/#public-sector", label: "Public sector" },
   { href: "/#contact", label: "Contact" },
 ];
 
@@ -88,7 +84,6 @@ export type Service = {
     summary: string;
     problemsTitle: string;
     problems: { title: string; body: string; change: string }[];
-    example?: string;
     outcomesTitle: string;
     outcomes: string[];
     phases: { name: string; plain: string; body: string }[];
@@ -98,7 +93,7 @@ export type Service = {
 };
 
 const whereItRuns =
-  "Inside your approved environment, using the identity, data, integration and operational services you select. Azure is our specialism. We also deliver on AWS.";
+  "Inside your approved environment, using the identity, data, integration and operational services you select. We work on Azure and AWS.";
 
 export const services: Service[] = [
   {
@@ -140,8 +135,6 @@ export const services: Service[] = [
             "A service in your approved environment, tested, monitored and owned by a named team.",
         },
       ],
-      example:
-        "Finding information across cultural collections is one case we have researched: many catalogues, described in different ways, that the public and staff want to search as one. It illustrates the problem. It is not a project DataGo has won or delivered.",
       outcomesTitle: "A working service, not a demonstration.",
       outcomes: [
         "Search and retrieval across the information sources you choose",
@@ -249,8 +242,6 @@ export const services: Service[] = [
             "Reporting designed around the decisions people make, with a small application where a dashboard is not enough.",
         },
       ],
-      example:
-        "Visitor-economy analytics and regional evidence platforms are cases we have researched: figures from many partners that need to come together in one evidence base people can use. They illustrate the problem. They are not projects DataGo has won or delivered.",
       outcomesTitle: "Figures people agree on and can act on.",
       outcomes: [
         "A written definition for each measure, with a named owner",
@@ -343,7 +334,7 @@ export const services: Service[] = [
           title: "Nobody owns the data",
           body: "A dataset is used across the organisation, but no one is named as responsible for its quality or for who may use it.",
           change:
-            "A named owner for each dataset, with the responsibilities written down.",
+            "A named owner for each dataset, with the duties written down.",
         },
         {
           title: "Permissions nobody can explain",
@@ -465,8 +456,6 @@ export const services: Service[] = [
             "Shared models, documented and tested, that new reports can build on.",
         },
       ],
-      example:
-        "A college data platform is one case we have researched: student, curriculum and finance information held in separate systems, with reports reconciled by hand. It illustrates the problem. It is not a project DataGo has won or delivered.",
       outcomesTitle: "One governed place for your data.",
       outcomes: [
         "Connections to the source systems you choose",
@@ -643,8 +632,6 @@ export const services: Service[] = [
   },
 ];
 
-const servicePath = (index: number) => `/services/${services[index].slug}`;
-
 /** Copy shared by all five service pages. */
 export const servicePage = {
   eyebrow: (n: string) => `Service ${n} of 05`,
@@ -657,32 +644,25 @@ export const servicePage = {
       { href: "#outcomes", who: "Analysts and reporting teams", what: "What you get" },
       { href: "#technical", who: "Digital, technology and data leaders", what: "Technical approach" },
       { href: "#controls", who: "Security, governance and information management", what: "Controls" },
-      { href: "#buying", who: "Procurement and commercial", what: "Scope and how to buy" },
+      { href: "#buying", who: "Procurement and commercial", what: "Scope and deliverables" },
     ],
   },
   problems: {
     eyebrow: "01 · Problems we solve",
-    lede: "These are the situations we are asked about most often.",
     changeLabel: "What changes",
-    exampleLabel: "An example of the need.",
   },
   outcomes: {
     eyebrow: "02 · What you get",
-    lede: "We agree in discovery how you will judge the result. These are the things most buyers ask us to deliver.",
+    lede: "We agree in discovery how you will judge the result.",
   },
   delivery: {
     eyebrow: "03 · How we deliver it",
     title: "Four phases, each with a decision at the end.",
-    acceleratorsLabel: "Accelerators.",
-    accelerators:
-      "We start from DataGo accelerators where they fit, so the common groundwork is deployed and not rebuilt.",
-    acceleratorsConfirms: ["accelerator names, what each does, where proven"],
   },
   technical: {
     eyebrow: "04 · Technical approach",
     title: "For the people who will evaluate the engineering.",
     lede: "This is our default approach. Discovery confirms or changes it against your requirement and your estate.",
-    confirms: ["approve these statements as public positions"],
     classesTitle: "The class of data decides the model route",
     classes: [
       { name: "Public or synthetic", route: "An approved managed model may be suitable." },
@@ -731,7 +711,7 @@ export const servicePage = {
     },
   },
   buying: {
-    eyebrow: "06 · Scope and how to buy",
+    eyebrow: "06 · Scope",
     title: "For procurement and commercial teams.",
     lede: "Each phase is a separate piece of work with a written scope, named deliverables and acceptance criteria. You are not committed to the next phase by buying this one.",
     receiveLabel: "You receive",
@@ -749,22 +729,6 @@ export const servicePage = {
         body: "The service in your environment, test evidence, documentation, runbooks and handover.",
       },
     ],
-    pricing: {
-      title: "Pricing",
-      confirms: ["pricing model for each phase: fixed price, capped time and materials, or rate card"],
-    },
-    routes: {
-      title: "Routes to buy",
-      before: "See ",
-      link: { label: "working with the public sector", href: "/#public-sector" },
-      after: ".",
-      confirms: ["framework and lot for this service"],
-    },
-    evidence: {
-      title: "Evidence",
-      clearance: true,
-      confirms: ["an approved case study for this service, or none"],
-    },
   },
   cta: {
     eyebrow: "Next",
@@ -787,7 +751,7 @@ export const home = {
     titleEmphasis: "trusted data foundations, practical governance and AI",
     titleAfter:
       " together to help organisations make better decisions and improve how they work.",
-    body: "DataGo is a technical delivery partner. Senior engineers connect fragmented data, build useful applications and analytics, and introduce AI with clear ownership, practical controls and evidence you can trust. We also build our own products. The first is Bridgly.",
+    body: "We connect fragmented data, build useful applications and analytics, and introduce AI with clear ownership, practical controls and evidence you can trust. We also build our own products. The first is Bridgly.",
     secondary: [
       { label: "What we deliver", href: "/#work" },
       { label: "Products", href: "/#products" },
@@ -798,7 +762,7 @@ export const home = {
     pause: "Pause",
     play: "Play",
     root: "datago",
-    consulting: { label: "Consulting", note: "delivery teams" },
+    consulting: { label: "Consulting", note: "data and AI delivery" },
     products: { label: "Products", note: "our own software" },
     productLeaves: [
       {
@@ -809,90 +773,9 @@ export const home = {
         captionTitle: "Bridgly.",
         caption: site.bridgly.line,
       },
-      {
-        id: "l7",
-        label: "Next product",
-        note: "to come",
-        href: "/#products",
-        captionTitle: "Next product.",
-        caption: "More products will follow. There is nothing to announce yet.",
-      },
     ],
     captionTitle: "One company, two ways to work with us.",
     caption: "Point at or tab to an item to see what it is.",
-  },
-  roles: {
-    eyebrow: "Start from your role",
-    title: "If you are…",
-    listLabel: "Your role",
-    startWith: "Start with",
-    items: [
-      {
-        id: "r1",
-        who: "A digital, technology or data leader",
-        doing: "assessing delivery capability",
-        question: "Can this team deliver it, and will it run in our estate?",
-        answer:
-          "We work in phases with a written scope for each one, and we treat production deployment, governance and maintainability as part of the job. Each service page sets out the technical approach in enough detail to evaluate.",
-        signposts: [
-          { href: "/#delivery", label: "How we deliver", note: "Discovery, alpha, beta, live" },
-          { href: `${servicePath(0)}#technical`, label: "Technical approach", note: "On the service page" },
-          { href: "/#accelerators", label: "Accelerators", note: "Why we do not start from scratch" },
-        ],
-      },
-      {
-        id: "r2",
-        who: "A service owner or programme director",
-        doing: "looking for operational improvement",
-        question: "What will be different for the people who run the service?",
-        answer:
-          "Each area of our work starts from a problem you would recognise and the outcome you should expect. We settle acceptance criteria and running costs in discovery, before you commit to a programme.",
-        signposts: [
-          { href: "/#work", label: "Problems we solve", note: "Problem, outcome, how we deliver" },
-          { href: "/#sectors", label: "Who we work with", note: "Typical needs by sector" },
-          { href: "/#delivery", label: "What each phase gives you", note: "And when you can stop" },
-        ],
-      },
-      {
-        id: "r3",
-        who: "An analyst or in a reporting team",
-        doing: "working with fragmented information",
-        question: "Will we stop reconciling spreadsheets?",
-        answer:
-          "That is the aim. We connect the source systems, check and model the data once, and build reusable datasets with agreed definitions, so your time goes on explaining the figures.",
-        signposts: [
-          { href: servicePath(1), label: "Analytics and decision support", note: "One agreed set of figures" },
-          { href: servicePath(3), label: "Data platforms and integration", note: "Systems connected, quality checked" },
-          { href: servicePath(0), label: "Practical AI applications", note: "Finding what you already know" },
-        ],
-      },
-      {
-        id: "r4",
-        who: "In security, governance or information management",
-        doing: "assessing controls",
-        question: "Who can see what, who approved it, and can you show us?",
-        answer:
-          "We design ownership, permissions, human approval and audit evidence in from discovery. We deliver inside your approved environment, and the sensitivity of the data decides which AI model, if any, may be used.",
-        signposts: [
-          { href: servicePath(2), label: "Governance and assurance", note: "Ownership, permissions, audit" },
-          { href: `${servicePath(0)}#controls`, label: "Controls", note: "On the service page" },
-          { href: "/#ps-check", label: "Security posture", note: "And data protection" },
-        ],
-      },
-      {
-        id: "r5",
-        who: "In procurement or commercial",
-        doing: "checking credibility, scope and value",
-        question: "Is this a properly set-up supplier, and how do we buy?",
-        answer:
-          "DataGo Ltd is the contracting company. We list only the routes, certificates and cover we hold. Company details are in the footer of every page.",
-        signposts: [
-          { href: "/#public-sector", label: "Routes to buy", note: "Frameworks and portals" },
-          { href: "/#trust", label: "What you can check", note: "Credentials, cover, evidence" },
-          { href: `${servicePath(0)}#buying`, label: "Scope and deliverables", note: "On the service page" },
-        ],
-      },
-    ],
   },
   work: {
     eyebrow: "01 · What we deliver",
@@ -902,41 +785,13 @@ export const home = {
     more: "Read the service page",
     tech: {
       title: "Outcome first, technology second",
-      body: "We choose technology against the requirement, including what you already run. Azure is our specialism. We also deliver on AWS, and DataGo is a Databricks partner.",
-      chips: ["Azure", "AWS", "Databricks", "Microsoft Fabric"],
-      confirms: [
-        "show the Databricks partner tier or not, and the wording and badge Databricks permits",
-        "name Microsoft Fabric here; any Microsoft or AWS partner status",
-      ],
-    },
-  },
-  accelerators: {
-    eyebrow: "02 · Accelerators",
-    title: "We do not start from scratch.",
-    lede: "DataGo has accelerators: reusable starting points for the parts of a build that most projects share. We deploy them rapidly, so the project's time goes on what is specific to you.",
-    proven: "They are proven at enterprise scale.",
-    provenConfirms: ['evidence for "proven at enterprise scale"'],
-    confirms: [
-      "accelerator names, what each does, where proven",
-      "who owns and may change what is deployed from an accelerator",
-    ],
-    compare: {
-      label: "Where the project's time goes (illustration, not measured)",
-      scratch: {
-        title: "Starting from scratch",
-        key: "Most of the early effort rebuilds common groundwork before anything specific to you appears.",
-      },
-      accelerator: {
-        title: "Starting from an accelerator",
-        key: "The groundwork is deployed first. The effort moves to your data, your rules and your users.",
-      },
-      note: "The bars show the idea only. They are not figures. We will publish numbers when we have evidence we can share.",
+      body: "We choose technology against the requirement, including what you already run. We work with Azure, AWS, Databricks and Microsoft Fabric.",
     },
   },
   delivery: {
-    eyebrow: "03 · How we deliver",
-    title: "Clear discovery, phased delivery, explicit responsibilities.",
-    lede: "We use the four phases of the GOV.UK Service Manual. Each phase has a written scope and ends with a decision you make: go on, change direction, or stop.",
+    eyebrow: "02 · How we deliver",
+    title: "Clear discovery, phased delivery.",
+    lede: "We work in four phases. Each phase has a written scope and ends with a decision you make: go on, change direction, or stop.",
     phases: [
       {
         name: "Discovery",
@@ -970,214 +825,12 @@ export const home = {
         { name: "Operating costs", detail: "What the service will cost to run once it is live." },
       ],
     },
-    who: {
-      title: "Who does what",
-      items: [
-        {
-          title: "Explicit responsibilities",
-          body: "Each phase names a DataGo delivery lead and an owner on your side, and lists what each of us provides.",
-          confirms: ["this statement, plus reporting rhythm, risk and change control"],
-        },
-        {
-          title: "The delivery team",
-          body: "Senior engineers lead the work, with a team of developers.",
-          confirms: ["roles, team size, associates, and how the team scales for an engagement"],
-        },
-        {
-          title: "Support after go-live",
-          body: "",
-          confirms: ["what support DataGo offers after handover, and on what terms"],
-        },
-      ],
-    },
-  },
-  sectors: {
-    eyebrow: "04 · Who we work with",
-    title: "UK public sector first, and not only government.",
-    lede: "Most of the work we bid for is with UK public-sector organisations, with selected opportunities in Ireland. We also work with commercial organisations that have the same problems.",
-    noteTitle: "About the examples.",
-    note: "The typical needs below come from our research into what buyers are asking for. They are problems we solve. They are not a list of clients or of projects we have won or delivered.",
-    items: [
-      {
-        title: "Local and regional government",
-        body: "Local authorities, combined authorities and regional partnerships.",
-        needLabel: "Typical need",
-        need: "A regional evidence platform: economic, skills and place data from many partners in one evidence base they can all use.",
-      },
-      {
-        title: "Central government and public bodies",
-        body: "Government departments, agencies and other public bodies.",
-        needLabel: "Typical need",
-        need: "Taking a promising prototype into a dependable operational service, inside the organisation's security model.",
-      },
-      {
-        title: "Education",
-        body: "Colleges, universities and education organisations.",
-        needLabel: "Typical need",
-        need: "A college data platform: student, curriculum and finance information held in separate systems, with reports reconciled by hand.",
-      },
-      {
-        title: "Health",
-        body: "NHS and health-sector bodies, where the requirement fits our technical capabilities.",
-        needLabel: "Typical need",
-        need: "Consistent reporting across systems that each count things differently.",
-      },
-      {
-        title: "Economic development, tourism, sustainability and culture",
-        body: "Publicly funded organisations working in these fields.",
-        needLabel: "Typical needs",
-        need: "Visitor-economy analytics, finding information across cultural collections, and climate-planning systems.",
-      },
-    ],
-    commercial: {
-      title: "Commercial organisations",
-      body: "The same work, bought directly.",
-      confirms: ["commercial sectors to name, or leave general"],
-    },
   },
   products: {
-    eyebrow: "05 · Products",
+    eyebrow: "03 · Products",
     title: "Products we build and stand behind.",
     lede: "Alongside consulting, DataGo builds its own software. Each product has its own proposition and its own site. DataGo Ltd is the company you contract with.",
-    bridglyConfirms: ['Bridgly status wording, e.g. "in development"'],
     more: { label: "About Bridgly", href: "/bridgly" },
-    next: {
-      tag: "Coming",
-      title: "The next DataGo product",
-      body: "More products will follow Bridgly. There is nothing to announce yet. When there is, it will appear here with its own site.",
-      confirms: ["name and one line, or keep this slot unnamed"],
-      cta: { label: "Ask what we are working on", href: "/#contact" },
-    },
-  },
-  publicSector: {
-    eyebrow: "06 · Working with the public sector",
-    title: "How to buy from us.",
-    lede: "These are the main routes UK and Irish public buyers use. Names and dates were checked on 16 November 2026. Each dashed tile is waiting for a fact from DataGo: a route DataGo is not on will be removed, not shown.",
-    routesTitle: "Routes to buy",
-    routes: [
-      {
-        title: "G-Cloud 15",
-        body: "Government Commercial Agency agreement RM1557.15, for cloud hosting, cloud software and cloud support. It runs from 6 August 2026 to 5 February 2028.",
-        confirms: ["listed, with lot and service names; or not listed"],
-      },
-      {
-        title: "Digital Outcomes and Specialists 7",
-        body: "Government Commercial Agency agreement RM1043.9, for outcome-based digital projects, delivery partners and specialists. Buyers award through further competition.",
-        confirms: ["on the agreement, with lot; or applying at the next opening; or not"],
-      },
-      {
-        title: "Find a Tender",
-        body: "The UK's central digital platform under the Procurement Act 2023. High-value notices are published here, and suppliers register their details once to share with buyers.",
-        confirms: ["registered on the central digital platform"],
-      },
-      {
-        title: "Contracts Finder",
-        body: "The UK government service for lower-value contract opportunities.",
-        confirms: ["whether to list this route"],
-      },
-      {
-        title: "Public Contracts Scotland",
-        body: "The Scottish Government's portal, where Scottish public bodies advertise regulated procurements and ask registered suppliers for Quick Quotes.",
-        confirms: ["registered as a supplier"],
-      },
-      {
-        title: "eTenders (Ireland)",
-        body: "The Irish public-sector procurement site, run by the Office of Government Procurement.",
-        confirms: ["registered; and whether to show Ireland here"],
-      },
-    ],
-    direct: {
-      title: "Direct",
-      before: "For work below the thresholds, or to talk before a tender, ",
-      link: { label: "contact us", href: "/#contact" },
-      after: ". DataGo Ltd is the contracting company.",
-    },
-    other: {
-      title: "Other routes",
-      confirms: ["any other frameworks, dynamic markets or portals, such as Sell2Wales"],
-    },
-    checkTitle: "What evaluators ask us for",
-    checks: [
-      {
-        title: "Social value",
-        body: "",
-        confirms: ["a short social value statement, with commitments DataGo can evidence"],
-      },
-      {
-        title: "Accessibility",
-        body: "We build services to WCAG 2.2 level AA and test them before release.",
-        confirms: ["this statement, and how it is tested"],
-        link: { label: "Accessibility statement for this site", href: "/accessibility" },
-      },
-      {
-        title: "Security posture",
-        body: "We design and deliver inside your approved environment, using the identity, data and operational services you select. The sensitivity of the data decides which AI model, if any, may be used.",
-        confirms: ["approve this as a public position"],
-      },
-      {
-        title: "Data protection",
-        body: "",
-        confirms: ["ICO registration number; how DataGo handles personal data on an engagement"],
-      },
-    ],
-  },
-  trust: {
-    eyebrow: "07 · Trust",
-    title: "What you can check.",
-    lede: "We list only what we hold. A certificate we are working towards is shown as planned, with a target date, never as held. We do not name an organisation as a client because we bid for its work.",
-    evidenceTitle: "Evidence of delivery",
-    evidence: [
-      {
-        title: "Delivered by DataGo",
-        body: "Case studies of work DataGo Ltd was contracted for and delivered.",
-        clearance: true,
-        confirms: ["approved case studies, or leave this out"],
-      },
-      {
-        title: "Our people's experience",
-        body: "Experience our specialists gained elsewhere is shown separately and labelled as theirs, not as DataGo's delivery.",
-        confirms: ["which experience may be described, and how"],
-      },
-      {
-        title: "The team",
-        body: "",
-        confirms: ["founder name, short biography and photograph, or none; senior roles to name"],
-      },
-    ],
-    credentialsTitle: "Credentials and cover",
-    credentials: [
-      {
-        title: "Partners and platforms",
-        body: "DataGo is a Databricks partner. Azure is our specialism, and we also deliver on AWS.",
-        fact: true,
-        confirms: ["Databricks partner tier wording and badge"],
-      },
-      {
-        title: "Cyber Essentials",
-        body: "",
-        confirms: ["held, with certificate date; planned, with target date; or not held"],
-      },
-      {
-        title: "ISO/IEC 27001",
-        body: "",
-        confirms: ["held; planned, with target date; or not held"],
-      },
-      {
-        title: "Insurance",
-        body: "",
-        confirms: ["professional indemnity, public liability and employer's liability cover"],
-      },
-      {
-        title: "Security clearance",
-        body: "",
-        confirms: ["clearance held across the team, stated as a capability, e.g. BPSS or SC"],
-      },
-      {
-        title: "Individual certifications",
-        body: "",
-        confirms: ["Databricks, Microsoft and AWS certifications held by the team"],
-      },
-    ],
   },
 };
 
@@ -1186,19 +839,16 @@ export const home = {
 /* ------------------------------------------------------------------ */
 
 export const contact = {
-  eyebrow: "08 · Contact",
+  eyebrow: "04 · Contact",
   pageEyebrow: "Contact",
   title: "Discuss a project",
-  lede: "Tell us the problem you are trying to solve, or about a requirement you are preparing. A few lines is enough. We read every message and reply by email.",
-  ledeConfirms: ["reply time you will commit to"],
-  emailLabel: "Prefer email?",
-  emailConfirms: ["which address receives enquiries, and that it is a working mailbox"],
+  lede: "Tell us the problem you are trying to solve. A few lines is enough. We read every message and reply by email.",
+  emailLabel: "Or email us at",
   form: {
     name: "Your name",
-    email: "Work email",
+    email: "Email",
     organisation: "Organisation",
     optional: "(optional)",
-    topic: "What is it about?",
     message: "Message",
     messageHint: "A few lines is enough. Please do not include sensitive personal data.",
     honeypot: "Leave this empty",
@@ -1212,11 +862,6 @@ export const contact = {
     sending: "Sending…",
     noscript:
       "This form needs JavaScript for its security check. If JavaScript is off, please email us instead:",
-  },
-  notConnected: {
-    title: "This form is not yet connected.",
-    body: "It cannot send your message yet. Please email us instead and we will reply.",
-    cta: "Email",
   },
   errors: {
     name: "Enter your name.",
@@ -1253,7 +898,6 @@ export const bridglyPage = {
   eyebrow: site.bridgly.tag,
   title: "Bridgly",
   body: "Bridgly is DataGo's product for governing AI agents. It has its own proposition and its own site. This page is a short introduction.",
-  confirms: ['Bridgly status wording, e.g. "in development"'],
   whatTitle: "What Bridgly does",
   demo: {
     note: "Illustration of the three outcomes. This is not the product interface.",
@@ -1283,17 +927,16 @@ export const bridglyPage = {
   more: "Product detail, demonstrations and Bridgly's own terms and privacy policy are on its site. The demonstrations there use BridgeRock, a fictional company.",
   companyTitle: "Who you contract with",
   company: "Bridgly is built by DataGo Ltd, which is the contracting company. Company details are in the footer of this page.",
-  bridglyConfirms: ['whether bridgly.ai should carry "A DataGo product"'],
 };
 
 export const aboutPage = {
   eyebrow: "About",
   title: "About DataGo",
-  body: "DataGo is a UK data and AI consultancy and a technical delivery partner. We connect fragmented data, build useful applications and analytics, and introduce AI with clear ownership, practical controls and evidence you can trust. We also build our own products. The first is Bridgly.",
+  body: "DataGo is a UK data and AI consultancy. We connect fragmented data, build useful applications and analytics, and introduce AI with clear ownership, practical controls and evidence you can trust. We also build our own products. The first is Bridgly.",
   facts: [
     { label: "Company", value: site.legalName },
     { label: "What we do", value: "Data, analytics, AI and governance delivery" },
-    { label: "Platforms", value: "Azure, AWS and Databricks" },
+    { label: "Technology we work with", value: "Azure, AWS, Databricks and Microsoft Fabric" },
     { label: "Products", value: "Bridgly" },
     { label: "Contact", value: site.email },
     { label: "Company details", value: "In the footer of every page" },
@@ -1303,7 +946,7 @@ export const aboutPage = {
     items: [
       {
         title: "Consulting",
-        body: "Delivery teams, led by senior engineers, working in five areas: practical AI, analytics, governance and assurance, data platforms, and secure production delivery.",
+        body: "Work in five areas: practical AI, analytics, governance and assurance, data platforms, and secure production delivery.",
         link: { label: "What we deliver", href: "/#work" },
       },
       {
@@ -1313,29 +956,9 @@ export const aboutPage = {
       },
     ],
   },
-  people: {
-    title: "The people",
-    tiles: [
-      {
-        title: "Founder and senior team",
-        body: "",
-        confirms: ["founder name, short biography and photograph, or none; senior roles to name"],
-      },
-      {
-        title: "The delivery team",
-        body: "Senior engineers lead the work, with a team of developers.",
-        confirms: ["roles, team size, associates, and how the team scales for an engagement"],
-      },
-      {
-        title: "Experience",
-        body: "Experience our specialists gained elsewhere is labelled as theirs, not as DataGo's delivery.",
-        confirms: ["years delivering data and AI work, and the kinds of organisation"],
-      },
-    ],
-  },
   approach: {
     title: "How we work",
-    body: "We favour clear discovery, phased delivery and explicit responsibilities. We establish source availability, data quality, integrations, security, acceptance criteria and operating costs before committing to a programme.",
+    body: "We favour clear discovery and phased delivery. We establish source availability, data quality, integrations, security, acceptance criteria and operating costs before committing to a programme.",
     link: { label: "How we deliver", href: "/#delivery" },
   },
 };
@@ -1345,7 +968,6 @@ export const accessibilityPage = {
   title: "Accessibility statement",
   body: "This statement covers the datago.uk website, run by DataGo Ltd. We want as many people as possible to be able to use it.",
   updated: "16 November 2026",
-  confirms: ["approve this statement; who answers accessibility feedback, and how quickly"],
   sections: [
     {
       title: "What we aim for",
@@ -1387,7 +1009,7 @@ export const accessibilityPage = {
       title: "If something does not work for you",
       paragraphs: [
         `Email ${site.email} and tell us the page and what went wrong. We will reply, and we can give you the information another way, for example in an email.`,
-        "The contact form has an email address beside it, so you never have to use the form.",
+        "The contact form has an email address below it, so you never have to use the form.",
       ],
     },
   ],
@@ -1412,13 +1034,13 @@ export const privacyPage = {
       title: "What this notice covers",
       paragraphs: [
         "It covers visits to datago.uk, the contact form on this site, and emails you send us about an enquiry.",
-        "It does not cover Bridgly or bridgly.ai, or data we handle for a client during a project. Those are covered by the Bridgly Privacy Policy and by our contract with the client.",
+        "It does not cover Bridgly or bridgly.ai, or data we handle for an organisation during a project. Those are covered by the Bridgly Privacy Policy and by our contract with that organisation.",
       ],
     },
     {
       title: "The contact form",
       paragraphs: [
-        "If you use the contact form we collect what you type: your name, your email address, your organisation if you give it, the subject you choose and your message. Please do not include sensitive personal data.",
+        "If you use the contact form we collect what you type: your name, your email address, your organisation if you give it, and your message. Please do not include sensitive personal data.",
         "We use this only to reply to your enquiry. We do not add you to a mailing list.",
         "The website does not store your message. The form turns it into one email to our inbox, with your address as the reply-to address. That email is the only record.",
         "To keep automated spam out, the form runs a security check from Cloudflare Turnstile, and our server counts requests from each IP address for a few minutes. The check uses no advertising cookies. The count is held in memory and is not written anywhere.",
@@ -1457,9 +1079,6 @@ export const privacyPage = {
         "Resend: delivers the enquiry email to our inbox",
         "Google Workspace: provides our email",
       ],
-      confirms: [
-        "this list of processors once the form is connected, and the contract terms in place with each",
-      ],
     },
     {
       title: "Transfers outside the UK",
@@ -1473,7 +1092,6 @@ export const privacyPage = {
         "The website keeps nothing from the contact form. The enquiry email stays in our inbox for as long as we need it to reply, to manage the relationship and to keep the records the law requires.",
         "Our hosting provider keeps technical logs for a limited period for security and fault-finding.",
       ],
-      confirms: ["how long enquiry emails are kept"],
     },
     {
       title: "Your rights",
@@ -1606,9 +1224,6 @@ export const footer = {
       links: [
         { href: "/about", label: "About" },
         { href: "/#delivery", label: "How we deliver" },
-        { href: "/#sectors", label: "Who we work with" },
-        { href: "/#public-sector", label: "Public sector" },
-        { href: "/#trust", label: "Trust" },
         { href: "/bridgly", label: "Bridgly" },
       ],
     },
@@ -1624,6 +1239,6 @@ export const footer = {
     },
   ],
   legalLine: (year: number) =>
-    `© ${year} ${site.legalName}. Registered in ${site.legal.registeredIn}, company number ${site.legal.companyNumber}. Registered office: ${site.legal.registeredOffice}.`,
+    `© ${year} ${site.legalName}. Registered in ${site.legal.registeredIn}, company number ${site.legal.companyNumber}. Registered office: ${site.legal.registeredOffice}. VAT registration number: ${site.legal.vatNumber}.`,
   productLine: "Bridgly is a DataGo product.",
 };

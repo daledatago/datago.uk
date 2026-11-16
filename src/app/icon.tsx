@@ -13,7 +13,7 @@ export default function Icon() {
       <div
         style={{
           alignItems: "center",
-          background: "linear-gradient(135deg, #1a375e, #1f4e8e)",
+          background: "#0b1220" /* the --ink token; image routes cannot read CSS variables */,
           color: "#ffffff",
           display: "flex",
           fontFamily: "Arial, Helvetica, sans-serif",

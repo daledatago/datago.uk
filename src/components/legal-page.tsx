@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { Confirms } from "@/components/confirm";
 import { PageHead } from "@/components/page-head";
-import { legalPages } from "@/lib/strings";
+import { legalPages, ui } from "@/lib/strings";
 
 type LegalPageProps = {
   page: {
@@ -10,12 +9,10 @@ type LegalPageProps = {
     body: string;
     updated: string;
     bridglyNotice?: string;
-    confirms?: string[];
     sections: {
       title: string;
       paragraphs: string[];
       bullets?: string[];
-      confirms?: string[];
     }[];
     relatedLinks?: { label: string; href: string }[];
   };
@@ -32,11 +29,6 @@ export function LegalPage({ page }: LegalPageProps) {
             <article>
               <p className="label">{`${legalPages.updatedLabel} ${page.updated}`}</p>
               {page.bridglyNotice ? <p>{page.bridglyNotice}</p> : null}
-              {page.confirms ? (
-                <p>
-                  <Confirms items={page.confirms} />
-                </p>
-              ) : null}
             </article>
             {page.sections.map((section) => (
               <article key={section.title}>
@@ -51,11 +43,6 @@ export function LegalPage({ page }: LegalPageProps) {
                     ))}
                   </ul>
                 ) : null}
-                {section.confirms ? (
-                  <p>
-                    <Confirms items={section.confirms} />
-                  </p>
-                ) : null}
               </article>
             ))}
             {page.relatedLinks ? (
@@ -64,8 +51,9 @@ export function LegalPage({ page }: LegalPageProps) {
                 <div className="related">
                   {page.relatedLinks.map((item) =>
                     item.href.startsWith("http") ? (
-                      <a href={item.href} key={item.href} rel="noopener">
+                      <a href={item.href} key={item.href} rel="noopener noreferrer" target="_blank">
                         {item.label}
+                        <span className="vh"> {ui.newTab}</span>
                       </a>
                     ) : (
                       <Link href={item.href} key={item.href}>
