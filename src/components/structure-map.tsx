@@ -14,6 +14,8 @@ type Leaf = {
 
 type StructureMapProps = {
   label: string;
+  /** Hidden text added to a leaf that links to another site. */
+  newTab: string;
   pause: string;
   play: string;
   root: string;
@@ -63,6 +65,7 @@ function pointAt(points: Point[], t: number): Point {
  */
 export function StructureMap({
   label,
+  newTab,
   pause,
   play,
   root,
@@ -360,6 +363,9 @@ export function StructureMap({
                       data-n={leaf.id}
                       data-p={branch.id}
                       href={leaf.href}
+                      {...(leaf.href.startsWith("http")
+                        ? { rel: "noopener noreferrer", target: "_blank" }
+                        : {})}
                       onBlur={() => highlight(null)}
                       onFocus={() => highlight(leaf.id)}
                       onPointerEnter={() => highlight(leaf.id)}
@@ -371,6 +377,9 @@ export function StructureMap({
                     >
                       {leaf.label}
                       {leaf.note ? <small>{leaf.note}</small> : null}
+                      {leaf.href.startsWith("http") ? (
+                        <span className="vh"> {newTab}</span>
+                      ) : null}
                     </Link>
                   </li>
                 ))}

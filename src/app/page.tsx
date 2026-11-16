@@ -6,7 +6,7 @@ import { JsonLdScript } from "@/components/json-ld-script";
 import { OutcomeDemo } from "@/components/outcome-demo";
 import { StructureMap } from "@/components/structure-map";
 import { pageJsonLd } from "@/lib/metadata";
-import { bridglyPage, contact, home, services, site, ui } from "@/lib/strings";
+import { bridglyDemo, contact, home, services, site, ui } from "@/lib/strings";
 
 const delay = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
 
@@ -69,6 +69,7 @@ export default function Home() {
             caption={home.map.caption}
             captionTitle={home.map.captionTitle}
             label={home.map.label}
+            newTab={ui.newTab}
             pause={home.map.pause}
             play={home.map.play}
             root={home.map.root}
@@ -174,9 +175,9 @@ export default function Home() {
                 ))}
               </ul>
               <OutcomeDemo
-                groupLabel={bridglyPage.demo.groupLabel}
-                note={bridglyPage.demo.note}
-                options={bridglyPage.demo.options}
+                groupLabel={bridglyDemo.groupLabel}
+                note={bridglyDemo.note}
+                options={bridglyDemo.options}
               />
               <div className="btn-row">
                 <a
@@ -188,9 +189,15 @@ export default function Home() {
                   {site.bridgly.cta} <Arrow />
                   <span className="vh"> {ui.newTab}</span>
                 </a>
-                <Link className="textlink" href={home.products.more.href}>
+                <a
+                  className="textlink"
+                  href={home.products.more.href}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
                   {home.products.more.label}
-                </Link>
+                  <span className="vh"> {ui.newTab}</span>
+                </a>
               </div>
             </article>
           </div>

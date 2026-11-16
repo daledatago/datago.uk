@@ -6,7 +6,7 @@ Pages:
 
 - Home: the hero message, the structure map, the five focus areas, how we deliver, products and contact
 - Five service pages on one template: `/services/[slug]`
-- Bridgly: a short page that links to bridgly.ai
+- Bridgly: `/bridgly` redirects permanently to bridgly.ai; every Bridgly link opens bridgly.ai in a new tab
 - About
 - Contact, with the enquiry form
 - Privacy, Terms and the Accessibility statement
@@ -17,7 +17,7 @@ All copy lives in `src/lib/strings.ts`; components carry no English of their own
 
 ### Claims rules
 
-Nothing on the site is invented. A fact the owner has not yet confirmed is a `confirms` entry in `strings.ts` and shows on the page as a visible `[CONFIRM: …]` tag. Replace the entry with the fact, or remove the tile. Researched examples appear only as "typical needs", never as clients or delivered work. Bridgly is described only with the approved claims in `site.bridgly`.
+Nothing on the site is invented. A fact the owner has not confirmed is left out. Bridgly is described only with the approved claims in `site.bridgly`.
 
 ### Look and feel
 

@@ -769,7 +769,7 @@ export const home = {
         id: "l6",
         label: "Bridgly",
         note: "bridgly.ai",
-        href: "/#products",
+        href: site.bridgly.url,
         captionTitle: "Bridgly.",
         caption: site.bridgly.line,
       },
@@ -830,7 +830,7 @@ export const home = {
     eyebrow: "03 · Products",
     title: "Products we build and stand behind.",
     lede: "Alongside consulting, DataGo builds its own software. Each product has its own proposition and its own site. DataGo Ltd is the company you contract with.",
-    more: { label: "About Bridgly", href: "/bridgly" },
+    more: { label: "About Bridgly", href: site.bridgly.url },
   },
 };
 
@@ -894,39 +894,30 @@ export const contact = {
 /* Other pages                                                         */
 /* ------------------------------------------------------------------ */
 
-export const bridglyPage = {
-  eyebrow: site.bridgly.tag,
-  title: "Bridgly",
-  body: "Bridgly is DataGo's product for governing AI agents. It has its own proposition and its own site. This page is a short introduction.",
-  whatTitle: "What Bridgly does",
-  demo: {
-    note: "Illustration of the three outcomes. This is not the product interface.",
-    groupLabel: "Choose an outcome",
-    options: [
-      {
-        key: "ok",
-        label: "Goes ahead",
-        title: "The action goes ahead.",
-        body: "It is within a rule a named person signed. The record shows the rule, the clauses it serves, the version in force and who signed it.",
-      },
-      {
-        key: "hold",
-        label: "Held for a person",
-        title: "The action is held for a person.",
-        body: "The rule says a person must decide. The agent waits. The record shows the rule and, once made, the decision.",
-      },
-      {
-        key: "stop",
-        label: "Stopped",
-        title: "The action is stopped.",
-        body: "The rule does not allow it. The record shows which rule, the clauses it serves, the version in force and who signed it.",
-      },
-    ],
-  },
-  moreTitle: "Everything else is on bridgly.ai",
-  more: "Product detail, demonstrations and Bridgly's own terms and privacy policy are on its site. The demonstrations there use BridgeRock, a fictional company.",
-  companyTitle: "Who you contract with",
-  company: "Bridgly is built by DataGo Ltd, which is the contracting company. Company details are in the footer of this page.",
+/** The three-outcome illustration on the home page product card. */
+export const bridglyDemo = {
+  note: "Illustration of the three outcomes. This is not the product interface.",
+  groupLabel: "Choose an outcome",
+  options: [
+    {
+      key: "ok",
+      label: "Goes ahead",
+      title: "The action goes ahead.",
+      body: "It is within a rule a named person signed. The record shows the rule, the clauses it serves, the version in force and who signed it.",
+    },
+    {
+      key: "hold",
+      label: "Held for a person",
+      title: "The action is held for a person.",
+      body: "The rule says a person must decide. The agent waits. The record shows the rule and, once made, the decision.",
+    },
+    {
+      key: "stop",
+      label: "Stopped",
+      title: "The action is stopped.",
+      body: "The rule does not allow it. The record shows which rule, the clauses it serves, the version in force and who signed it.",
+    },
+  ],
 };
 
 export const aboutPage = {
@@ -1224,7 +1215,7 @@ export const footer = {
       links: [
         { href: "/about", label: "About" },
         { href: "/#delivery", label: "How we deliver" },
-        { href: "/bridgly", label: "Bridgly" },
+        { href: site.bridgly.url, label: "Bridgly" },
       ],
     },
     {

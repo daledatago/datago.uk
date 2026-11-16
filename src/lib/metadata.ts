@@ -59,16 +59,6 @@ export const PUBLIC_SEARCH_ROUTES: readonly SearchRoute[] = [
     }),
   ),
   {
-    path: "/bridgly",
-    title: "Bridgly",
-    description:
-      "Bridgly is a DataGo product for governing AI agents. People decide. Agents act within the rules you sign. Bridgly proves both.",
-    priority: 0.8,
-    changeFrequency: "monthly",
-    index: true,
-    inSitemap: true,
-  },
-  {
     path: "/about",
     title: "About",
     description:
