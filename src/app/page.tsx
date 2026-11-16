@@ -1,12 +1,15 @@
 import Link from "next/link";
 import { Arrow } from "@/components/arrow";
 import { ContactSection } from "@/components/contact-section";
-import { DatagoMark } from "@/components/datago-mark";
+import { CredentialsBand } from "@/components/credentials-band";
+import { FieldPoster } from "@/components/immersive/field-poster";
+import { HeroStage } from "@/components/immersive/hero-stage";
+import { LayerStack } from "@/components/immersive/layer-stack";
+import { Tilt } from "@/components/immersive/tilt";
 import { JsonLdScript } from "@/components/json-ld-script";
 import { OutcomeDemo } from "@/components/outcome-demo";
-import { StructureMap } from "@/components/structure-map";
 import { pageJsonLd } from "@/lib/metadata";
-import { bridglyDemo, contact, home, services, site, ui } from "@/lib/strings";
+import { contact, home, services, site, ui } from "@/lib/strings";
 
 const delay = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
 
@@ -24,164 +27,106 @@ export default function Home() {
         })}
       />
 
-      <section className="hero" id="top">
-        <div className="shell hero__grid">
-          <div>
-            <p className="eyebrow">{home.hero.eyebrow}</p>
-            <h1>
-              {home.hero.titleBefore}
-              <em>{home.hero.titleEmphasis}</em>
-              {home.hero.titleAfter}
-            </h1>
-            <p className="hero__body">{home.hero.body}</p>
-            <div className="hero__cta">
-              <Link className="btn" href="/#contact">
-                {ui.cta} <Arrow />
-              </Link>
-              {home.hero.secondary.map((item) => (
-                <Link className="btn btn--ghost" href={item.href} key={item.href}>
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-          <StructureMap
-            branches={[
-              {
-                id: "b1",
-                label: home.map.consulting.label,
-                note: home.map.consulting.note,
-                leaves: services.map((service, index) => ({
-                  id: `l${index + 1}`,
-                  label: service.mapLabel,
-                  href: `/#${service.anchor}`,
-                  captionTitle: `${service.name}.`,
-                  caption: service.mapCaption,
-                })),
-              },
-              {
-                id: "b2",
-                label: home.map.products.label,
-                note: home.map.products.note,
-                leaves: home.map.productLeaves,
-              },
-            ]}
-            caption={home.map.caption}
-            captionTitle={home.map.captionTitle}
-            label={home.map.label}
-            newTab={ui.newTab}
-            pause={home.map.pause}
-            play={home.map.play}
-            root={home.map.root}
-          />
+      <HeroStage
+        chapters={home.story.chapters}
+        cue={home.story.cue}
+        label={home.story.label}
+        poster={<FieldPoster />}
+      >
+        <p className="eyebrow">{home.hero.eyebrow}</p>
+        <h1 className="display">
+          {home.hero.titleLines.map((line, index) => (
+            <span className="display__line" key={line} style={delay(index * 90)}>
+              <span>{line} </span>
+            </span>
+          ))}
+          <span className="display__line" style={delay(home.hero.titleLines.length * 90)}>
+            <em>{home.hero.titleEmphasis}</em>
+          </span>
+        </h1>
+        <p className="stage__lede">{home.hero.body}</p>
+        <div className="hero__cta">
+          <Link className="btn" href="/#contact">
+            {ui.cta} <Arrow />
+          </Link>
+          <Link className="btn btn--ghost" href={home.hero.secondary.href}>
+            {home.hero.secondary.label}
+          </Link>
         </div>
-      </section>
+      </HeroStage>
 
-      <section aria-labelledby="work-h" className="section section--alt" id="work">
+      <section aria-labelledby="work-h" className="section section--alt band" id="work">
         <div className="shell">
           <div className="section__head" data-reveal="">
             <p className="eyebrow">{home.work.eyebrow}</p>
-            <h2 id="work-h">{home.work.title}</h2>
+            <h2 className="headline" id="work-h">
+              {home.work.title}
+            </h2>
             <p className="lede">{home.work.lede}</p>
           </div>
-          <div className="areas">
-            {services.map((service) => (
-              <article className="area" data-reveal="" id={service.anchor} key={service.slug}>
-                <div className="area__head">
-                  <span className="area__n">{service.n}</span>
-                  <h3>{service.name}</h3>
-                  <Link
-                    aria-label={`${home.work.more}: ${service.name}`}
-                    className="textlink"
-                    href={`/services/${service.slug}`}
-                  >
-                    {home.work.more}&nbsp;<Arrow />
-                  </Link>
-                </div>
-                <div className="area__cell area__cell--problem">
-                  <h4 className="label">{home.work.labels.problem}</h4>
-                  <p>{service.problem}</p>
-                </div>
-                <div className="area__cell area__cell--outcome">
-                  <h4 className="label">{home.work.labels.outcome}</h4>
-                  <p>{service.outcome}</p>
-                </div>
-                <div className="area__cell area__cell--how">
-                  <h4 className="label">{home.work.labels.how}</h4>
-                  <p>{service.how}</p>
-                </div>
-              </article>
-            ))}
+          <div data-reveal="">
+            <LayerStack
+              labels={{
+                tabs: home.work.tabsLabel,
+                outcome: home.work.labels.outcome,
+                how: home.work.labels.how,
+                more: home.work.more,
+              }}
+              layers={services.map((service) => ({
+                slug: service.slug,
+                n: service.n,
+                layer: service.layer,
+                name: service.name,
+                short: service.short,
+                outcome: service.outcome,
+                how: service.how,
+              }))}
+            />
           </div>
-          <div className="tech" data-reveal="">
-            <h3>{home.work.tech.title}</h3>
-            <p>{home.work.tech.body}</p>
+          <div className="aside-line" data-reveal="">
+            <p>
+              <b>{home.work.tech.title}</b> {home.work.tech.body}
+            </p>
+            <Link className="textlink" href={home.work.all.href}>
+              {home.work.all.label}&nbsp;<Arrow />
+            </Link>
           </div>
         </div>
       </section>
 
-      <section aria-labelledby="delivery-h" className="section" id="delivery">
+      <section aria-labelledby="how-h" className="section band" id="how">
         <div className="shell">
           <div className="section__head" data-reveal="">
-            <p className="eyebrow">{home.delivery.eyebrow}</p>
-            <h2 id="delivery-h">{home.delivery.title}</h2>
-            <p className="lede">{home.delivery.lede}</p>
+            <p className="eyebrow">{home.how.eyebrow}</p>
+            <h2 className="headline" id="how-h">
+              {home.how.title}
+            </h2>
           </div>
-          <ol className="steps" data-line="">
-            {home.delivery.phases.map((phase, index) => (
-              <li className="step" data-reveal="" key={phase.name} style={delay(index * 120)}>
-                <span className="step__n">{`0${index + 1}`}</span>
-                <div>
-                  <h3>{phase.name}</h3>
-                  <span className="step__plain">{phase.plain}</span>
-                  <p>{phase.body}</p>
-                </div>
+          <ol className="path" data-line="">
+            {home.how.steps.map((step, index) => (
+              <li data-reveal="" key={step.name} style={delay(index * 110)}>
+                <span className="path__n">{`0${index + 1}`}</span>
+                <h3>{step.name}</h3>
+                <p>{step.body}</p>
               </li>
             ))}
           </ol>
-
-          <div className="org" data-reveal="">
-            <h3 className="org__title">{home.delivery.settle.title}</h3>
-            <ul className="checks">
-              {home.delivery.settle.items.map((item) => (
-                <li key={item.name}>
-                  <b>{item.name}</b>
-                  {item.detail}
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
       </section>
 
-      <section aria-labelledby="products-h" className="section section--alt" id="products">
+      <CredentialsBand />
+
+      <section aria-labelledby="product-h" className="section section--alt band" id="product">
         <div className="shell">
-          <div className="section__head" data-reveal="">
-            <p className="eyebrow">{home.products.eyebrow}</p>
-            <h2 id="products-h">{home.products.title}</h2>
-            <p className="lede">{home.products.lede}</p>
-          </div>
-          <div className="products products--one">
-            <article className="card product" data-reveal="">
-              <p className="product__tag">
-                <DatagoMark size={16} />
-                {site.bridgly.tag}
-              </p>
-              <h3>{site.bridgly.name}</h3>
-              <p className="product__line">{site.bridgly.line}</p>
-              <ul className="product__list">
-                {site.bridgly.claims.map((claim) => (
-                  <li key={claim}>{claim}</li>
-                ))}
-              </ul>
-              <OutcomeDemo
-                groupLabel={bridglyDemo.groupLabel}
-                note={bridglyDemo.note}
-                options={bridglyDemo.options}
-              />
-              <div className="btn-row">
+          <div data-reveal="">
+            <Tilt className="bridgly" max={1.5}>
+              <div className="bridgly__say">
+                <p className="eyebrow">{home.product.eyebrow}</p>
+                <h2 id="product-h">{site.bridgly.name}</h2>
+                <p className="bridgly__line">{site.bridgly.line}</p>
+                <p className="lede">{home.product.lede}</p>
                 <a
-                  className="btn btn--ghost"
+                  className="btn"
                   href={site.bridgly.url}
                   rel="noopener noreferrer"
                   target="_blank"
@@ -189,22 +134,21 @@ export default function Home() {
                   {site.bridgly.cta} <Arrow />
                   <span className="vh"> {ui.newTab}</span>
                 </a>
-                <a
-                  className="textlink"
-                  href={home.products.more.href}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  {home.products.more.label}
-                  <span className="vh"> {ui.newTab}</span>
-                </a>
               </div>
-            </article>
+              <OutcomeDemo
+                groupLabel={home.product.demoLabel}
+                note={home.product.demoNote}
+                options={home.product.options}
+              />
+            </Tilt>
           </div>
         </div>
       </section>
 
-      <section aria-labelledby="contact-h" className="section" id="contact">
+      <section aria-labelledby="contact-h" className="section band band--contact" id="contact">
+        <div aria-hidden="true" className="band__motif">
+          <FieldPoster />
+        </div>
         <ContactSection eyebrow={contact.eyebrow} heading="h2" />
       </section>
     </>

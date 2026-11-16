@@ -3,7 +3,8 @@
  *
  * Claims rules (owner's review, 16 November 2026):
  * - Outcome first, technology second. Technology is named only as tools we
- *   work with, never as a partnership or tier.
+ *   work with. The one partnership statement is the entry in `credentials`,
+ *   shown as written; no tier, and nothing about it anywhere else.
  * - Nothing is claimed that is not established: no track record, no target
  *   market, no accreditations or listings. An unknown is left out, not shown.
  * - Bridgly is described only with the approved claims in `site.bridgly`.
@@ -14,7 +15,7 @@ export const site = {
   legalName: "DataGo Ltd",
   url: "https://datago.uk",
   email: "dale.harrison@datago.uk",
-  tagline: "A UK data and AI consultancy, and the company behind Bridgly.",
+  tagline: "AI, built on trusted data.",
   description:
     "DataGo is a UK data and AI consultancy. We bring trusted data foundations, practical governance and AI together to help organisations make better decisions and improve how they work.",
   assets: {
@@ -59,778 +60,250 @@ export const ui = {
 };
 
 export const navItems = [
-  { href: "/#work", label: "What we deliver" },
-  { href: "/#delivery", label: "How we deliver" },
-  { href: "/#products", label: "Products" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/services", label: "What we do" },
+  { href: "/#how", label: "How we work" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 /* ------------------------------------------------------------------ */
-/* Services: the five focus areas, in display order.                   */
+/* The five kinds of work, in order of emphasis.                       */
+/*                                                                     */
+/* They are also the five layers of the field, top to bottom: the      */
+/* first is what people use, the last is what everything runs on.      */
+/* `layer` counts from the bottom, as the 3D scene does.               */
 /* ------------------------------------------------------------------ */
 
 export type Service = {
+  /** Anchor on /services, so each panel can be linked to. */
   slug: string;
-  anchor: string;
   n: string;
+  layer: number;
   name: string;
-  mapLabel: string;
-  mapCaption: string;
-  problem: string;
+  short: string;
+  /** The outcome, in one line. Always shown first. */
   outcome: string;
+  /** How we get there, in one line. */
   how: string;
-  page: {
-    description: string;
-    summary: string;
-    problemsTitle: string;
-    problems: { title: string; body: string; change: string }[];
-    outcomesTitle: string;
-    outcomes: string[];
-    phases: { name: string; plain: string; body: string }[];
-    technical: { term: string; detail: string }[];
-    showDataClasses: boolean;
-  };
+  problem: string;
+  changes: string[];
 };
-
-const whereItRuns =
-  "Inside your approved environment, using the identity, data, integration and operational services you select. We work on Azure and AWS.";
 
 export const services: Service[] = [
   {
-    slug: "practical-ai-applications",
-    anchor: "a-ai",
+    slug: "practical-ai",
     n: "01",
+    layer: 4,
     name: "Practical AI applications",
-    mapLabel: "Practical AI",
-    mapCaption:
-      "Search across your information, answers that show their sources, and assistance inside the services you already run.",
+    short: "Practical AI",
+    outcome: "People ask in plain words and get answers that show their sources.",
+    how: "AI enablement and development: assistants and agents, search and retrieval, and decision support, built into the tools people already use.",
     problem:
-      "Staff cannot find what the organisation already knows. Policies, reports and records sit in separate stores, and the AI pilot that looked promising never became something people could rely on.",
-    outcome:
-      "People ask a question in plain words and get an answer that shows its sources. Assistance sits inside the services they already use, and a person approves anything that matters.",
-    how: "Search and retrieval across your information, evidence-backed answers, workflow assistance and integration into existing services. Answers are tested against agreed questions before release.",
-    page: {
-      description:
-        "Search across your information, answers that show their sources, and assistance inside the services you already run, delivered in your approved environment.",
-      summary:
-        "We help people find and use what your organisation already knows. They ask a question in plain words and get an answer that shows its sources, inside the services they already use, with a person approving anything that matters.",
-      problemsTitle: "The information exists. People cannot get to it.",
-      problems: [
-        {
-          title: "Knowledge nobody can find",
-          body: "Policies, reports, guidance and records sit in separate stores. Staff ask a colleague, or go without.",
-          change:
-            "One place to ask, across the sources each person is allowed to see.",
-        },
-        {
-          title: "Answers nobody can check",
-          body: "A general-purpose assistant gives a confident answer with no source. Nobody can tell whether to rely on it.",
-          change:
-            "Every answer cites the documents it came from. Where the sources do not support an answer, it says so.",
-        },
-        {
-          title: "A pilot that never went live",
-          body: "The demonstration impressed people, but it sat outside your sign-on, your permissions and your support model.",
-          change:
-            "A service in your approved environment, tested, monitored and owned by a named team.",
-        },
-      ],
-      outcomesTitle: "A working service, not a demonstration.",
-      outcomes: [
-        "Search and retrieval across the information sources you choose",
-        "Answers that show their sources, so a person can check them",
-        "Assistance inside existing workflows: drafting, summarising, finding the relevant case or clause",
-        "Integration into the services and sign-on your staff already use",
-        "Human approval before anything with consequences is sent, published or decided",
-        "A set of test questions and expected answers, so quality can be measured and re-measured",
-        "Documentation, runbooks and handover to the team that will run it",
-      ],
-      phases: [
-        {
-          name: "Discovery",
-          plain: "Is the information there, and may we use it?",
-          body: "We look at the sources, who owns them, how they are classified and who may see what. We agree the questions the service must answer well.",
-        },
-        {
-          name: "Alpha",
-          plain: "Does it answer well enough?",
-          body: "A prototype on a sample of your information, scored against the agreed questions. You see where it is right, where it is wrong and why.",
-        },
-        {
-          name: "Beta",
-          plain: "Build it properly",
-          body: "The service in your environment, with sign-on, permissions, logging and monitoring, released to a small group first.",
-        },
-        {
-          name: "Live",
-          plain: "Run it and keep it honest",
-          body: "Handover, with the test questions re-run when sources or models change, so quality does not drift unnoticed.",
-        },
-      ],
-      technical: [
-        { term: "Where it runs", detail: whereItRuns },
-        {
-          term: "Retrieval",
-          detail:
-            "Sources are indexed with their permissions. A person's question retrieves only what that person is allowed to see. Retrieved content is treated as data, never as instructions.",
-        },
-        {
-          term: "Evidence",
-          detail:
-            "The service keeps source evidence, a user's own assumptions, generated text and approved decisions apart, and shows which is which.",
-        },
-        {
-          term: "Models",
-          detail:
-            "The model sits behind the application and can be replaced. The route is set by policy and by the class of data, not chosen by a prompt or an end user.",
-        },
-        {
-          term: "Evaluation",
-          detail:
-            "A maintained set of questions with expected answers and sources. We test for unsupported citations, prompt injection, malicious files and data leakage before release and after changes.",
-        },
-        {
-          term: "Interfaces",
-          detail:
-            "A web application, your existing portal or an approved enterprise assistant. Each uses the same permissions, data controls and audit record.",
-        },
-        {
-          term: "Operations",
-          detail:
-            "Secrets management, dependency and vulnerability management, monitoring, backups and incident response, sized to the delivery phase.",
-        },
-      ],
-      showDataClasses: true,
-    },
+      "The organisation already knows the answer. Nobody can find it, and the AI pilot never became something people rely on.",
+    changes: [
+      "One place to ask, across everything a person is allowed to see.",
+      "Every answer shows where it came from, and says so when the sources fall short.",
+      "A person stays in the loop for anything that matters.",
+    ],
   },
   {
-    slug: "analytics-decision-support",
-    anchor: "a-analytics",
+    slug: "analytics",
     n: "02",
+    layer: 3,
     name: "Analytics and decision support",
-    mapLabel: "Analytics",
-    mapCaption:
-      "One agreed set of figures, and dashboards and applications that help people act on them.",
+    short: "Analytics",
+    outcome: "One agreed set of figures, ready when a decision is due.",
+    how: "Shared definitions, reusable datasets and reporting that people can question.",
     problem:
-      "Two reports give two different numbers. Analysts spend the week reconciling spreadsheets and have no time left to explain what the figures mean.",
-    outcome:
-      "One agreed set of figures, with dashboards and applications that help people interpret information and act on it.",
-    how: "Reusable datasets with agreed definitions, reporting and dashboards built on them, and small applications where a dashboard is not enough.",
-    page: {
-      description:
-        "One agreed set of figures, with reusable datasets, reporting and small applications that help people interpret information and act on it.",
-      summary:
-        "We give people one agreed set of figures and the means to act on them: reusable datasets with agreed definitions, reporting and dashboards built on them, and small applications where a dashboard is not enough.",
-      problemsTitle: "Two reports, two different numbers.",
-      problems: [
-        {
-          title: "Figures that do not agree",
-          body: "Each team counts in its own way, from its own extract. Meetings are spent deciding which number is right.",
-          change:
-            "One written definition for each measure, with an owner, used by every report.",
-        },
-        {
-          title: "Analysts tied up in reconciliation",
-          body: "Skilled people spend the week joining spreadsheets by hand and have no time left to explain what the figures mean.",
-          change:
-            "Reusable datasets refreshed on a schedule, so the time goes on interpretation.",
-        },
-        {
-          title: "Reports nobody acts on",
-          body: "A report shows what happened but not what to do next, and the people who need it cannot find it.",
-          change:
-            "Reporting designed around the decisions people make, with a small application where a dashboard is not enough.",
-        },
-      ],
-      outcomesTitle: "Figures people agree on and can act on.",
-      outcomes: [
-        "A written definition for each measure, with a named owner",
-        "Reusable datasets that reports and applications share",
-        "Dashboards and reports built on those datasets",
-        "Small applications for the decisions a dashboard does not support",
-        "Access that follows your permissions, so people see what they are allowed to see",
-        "Checks that flag when data is late, incomplete or out of range",
-        "Documentation and handover to the team that will maintain it",
-      ],
-      phases: [
-        {
-          name: "Discovery",
-          plain: "Which decisions, and which figures?",
-          body: "We find the decisions the reporting must support, the measures behind them, where the data comes from and how good it is.",
-        },
-        {
-          name: "Alpha",
-          plain: "Does one agreed figure hold up?",
-          body: "We build a small number of measures end to end on real or representative data and compare them with the reports you use today. You see where they differ and why.",
-        },
-        {
-          name: "Beta",
-          plain: "Build it properly",
-          body: "The datasets, reports and applications in your environment, with access controls, refresh schedules and data-quality checks, released to a small group first.",
-        },
-        {
-          name: "Live",
-          plain: "Run it and keep it trusted",
-          body: "Handover, with the definitions and checks maintained as sources change, so the figures stay agreed.",
-        },
-      ],
-      technical: [
-        { term: "Where it runs", detail: whereItRuns },
-        {
-          term: "Definitions",
-          detail:
-            "Each measure has one written definition, an owner and a tested calculation, kept with the dataset and not inside individual reports.",
-        },
-        {
-          term: "Datasets",
-          detail:
-            "Shared, modelled datasets sit between the source systems and the reports, so a change is made once.",
-        },
-        {
-          term: "Reporting tools",
-          detail:
-            "We build on the reporting tool you already use where it fits, and choose one against the requirement where you have none.",
-        },
-        {
-          term: "Data quality",
-          detail:
-            "Automated checks for completeness, timeliness and consistency run with each refresh. Failures are reported, not hidden.",
-        },
-        {
-          term: "Access",
-          detail:
-            "Row-level and role-based access follow your identity and permissions model.",
-        },
-        {
-          term: "Operations",
-          detail:
-            "Scheduled refreshes, monitoring, version control and a documented release process, sized to the delivery phase.",
-        },
-      ],
-      showDataClasses: false,
-    },
+      "Every report gives a different number, and the time goes on reconciling spreadsheets instead of deciding.",
+    changes: [
+      "Each measure is defined once and used everywhere.",
+      "Figures trace back to the records they came from.",
+      "Time moves from producing the numbers to acting on them.",
+    ],
   },
   {
-    slug: "governance-assurance",
-    anchor: "a-governance",
+    slug: "governance",
     n: "03",
+    layer: 2,
     name: "Governance and assurance",
-    mapLabel: "Governance and assurance",
-    mapCaption:
-      "Ownership, permissions, traceability, human approval and audit evidence, designed in from the start.",
+    short: "Governance",
+    outcome: "AI and data you can trust and explain, with controls built in.",
+    how: "Access controls, human review and a clear record, designed in from the start.",
     problem:
-      "Nobody can say who owns a dataset, who may see it, or how an AI-assisted answer was reached. Assurance is asked for after the build, when it is expensive to add.",
-    outcome:
-      "Clear ownership, permissions that match your policy, and a record a reviewer can follow from a result back to its source.",
-    how: "Data ownership, permissions, traceability, human approval points, audit evidence and controls around AI use, set out in discovery and built in each phase.",
-    page: {
-      description:
-        "Data ownership, permissions, traceability, human approval and audit evidence, with controls around AI use, set out in discovery and built in each phase.",
-      summary:
-        "We make it clear who owns the data, who may see it, who approved a decision and how a result was reached. We build that into the service from discovery, so the evidence is there when a reviewer asks.",
-      problemsTitle: "Assurance is asked for after the build.",
-      problems: [
-        {
-          title: "Nobody owns the data",
-          body: "A dataset is used across the organisation, but no one is named as responsible for its quality or for who may use it.",
-          change:
-            "A named owner for each dataset, with the duties written down.",
-        },
-        {
-          title: "Permissions nobody can explain",
-          body: "Access has grown by exception. Nobody can say who can see what, or why.",
-          change:
-            "Permissions that match your policy, defined by role and reviewed.",
-        },
-        {
-          title: "AI answers with no trail",
-          body: "An AI-assisted answer or decision cannot be traced to its sources or to the person who approved it.",
-          change:
-            "A record a reviewer can follow from a result back to its source, with the approval shown.",
-        },
-      ],
-      outcomesTitle: "Evidence a reviewer can follow.",
-      outcomes: [
-        "Data ownership recorded: who is responsible for each dataset and each decision",
-        "A permissions model that matches your policy, by role",
-        "Traceability from a result back to its sources",
-        "Human approval points where content or decisions have consequences",
-        "Audit evidence kept as the service runs, not assembled afterwards",
-        "Controls around AI use: which model, for which class of data, under which approval",
-        "Documentation your information-management and security teams can review",
-      ],
-      phases: [
-        {
-          name: "Discovery",
-          plain: "What must be shown, and to whom?",
-          body: "We read your policies and assurance requirements, map the data, its owners and its classification, and agree what evidence a reviewer will expect.",
-        },
-        {
-          name: "Alpha",
-          plain: "Do the controls work in practice?",
-          body: "We try the ownership, permission and approval model on one real workflow and test whether the record answers a reviewer's questions.",
-        },
-        {
-          name: "Beta",
-          plain: "Build the controls in",
-          body: "Permissions, approval points and audit records built into the service in your environment, and tested before release.",
-        },
-        {
-          name: "Live",
-          plain: "Keep the evidence current",
-          body: "Handover of the control set, with reviews when sources, models or policies change.",
-        },
-      ],
-      technical: [
-        { term: "Where it runs", detail: whereItRuns },
-        {
-          term: "Ownership",
-          detail:
-            "Each dataset and each approval point has a named owner in your organisation, recorded where the data is governed and not in a separate document.",
-        },
-        {
-          term: "Permissions",
-          detail:
-            "Access is granted by role, follows your identity model and is applied at the data, not only in the application.",
-        },
-        {
-          term: "Traceability",
-          detail:
-            "Source version, model and configuration, edits and reviews are recorded, so a result can be followed back.",
-        },
-        {
-          term: "Human approval",
-          detail:
-            "High-impact content cannot move to approved or published without an authorised person.",
-        },
-        {
-          term: "Audit evidence",
-          detail:
-            "Edits, reviews, exports and access events are recorded as the service runs.",
-        },
-        {
-          term: "Controls around AI",
-          detail:
-            "The route to a model is set by policy and by the class of data. We test for prompt injection, data leakage and unsupported citations.",
-        },
-      ],
-      showDataClasses: true,
-    },
+      "Nobody can say with confidence what the data means, who may see it, or why the AI gave the answer it did.",
+    changes: [
+      "Each dataset and each use of AI is documented, so its purpose is clear.",
+      "People see only what they are allowed to see.",
+      "Decisions leave a record that can be checked later.",
+    ],
   },
   {
-    slug: "data-platforms-integration",
-    anchor: "a-data",
+    slug: "data-platforms",
     n: "04",
+    layer: 1,
     name: "Data platforms and integration",
-    mapLabel: "Data platforms",
-    mapCaption:
-      "Systems connected, data checked and modelled once, legacy reporting modernised.",
+    short: "Data platforms",
+    outcome: "Systems connected, quality checked, data ready to use.",
+    how: "Scalable, secure platforms, pipelines and data models, sized to the need and ready for AI.",
     problem:
-      "Systems do not talk to each other. Data is exported and re-keyed by hand, its quality is unknown, and the legacy reports are costly to change.",
-    outcome:
-      "Data from your systems arrives in one governed place, checked and modelled once, ready for reporting, analytics and AI.",
-    how: "We connect systems, build ingestion and transformation pipelines, improve data quality, develop shared models and modernise legacy reporting.",
-    page: {
-      description:
-        "Systems connected, ingestion and transformation pipelines, measured data quality, shared models and legacy reporting modernised, in one governed place.",
-      summary:
-        "We connect your systems and bring their data into one governed place, checked and modelled once, so reporting, analytics and AI all start from the same foundation.",
-      problemsTitle: "Systems that do not talk to each other.",
-      problems: [
-        {
-          title: "Data moved by hand",
-          body: "Information is exported from one system and re-keyed or pasted into another. It is slow, and errors go unnoticed.",
-          change:
-            "Pipelines that move the data on a schedule and report when something fails.",
-        },
-        {
-          title: "Quality nobody has measured",
-          body: "People suspect the data is incomplete or inconsistent, but nobody knows by how much.",
-          change:
-            "Quality measured and reported, against rules agreed with the people who own the data.",
-        },
-        {
-          title: "Legacy reporting that is costly to change",
-          body: "Reports depend on old extracts and on logic that one person understands.",
-          change:
-            "Shared models, documented and tested, that new reports can build on.",
-        },
-      ],
-      outcomesTitle: "One governed place for your data.",
-      outcomes: [
-        "Connections to the source systems you choose",
-        "Ingestion and transformation pipelines that run on a schedule and report failures",
-        "Data-quality rules, measured and reported",
-        "Shared data models, documented and tested",
-        "Access controls and a catalogue, so people can find data and see who owns it",
-        "Legacy reports moved onto the new foundation, or retired",
-        "Documentation, runbooks and handover",
-      ],
-      phases: [
-        {
-          name: "Discovery",
-          plain: "What is there, and can we reach it?",
-          body: "We establish which sources are available, who grants access, how good the data is and what the platform must connect to.",
-        },
-        {
-          name: "Alpha",
-          plain: "Does one source work end to end?",
-          body: "We take one or two sources through ingestion, quality checks and modelling, and test the riskiest integration first.",
-        },
-        {
-          name: "Beta",
-          plain: "Build the platform",
-          body: "The pipelines, models and controls in your environment, with monitoring in place, brought into use one source at a time.",
-        },
-        {
-          name: "Live",
-          plain: "Run it and add to it",
-          body: "Handover, with documented ways to add sources and change models safely.",
-        },
-      ],
-      technical: [
-        { term: "Where it runs", detail: whereItRuns },
-        {
-          term: "Platforms",
-          detail:
-            "We work with Databricks, Microsoft Fabric and Azure data services, and choose against the requirement, including what you already run.",
-        },
-        {
-          term: "Ingestion",
-          detail:
-            "Batch and incremental loads from databases, files and interfaces, with schema changes detected and failures reported.",
-        },
-        {
-          term: "Modelling",
-          detail:
-            "Layered models from raw to curated, kept in version control, with automated tests.",
-        },
-        {
-          term: "Data quality",
-          detail:
-            "Rules for completeness, validity and consistency run with each load. Results are visible to the data owners.",
-        },
-        {
-          term: "Governance",
-          detail:
-            "A catalogue, ownership and access control applied at the platform. This includes catalogue migration, such as a move to Unity Catalog, and master data management where the requirement calls for it.",
-        },
-        {
-          term: "Operations",
-          detail:
-            "Infrastructure as code, monitoring, cost reporting, backups and a documented release process.",
-        },
-      ],
-      showDataClasses: false,
-    },
+      "Systems do not talk to each other. Joining them is manual, slow and different every time.",
+    changes: [
+      "Sources are connected once and kept up to date.",
+      "Quality is measured, not assumed.",
+      "New reports and applications start from data that is already modelled.",
+    ],
   },
   {
-    slug: "secure-production-delivery",
-    anchor: "a-secure",
+    slug: "secure-delivery",
     n: "05",
+    layer: 0,
     name: "Secure production delivery",
-    mapLabel: "Secure delivery",
-    mapCaption:
-      "A service running in your approved environment, tested, monitored and handed over.",
-    problem:
-      "The prototype works on a laptop but not inside your security model. Nobody has planned for sign-on, testing, monitoring, or who runs it afterwards.",
-    outcome:
-      "A service running in your approved environment, under your identity and access model, monitored, documented and handed over.",
-    how: "Cloud architecture, identity integration, DevSecOps, testing, deployment, monitoring and handover.",
-    page: {
-      description:
-        "Cloud architecture, identity integration, DevSecOps, testing, deployment, monitoring and handover, so a prototype becomes a service you can run.",
-      summary:
-        "We take a service from a working prototype to something your organisation can run: in your approved environment, under your identity and access model, tested, monitored, documented and handed over.",
-      problemsTitle: "It works on a laptop, but not in your estate.",
-      problems: [
-        {
-          title: "A prototype outside the security model",
-          body: "The demonstration sits outside your sign-on, your network and your data controls, so it cannot go further.",
-          change:
-            "The service built inside your approved environment, under your identity and access model.",
-        },
-        {
-          title: "No plan for running it",
-          body: "Nobody has decided how it is tested, deployed, monitored or supported, or what it will cost to run.",
-          change:
-            "Testing, deployment, monitoring and running costs settled before go-live.",
-        },
-        {
-          title: "Knowledge held by the people who built it",
-          body: "Only the original team understands how the service works.",
-          change: "Documentation, runbooks and handover to a named team.",
-        },
-      ],
-      outcomesTitle: "A service your team can run.",
-      outcomes: [
-        "Cloud architecture agreed with your technical and security teams",
-        "Integration with your identity provider and access model",
-        "Automated build, test and deployment",
-        "Security testing appropriate to the delivery phase",
-        "Monitoring, alerting, backups and an incident process",
-        "An estimate of running costs, and cost reporting once live",
-        "Documentation, runbooks and handover",
-      ],
-      phases: [
-        {
-          name: "Discovery",
-          plain: "What does your estate require?",
-          body: "We establish your security model, assurance requirements, hosting constraints and who will run the service, and we estimate running costs.",
-        },
-        {
-          name: "Alpha",
-          plain: "Prove the risky parts",
-          body: "We test the hardest integration points first: sign-on, network access and deployment into your environment.",
-        },
-        {
-          name: "Beta",
-          plain: "Build and harden",
-          body: "The service in your environment with automated deployment, testing and monitoring, released to a small group, then widened.",
-        },
-        {
-          name: "Live",
-          plain: "Hand over",
-          body: "Runbooks, documentation and the training your team needs to run the service. Support after go-live is agreed separately.",
-        },
-      ],
-      technical: [
-        { term: "Where it runs", detail: whereItRuns },
-        {
-          term: "Identity",
-          detail:
-            "Single sign-on through your identity provider where it fits, multi-factor authentication and role-based access.",
-        },
-        {
-          term: "Architecture",
-          detail:
-            "Designed with your technical and security teams, written down and reviewed before the build.",
-        },
-        {
-          term: "Delivery pipeline",
-          detail:
-            "Version control, automated build and test, and controlled releases, with security checks in the pipeline.",
-        },
-        {
-          term: "Testing",
-          detail:
-            "Automated tests and security testing, with independent testing where the delivery phase calls for it.",
-        },
-        {
-          term: "Operations",
-          detail:
-            "Secrets management, dependency and vulnerability management, monitoring, backups and incident response, sized to the delivery phase.",
-        },
-        {
-          term: "Handover",
-          detail:
-            "Runbooks, architecture documents and the access your team needs, so the service can be run without us.",
-        },
-      ],
-      showDataClasses: false,
-    },
+    short: "Secure delivery",
+    outcome: "A working service in your environment, ready for the people who run it.",
+    how: "Secure by design, tested and monitored, then handed over or operated with you.",
+    problem: "The prototype worked. The dependable service never arrived.",
+    changes: [
+      "It runs inside your environment, behind your sign-on and permissions.",
+      "It is tested and monitored before anyone depends on it.",
+      "Your team gets the documentation and training to run it.",
+    ],
   },
 ];
-
-/** Copy shared by all five service pages. */
-export const servicePage = {
-  eyebrow: (n: string) => `Service ${n} of 05`,
-  parent: { label: "What we deliver", href: "/#work" },
-  secondaryCta: "Problems we solve",
-  jump: {
-    label: "On this page, by role",
-    items: [
-      { href: "#problems", who: "Service owners and programme directors", what: "Problems and outcomes" },
-      { href: "#outcomes", who: "Analysts and reporting teams", what: "What you get" },
-      { href: "#technical", who: "Digital, technology and data leaders", what: "Technical approach" },
-      { href: "#controls", who: "Security, governance and information management", what: "Controls" },
-      { href: "#buying", who: "Procurement and commercial", what: "Scope and deliverables" },
-    ],
-  },
-  problems: {
-    eyebrow: "01 · Problems we solve",
-    changeLabel: "What changes",
-  },
-  outcomes: {
-    eyebrow: "02 · What you get",
-    lede: "We agree in discovery how you will judge the result.",
-  },
-  delivery: {
-    eyebrow: "03 · How we deliver it",
-    title: "Four phases, each with a decision at the end.",
-  },
-  technical: {
-    eyebrow: "04 · Technical approach",
-    title: "For the people who will evaluate the engineering.",
-    lede: "This is our default approach. Discovery confirms or changes it against your requirement and your estate.",
-    classesTitle: "The class of data decides the model route",
-    classes: [
-      { name: "Public or synthetic", route: "An approved managed model may be suitable." },
-      { name: "Internal", route: "A managed deployment you approve, with agreed region, logging and retention." },
-      {
-        name: "Commercially confidential or restricted",
-        route: "A private or dedicated deployment, or a self-hosted model, after a risk assessment.",
-      },
-      {
-        name: "Personal or special-category",
-        route:
-          "Left out of a first proof of concept. Later use needs a documented lawful purpose, a data protection impact assessment and security approval.",
-      },
-      { name: "Not yet approved", route: "No model. The workflow continues with fixed calculations or a person." },
-    ],
-  },
-  controls: {
-    eyebrow: "05 · Controls",
-    title: "For security, governance and information management.",
-    lede: "The controls we expect to put in place. Your policies decide the final set.",
-    items: [
-      {
-        name: "Identity and roles",
-        detail:
-          "Single sign-on where it fits, multi-factor authentication, and separate administrator, author, reviewer and read-only roles.",
-      },
-      { name: "Least privilege", detail: "Each component and each connector receives only the data needed for the task in hand." },
-      { name: "Human approval", detail: "High-impact content cannot be approved or published without an authorised person." },
-      {
-        name: "Audit history",
-        detail: "Source version, configuration, edits, reviews, exports and access events are recorded.",
-      },
-      {
-        name: "Data lifecycle",
-        detail: "Collection, encryption, retention, export and deletion are defined before any of your data is accepted.",
-      },
-      {
-        name: "Sovereignty evidence",
-        detail:
-          "The approved service configuration, region, retention settings and sub-processors are kept on record for each model route.",
-      },
-    ],
-    bridgly: {
-      title: "Governing AI agents",
-      body: `If your organisation is putting AI agents to work, Bridgly is the DataGo product for that. ${site.bridgly.line}`,
-    },
-  },
-  buying: {
-    eyebrow: "06 · Scope",
-    title: "For procurement and commercial teams.",
-    lede: "Each phase is a separate piece of work with a written scope, named deliverables and acceptance criteria. You are not committed to the next phase by buying this one.",
-    receiveLabel: "You receive",
-    phases: [
-      {
-        name: "Discovery",
-        body: "A findings report, a source and data-quality assessment, the agreed acceptance tests, a security and data-classification note, an estimate of running costs, and a scope for alpha.",
-      },
-      {
-        name: "Alpha",
-        body: "A working prototype, its results against the acceptance tests, the risks found, and a scope and estimate for beta.",
-      },
-      {
-        name: "Beta to live",
-        body: "The service in your environment, test evidence, documentation, runbooks and handover.",
-      },
-    ],
-  },
-  cta: {
-    eyebrow: "Next",
-    title: "Tell us the problem you are trying to solve.",
-    lede: "A few lines is enough to start. We will say plainly whether it is work we are suited to.",
-    secondary: { label: "The other four services", href: "/#work" },
-  },
-};
 
 /* ------------------------------------------------------------------ */
 /* Home                                                                */
 /* ------------------------------------------------------------------ */
 
 export const home = {
-  title: "DataGo | Data, governance and AI delivery",
+  title: "DataGo | AI, built on trusted data.",
   hero: {
     eyebrow: "UK data and AI consultancy",
-    /* The owner's overarching message, word for word. The middle part is emphasised. */
-    titleBefore: "We bring ",
-    titleEmphasis: "trusted data foundations, practical governance and AI",
-    titleAfter:
-      " together to help organisations make better decisions and improve how they work.",
-    body: "We connect fragmented data, build useful applications and analytics, and introduce AI with clear ownership, practical controls and evidence you can trust. We also build our own products. The first is Bridgly.",
-    secondary: [
-      { label: "What we deliver", href: "/#work" },
-      { label: "Products", href: "/#products" },
-    ],
+    /* The owner's line, sharpened to lead with AI. The full sentence is on the About page. */
+    titleLines: ["AI, built on"],
+    titleEmphasis: "trusted data.",
+    body: "We build secure, scalable data platforms with AI at the core, so organisations make better decisions and improve how they work.",
+    secondary: { label: "See what we do", href: "/#work" },
   },
-  map: {
-    label: "How DataGo is organised",
-    pause: "Pause",
-    play: "Play",
-    root: "datago",
-    consulting: { label: "Consulting", note: "data and AI delivery" },
-    products: { label: "Products", note: "our own software" },
-    productLeaves: [
+  /* The scroll story. The 3D field shows each chapter as the visitor scrolls. */
+  story: {
+    label: "From a trusted data foundation to AI run in production",
+    cue: "Scroll",
+    chapters: [
       {
-        id: "l6",
-        label: "Bridgly",
-        note: "bridgly.ai",
-        href: site.bridgly.url,
-        captionTitle: "Bridgly.",
-        caption: site.bridgly.line,
+        name: "A trusted data foundation.",
+        body: "Scattered sources, connected, checked and modelled once.",
+      },
+      {
+        name: "A secure, scalable platform.",
+        body: "Built to grow with you, with security designed in.",
+      },
+      {
+        name: "AI built in from the start.",
+        body: "Assistants, agents, search and decision support, working on data you trust.",
+      },
+      {
+        name: "Governed, and run in production.",
+        body: "Controls built in, a person in the loop, and a service that is monitored and improved.",
       },
     ],
-    captionTitle: "One company, two ways to work with us.",
-    caption: "Point at or tab to an item to see what it is.",
   },
   work: {
-    eyebrow: "01 · What we deliver",
-    title: "Five kinds of work, each starting from a problem.",
-    lede: "Typical needs are disconnected systems, inconsistent reporting, manual reconciliation, information people cannot reach, and a promising prototype that never became a dependable service. Our value is in connecting the data, application and operational work needed to deliver something people can use.",
-    labels: { problem: "The problem", outcome: "The outcome", how: "How we deliver" },
-    more: "Read the service page",
+    eyebrow: "What we do",
+    title: "Five layers. One system.",
+    lede: "AI leads. The data platform, security and governance beneath it are what make it work.",
+    tabsLabel: "The five kinds of work",
+    labels: { outcome: "The outcome", how: "How" },
+    more: "More on this",
+    all: { label: "All five in detail", href: "/services" },
     tech: {
-      title: "Outcome first, technology second",
-      body: "We choose technology against the requirement, including what you already run. We work with Azure, AWS, Databricks and Microsoft Fabric.",
+      title: "Outcome first, technology second.",
+      body: "We choose technology to fit the need, including what you already run. We work with Azure, AWS, Databricks and Microsoft Fabric.",
     },
   },
-  delivery: {
-    eyebrow: "02 · How we deliver",
-    title: "Clear discovery, phased delivery.",
-    lede: "We work in four phases. Each phase has a written scope and ends with a decision you make: go on, change direction, or stop.",
-    phases: [
+  how: {
+    eyebrow: "How we work",
+    title: "Start small. Build in phases. Keep it running.",
+    steps: [
       {
-        name: "Discovery",
-        plain: "Find out what is really needed",
-        body: "We check what decides whether the project will work: the data, the systems, security, and what it will cost to run. You get a written scope for the next phase.",
+        name: "Discover",
+        body: "A short discovery and assessment: what you need, what you have, and what stands in the way.",
       },
       {
-        name: "Alpha",
-        plain: "Try it on a small scale",
-        body: "We build prototypes on real or representative data and test the riskiest parts first. You see something working before you commit to the full build.",
+        name: "Build",
+        body: "Phased and iterative, secure by design. Something working early, then widened.",
       },
       {
-        name: "Beta",
-        plain: "Build the real service",
-        body: "We build it in your environment, with testing, security and monitoring in place, release it to a small group, then widen it.",
-      },
-      {
-        name: "Live",
-        plain: "Run it and keep improving it",
-        body: "We hand over with documentation and the training your team needs to run the service. Support after go-live is agreed separately.",
+        name: "Run",
+        body: "Handed over to your team, or operated with you: monitored, optimised and improved.",
       },
     ],
-    settle: {
-      title: "What we settle before you commit to a programme",
-      items: [
-        { name: "Source availability", detail: "Which systems and data we can reach, and who grants access." },
-        { name: "Data quality", detail: "How complete and consistent the data is, measured, not assumed." },
-        { name: "Integrations", detail: "What the service must connect to, and how." },
-        { name: "Security", detail: "Your access model, data classification and assurance requirements." },
-        { name: "Acceptance criteria", detail: "How you will judge that each phase has done its job." },
-        { name: "Operating costs", detail: "What the service will cost to run once it is live." },
-      ],
-    },
   },
-  products: {
-    eyebrow: "03 · Products",
-    title: "Products we build and stand behind.",
-    lede: "Alongside consulting, DataGo builds its own software. Each product has its own proposition and its own site. DataGo Ltd is the company you contract with.",
-    more: { label: "About Bridgly", href: site.bridgly.url },
+  product: {
+    eyebrow: "Our product",
+    lede: "Bridgly governs AI agents.",
+    demoNote: "An illustration of the three outcomes. It is not the product interface.",
+    demoLabel: "Choose an outcome",
+    options: [
+      {
+        key: "ok",
+        label: "Goes ahead",
+        title: "The action goes ahead.",
+        body: "It is within a rule a named person signed.",
+      },
+      {
+        key: "hold",
+        label: "Held for a person",
+        title: "The action is held for a person.",
+        body: "The rule says a person must decide. The agent waits.",
+      },
+      {
+        key: "stop",
+        label: "Stopped",
+        title: "The action is stopped.",
+        body: "The rule does not allow it.",
+      },
+    ],
+  },
+};
+
+/* ------------------------------------------------------------------ */
+/* Credentials slot.                                                   */
+/*                                                                     */
+/* `items` is the single switch: each entry is shown exactly as        */
+/* written, and an empty list renders no band at all. Add an entry     */
+/* only once it is achieved and the owner of the mark permits its use. */
+/*                                                                     */
+/* Owner decision, 16 November 2026: the band starts with one entry,   */
+/* the two words "Databricks partner". No tier, no logo, no other      */
+/* badge, and partnership is claimed nowhere else on the site.         */
+/*                                                                     */
+/* `kind` (a small label under the name) and `logo` (an image path)    */
+/* are optional, for later entries, for example:                       */
+/*   { name: "Cyber Essentials", kind: "Certification" }               */
+/* ------------------------------------------------------------------ */
+
+export type Credential = { name: string; kind?: string; logo?: string };
+
+export const credentials: { title: string; items: Credential[] } = {
+  title: "Credentials",
+  items: [{ name: "Databricks partner" }],
+};
+
+/* ------------------------------------------------------------------ */
+/* Services page                                                       */
+/* ------------------------------------------------------------------ */
+
+export const servicesPage = {
+  eyebrow: "What we do",
+  title: "Five kinds of work.",
+  body: "AI leads. The data platform, security and governance beneath it are what make it work.",
+  navLabel: "The five kinds of work",
+  labels: { problem: "The problem", changes: "What changes", how: "How" },
+  layerCaption: (n: string, name: string) => `Layer ${n} of 05 · ${name}`,
+  cta: {
+    title: "Tell us the problem you are trying to solve.",
+    lede: "A few lines is enough to start.",
   },
 };
 
@@ -839,10 +312,10 @@ export const home = {
 /* ------------------------------------------------------------------ */
 
 export const contact = {
-  eyebrow: "04 · Contact",
+  eyebrow: "Contact",
   pageEyebrow: "Contact",
-  title: "Discuss a project",
-  lede: "Tell us the problem you are trying to solve. A few lines is enough. We read every message and reply by email.",
+  title: "Bring us the problem.",
+  lede: "A few lines is enough. We read every message and reply by email.",
   emailLabel: "Or email us at",
   form: {
     name: "Your name",
@@ -894,63 +367,33 @@ export const contact = {
 /* Other pages                                                         */
 /* ------------------------------------------------------------------ */
 
-/** The three-outcome illustration on the home page product card. */
-export const bridglyDemo = {
-  note: "Illustration of the three outcomes. This is not the product interface.",
-  groupLabel: "Choose an outcome",
-  options: [
-    {
-      key: "ok",
-      label: "Goes ahead",
-      title: "The action goes ahead.",
-      body: "It is within a rule a named person signed. The record shows the rule, the clauses it serves, the version in force and who signed it.",
-    },
-    {
-      key: "hold",
-      label: "Held for a person",
-      title: "The action is held for a person.",
-      body: "The rule says a person must decide. The agent waits. The record shows the rule and, once made, the decision.",
-    },
-    {
-      key: "stop",
-      label: "Stopped",
-      title: "The action is stopped.",
-      body: "The rule does not allow it. The record shows which rule, the clauses it serves, the version in force and who signed it.",
-    },
-  ],
-};
-
 export const aboutPage = {
   eyebrow: "About",
   title: "About DataGo",
-  body: "DataGo is a UK data and AI consultancy. We connect fragmented data, build useful applications and analytics, and introduce AI with clear ownership, practical controls and evidence you can trust. We also build our own products. The first is Bridgly.",
-  facts: [
-    { label: "Company", value: site.legalName },
-    { label: "What we do", value: "Data, analytics, AI and governance delivery" },
-    { label: "Technology we work with", value: "Azure, AWS, Databricks and Microsoft Fabric" },
-    { label: "Products", value: "Bridgly" },
-    { label: "Contact", value: site.email },
-    { label: "Company details", value: "In the footer of every page" },
-  ],
+  body: "DataGo is a UK data and AI consultancy.",
+  /* The owner's overarching message, word for word. */
+  belief:
+    "We bring trusted data foundations, practical governance and AI together to help organisations make better decisions and improve how they work.",
   twoWays: {
-    title: "One company, two ways to work with us",
-    items: [
-      {
-        title: "Consulting",
-        body: "Work in five areas: practical AI, analytics, governance and assurance, data platforms, and secure production delivery.",
-        link: { label: "What we deliver", href: "/#work" },
-      },
-      {
-        title: "Products",
-        body: "Software we build and stand behind. Each product has its own proposition and its own site.",
-        link: { label: "Products", href: "/#products" },
-      },
-    ],
+    title: "Two things we do",
+    consulting: {
+      title: "Consulting",
+      body: "AI enablement and development, on the data platform, security and governance that make it work.",
+      link: { label: "What we do", href: "/services" },
+    },
+    product: {
+      title: "Our own software",
+      body: "Bridgly governs AI agents. It has its own site.",
+    },
   },
-  approach: {
-    title: "How we work",
-    body: "We favour clear discovery and phased delivery. We establish source availability, data quality, integrations, security, acceptance criteria and operating costs before committing to a programme.",
-    link: { label: "How we deliver", href: "/#delivery" },
+  company: {
+    title: "The company",
+    facts: [
+      { label: "Legal name", value: site.legalName },
+      { label: "Company number", value: site.legal.companyNumber },
+      { label: "Registered in", value: site.legal.registeredIn },
+      { label: "Registered office", value: site.legal.registeredOffice },
+    ],
   },
 };
 
@@ -1202,20 +645,21 @@ export const legalPages = {
 export const footer = {
   columns: [
     {
-      title: "What we deliver",
-      label: "What we deliver",
+      title: "What we do",
+      label: "What we do",
       links: services.map((service) => ({
-        href: `/services/${service.slug}`,
-        label: service.name,
+        href: `/services#${service.slug}`,
+        label: service.name
       })),
     },
     {
       title: "Company",
-      label: "Company and products",
+      label: "Company and product",
       links: [
         { href: "/about", label: "About" },
-        { href: "/#delivery", label: "How we deliver" },
-        { href: site.bridgly.url, label: "Bridgly" },
+        { href: "/#how", label: "How we work" },
+        { href: "/contact", label: "Contact" },
+        { href: site.bridgly.url, label: site.bridgly.name },
       ],
     },
     {
@@ -1225,7 +669,6 @@ export const footer = {
         { href: "/privacy", label: "Privacy" },
         { href: "/terms", label: "Terms" },
         { href: "/accessibility", label: "Accessibility" },
-        { href: "/contact", label: "Contact" },
       ],
     },
   ],

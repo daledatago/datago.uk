@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo, Public_Sans, Source_Code_Pro } from "next/font/google";
 import { JsonLdScript } from "@/components/json-ld-script";
+import { CursorRing } from "@/components/immersive/cursor-ring";
 import { SiteChrome } from "@/components/site-chrome";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -8,6 +9,7 @@ import { ThemeScript } from "@/components/theme-script";
 import { homeTitle, rootJsonLd, SEARCH_KEYWORDS } from "@/lib/metadata";
 import { navItems, site, ui } from "@/lib/strings";
 import "./globals.css";
+import "./immersive.css";
 
 /* Self-hosted by next/font: the browser makes no request to Google. */
 const archivo = Archivo({
@@ -118,6 +120,7 @@ export default function RootLayout({
         >
           {children}
         </SiteChrome>
+        <CursorRing />
       </body>
     </html>
   );

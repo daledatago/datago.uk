@@ -5,7 +5,7 @@ The website for DataGo Ltd, a UK data and AI consultancy and the company behind 
 Pages:
 
 - Home: the hero message, the structure map, the five focus areas, how we deliver, products and contact
-- Five service pages on one template: `/services/[slug]`
+- One services page with five deep-linkable panels: `/services#practical-ai`, `#analytics`, `#governance`, `#data-platforms`, `#secure-delivery` (the old `/services/<slug>` addresses redirect permanently)
 - Bridgly: `/bridgly` redirects permanently to bridgly.ai; every Bridgly link opens bridgly.ai in a new tab
 - About
 - Contact, with the enquiry form
