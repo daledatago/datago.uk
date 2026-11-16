@@ -4,7 +4,7 @@ const isDev = process.env.NODE_ENV === "development";
 
 /*
  * Content-Security-Policy. The only third party is Cloudflare Turnstile, the
- * security check on the contact form. Fonts are self-hosted by next/font.
+ * security check on the contact form. Fonts are files in src/fonts, served by this site.
  */
 const csp = [
   "default-src 'self'",

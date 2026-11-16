@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, Public_Sans, Source_Code_Pro } from "next/font/google";
+import localFont from "next/font/local";
 import { JsonLdScript } from "@/components/json-ld-script";
 import { CursorRing } from "@/components/immersive/cursor-ring";
 import { SiteChrome } from "@/components/site-chrome";
@@ -11,25 +11,31 @@ import { navItems, site, ui } from "@/lib/strings";
 import "./globals.css";
 import "./immersive.css";
 
-/* Self-hosted by next/font: the browser makes no request to Google. */
-const archivo = Archivo({
+/*
+ * The font files are in src/fonts (see its README for source and licence).
+ * Neither the build nor the browser makes a request to Google.
+ */
+const archivo = localFont({
+  src: "../fonts/archivo-latin-wght-normal.woff2",
   variable: "--font-archivo",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: "500 700",
+  style: "normal",
   display: "swap",
 });
 
-const publicSans = Public_Sans({
+const publicSans = localFont({
+  src: "../fonts/public-sans-latin-wght-normal.woff2",
   variable: "--font-public-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: "400 600",
+  style: "normal",
   display: "swap",
 });
 
-const sourceCodePro = Source_Code_Pro({
+const sourceCodePro = localFont({
+  src: "../fonts/source-code-pro-latin-wght-normal.woff2",
   variable: "--font-source-code-pro",
-  subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: "400 500",
+  style: "normal",
   display: "swap",
 });
 
